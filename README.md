@@ -71,4 +71,4 @@ README〜ER図作成：5/31 〆切
 - heroku
 - LINE API（プッシュ通知機能）
 
-https://www.figma.com/file/oFH5T0vL7lNzS2zSr5f4hc/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&t=ONNBeZpaRmBSrNMp-1
+https://www.figma.com/file/oFH5T0vL7lNzS2zSr5f4hc/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&t=ONNBeZpaRmBSrNMp-1 
