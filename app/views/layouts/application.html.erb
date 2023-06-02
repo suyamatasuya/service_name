@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ServiceName</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>アプリのタイトル</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <!-- CSS や JavaScript のリンクをここに追加 -->
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <!-- ヘッダーを表示 -->
+  <%= render 'shared/header' %>
 
-  <body>
+  <div class="content">
+    <!-- ここに各ページのコンテンツを表示 -->
     <%= yield %>
-  </body>
+  </div>
+
+  <!-- フッターを表示 -->
+  <%= render 'shared/footer' %>
+</body>
 </html>
