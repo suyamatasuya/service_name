@@ -1,4 +1,3 @@
-
 ■ サービス概要
 首の痛み、腰の痛み（急性、慢性）の痛みのケア方法を紹介、提案そして
 掲示板を使って、身体のシェア方法を共有し合える、継続治療を目的とした
@@ -75,3 +74,4 @@ https://www.figma.com/file/oFH5T0vL7lNzS2zSr5f4hc/%E7%94%BB%E9%9D%A2%E9%81%B7%E7
 
 ER図URL
 https://app.diagrams.net/?src=about#G1DBP8WEaXP9rZuJT5x8NLiOIfyaKWNmUi
+>>>>>>> heroku

@@ -1,0 +1,36 @@
+@import 'bootstrap';
+// 他のスタイルシートのインポート...
+@import 'custom'; // これを最後に移動する
+
+.navbar {
+    padding: 15px 0;
+    background-color: #fff;  /* ナビゲーションバーの背景色を白に設定 */
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1); /* ナビゲーションバーに影をつける */
+  }
+  
+  .navbar .navbar-brand {
+    color: #333;  /* ブランドロゴの色をダークグレーに設定 */
+  }
+  
+  .navbar .navbar-nav .nav-link {
+    color: #333;  /* ナビゲーションリンクの色をダークグレーに設定 */
+  }
+  
+  .navbar .navbar-nav .nav-link:hover {
+    color: #007bff;  /* ナビゲーションリンクをホバーしたときの色をブートストラップのプライマリーカラーに設定 */
+  }
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */

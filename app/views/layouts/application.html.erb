@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>アプリのタイトル</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- CSS や JavaScript のリンクをここに追加 -->
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <!-- ヘッダーを表示 -->
+  <%= render 'shared/header' %>
+
+  <div class="content">
+    <!-- ここに各ページのコンテンツを表示 -->
+    <%= yield %>
+  </div>
+
+  <!-- フッターを表示 -->
+  <%= render 'shared/footer' %>
+</body>
+</html>
