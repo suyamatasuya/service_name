@@ -10,15 +10,17 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-  <!-- ヘッダーを表示 -->
-  <%= render 'shared/header' %>
+  <div id="page-container">
+    <!-- ヘッダーを表示 -->
+    <%= render 'shared/header' %>
 
-  <div class="content">
-    <!-- ここに各ページのコンテンツを表示 -->
-    <%= yield %>
+    <div id="content-wrap">
+      <!-- ここに各ページのコンテンツを表示 -->
+      <%= yield %>
+    </div>
+
+    <!-- フッターを表示 -->
+    <%= render 'shared/footer' %>
   </div>
-
-  <!-- フッターを表示 -->
-  <%= render 'shared/footer' %>
 </body>
 </html>
