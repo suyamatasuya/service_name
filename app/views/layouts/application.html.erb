@@ -11,16 +11,26 @@
 </head>
 <body>
   <div id="page-container">
-    <!-- ヘッダーを表示 -->
-    <%= render 'shared/header' %>
+  <% if current_user %>
+    <%= render 'shared/logged_in_header' %>
+  <% else %>
+    <%= render 'shared/before_login_header' %>
+  <% end %>
 
-    <div id="content-wrap">
-      <!-- ここに各ページのコンテンツを表示 -->
-      <%= yield %>
-    </div>
+  <div id="content-wrap">
+    <!-- ここに各ページのコンテンツを表示 -->
+    <%= yield %>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>">
+        <%= message %>
+      </div>
+    <% end %>
 
-    <!-- フッターを表示 -->
-    <%= render 'shared/footer' %>
   </div>
+
+  <!-- フッターを表示 -->
+  <%= render 'shared/footer' %>
+</div>
+
 </body>
 </html>
