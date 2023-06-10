@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_04_114140) do
+ActiveRecord::Schema.define(version: 2023_06_07_053606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "symptoms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "pain_location"
+    t.string "pain_type"
+    t.integer "pain_intensity"
+    t.datetime "pain_start_time"
+    t.integer "pain_duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "injury_related"
+    t.index ["user_id"], name: "index_symptoms_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -25,4 +38,5 @@ ActiveRecord::Schema.define(version: 2023_06_04_114140) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "symptoms", "users"
 end

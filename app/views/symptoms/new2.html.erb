@@ -1,0 +1,56 @@
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+  <h1 class="text-center title">問診2</h1>
+  <h2 class="text-center instruction">痛みの種類を選択してください</h2>
+  <%= form_with model: @symptom, url: symptom_path(@symptom), method: :patch do |f| %>
+    <div class="d-flex justify-content-around" style="width: 100%; max-width: 600px;">
+      <label for="sharp_pain" class="btn btn-outline-primary btn-lg">
+        <%= f.radio_button :pain_type, '鋭い痛み', style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>
+        鋭い痛み
+      </label>
+      <label for="dull_pain" class="btn btn-outline-primary btn-lg">
+        <%= f.radio_button :pain_type, '鈍い痛み', style: 'display:none', id: 'dull_pain', class: 'form-check-input' %>
+        鈍い痛み
+      </label>
+      <label for="throbbing_pain" class="btn btn-outline-primary btn-lg">
+        <%= f.radio_button :pain_type, '脈打つ痛み', style: 'display:none', id: 'throbbing_pain', class: 'form-check-input' %>
+        脈打つ痛み
+      </label>
+      <label for="electric_pain" class="btn btn-outline-primary btn-lg">
+        <%= f.radio_button :pain_type, '電撃のように痺れる痛み', style: 'display:none', id: 'electric_pain', class: 'form-check-input' %>
+        電撃のように痺れる痛み
+      </label>
+    </div>
+    <div class="text-center">
+    <%= form_with model: @symptom, url: symptom_path(@symptom), method: :patch do |f| %>
+      <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+/* Hide the radio buttons */
+.form-check-input {
+  display: none;
+}
+
+/* Custom button size */
+.custom-button {
+  width: 200px;
+  height: 60px;
+}
+
+/* Custom title */
+.title {
+  font-size: 3em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 0.5em;
+}
+
+/* Custom instruction */
+.instruction {
+  font-size: 1.5em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 1em;
+}
+
+</style>

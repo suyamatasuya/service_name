@@ -1,0 +1,2 @@
+module SymptomStepsHelper
+end
