@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :symptoms do
-    resources :symptom_steps, only: [:show, :create, :update], path: 'steps'
+    resources :steps, only: [:show, :update], controller: 'symptom_steps'
   end
+  
+  
+  resources :boards, only: [:index, :show, :new, :create]
 
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
