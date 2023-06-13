@@ -1,0 +1,7 @@
+<h1>掲示板一覧</h1>
+<% @boards.each do |board| %>
+  <div>
+    <h2><%= board.title %></h2>
+    <p><%= board.content %></p>
+  </div>
+<% end %>

@@ -1,37 +1,145 @@
-<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-  <h1 class="text-center title">問診3</h1>
-  <h2 class="text-center instruction">痛みの強度を選択してください</h2>
-  <%= form_with model: @symptom, url: symptom_path(@symptom), method: :patch do |f| %>
-    <div class="d-flex justify-content-around" style="width: 100%; max-width: 600px;">
-      <div class="form-group">
-        <label for="pain_intensity">痛みの強度 (0-10)</label>
-        <%= f.number_field :pain_intensity, class: 'form-control', min: 0, max: 10 %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>アプリのタイトル</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!-- Add jQuery and Bootstrap from a CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Add noUiSlider library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+
+  
+</head>
+<body>
+  <div id="page-container">
+    <% if current_user %>
+      <%= render 'shared/logged_in_header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+
+    <div id="content-wrap">
+      <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+        <h1 class="text-center title">問診3</h1>
+        <h2 class="text-center instruction">痛みの強度を選択してください</h2>
+        <div id="slider"></div> <!-- スライダーのコンテナ要素 -->
+        <div id="slider-value" class="text-center mt-2"></div> <!-- スライダーの値表示領域 -->
+        <div id="slider-comments" class="text-center mt-2">
+          <span class="comment">痛くない</span>
+          <span class="comment ml-2 pain-comment">痛い</span>
+          <span class="comment ml-2">耐えがたい痛み</span>
+        </div>
+
+        <%= form_with model: @symptom, url: symptom_path(@symptom), method: :patch do |f| %>
+          <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
+
+          <div class="text-center mt-5">
+            <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="text-center">
-      <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
-    </div>
-  <% end %>
-</div>
 
-<style>
-/* Custom button size */
-.custom-button {
-  width: 200px;
-  height: 60px;
-}
+    <!-- フッターを表示 -->
+    <%= render 'shared/footer' %>
+  </div>
 
-/* Custom title */
-.title {
-  font-size: 3em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 0.5em;
-}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var slider = document.getElementById('slider');
+      var painIntensity = document.getElementById('pain_intensity');
+      var sliderValue = document.getElementById('slider-value');
+      var sliderComments = document.getElementById('slider-comments');
 
-/* Custom instruction */
-.instruction {
-  font-size: 1.5em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 1em;
-}
-</style>
+      noUiSlider.create(slider, {
+        start: 0,
+        step: 1,
+        range: {
+          'min': 0,
+          'max': 10
+        },
+        pips: {
+          mode: 'positions',
+          values: [0, 20, 40, 60, 80, 100],
+          density: 10,
+          format: {
+            to: function(value) {
+              if (value === '0') {
+                return '痛くない';
+              } else if (value === '10') {
+                return '耐えがたい痛み';
+              } else {
+                return Math.floor(value);
+              }
+            }
+          }
+        }
+      });
+
+      slider.noUiSlider.on('update', function(values, handle) {
+        painIntensity.value = values[handle];
+        sliderValue.textContent = Math.floor(values[handle]);
+      });
+    });
+  </script>
+
+  <style>
+    /* Custom button size */
+    .custom-button {
+      width: 200px;
+      height: 60px;
+    }
+
+    /* Custom title */
+    .title {
+      font-size: 3em;
+      font-family: 'Yu Gothic', sans-serif;
+      margin-bottom: 0.5em;
+    }
+
+    /* Custom instruction */
+    .instruction {
+      font-size: 1.5em;
+      font-family: 'Yu Gothic', sans-serif;
+      margin-bottom: 1em;
+    }
+
+    /* スライダーコンテナのスタイル */
+    #slider {
+      width: 60%; /* スライダーの幅 */
+      height: 30px; /* スライダーの高さ */
+      margin-left: 0px; /* スライダーを右に少し移動 */
+      background-color: #d3d3d3; /* スライダーの背景色 */
+    }
+    
+    /* コメントのスタイル */
+    #slider-comments {
+      display: flex;
+      justify-content: space-between;
+      width: 60%; /* スライダーの幅に合わせる */
+      margin: 0 auto;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .pain-comment {
+      margin-right: center:
+    }
+    
+    /* メーターの色と数字の文字の大きさ */
+    #slider .noUi-connect {
+      background-color: #98FB98; /* メーターの色を医療的な色に変更 */
+    }
+    
+    #slider-value {
+      font-size: 24px; /* 数字の文字の大きさを変更 */
+    }
+  </style>
+</body>
+</html>

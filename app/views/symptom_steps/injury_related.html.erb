@@ -1,23 +1,15 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-  <h1 class="text-center title">問診2</h1>
-  <h2 class="text-center instruction">痛みの種類を選択してください</h2>
-  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_intensity), method: :patch do |f| %>
+  <h1 class="text-center title">問診4</h1>
+  <h2 class="text-center instruction">痛みの原因を教えてください</h2>
+  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :generate_care_methods), method: :patch do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
-      <label for="sharp_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '鋭い痛み', style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>
-        鋭い痛み
+      <label for="injury_related_yes" class="btn btn-outline-primary btn-lg custom-label">
+        <%= f.radio_button :injury_related, true, style: 'display:none', id: 'injury_related_yes', class: 'form-check-input' %>
+        外傷（ケガ）による痛み
       </label>
-      <label for="dull_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '鈍い痛み', style: 'display:none', id: 'dull_pain', class: 'form-check-input' %>
-        鈍い痛み
-      </label>
-      <label for="throbbing_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '脈打つ痛み', style: 'display:none', id: 'throbbing_pain', class: 'form-check-input' %>
-        脈打つ痛み
-      </label>
-      <label for="electric_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '電撃のように痺れる痛み', style: 'display:none', id: 'electric_pain', class: 'form-check-input' %>
-        電撃のように痺れる痛み
+      <label for="injury_related_no" class="btn btn-outline-primary btn-lg custom-label">
+        <%= f.radio_button :injury_related, false, style: 'display:none', id: 'injury_related_no', class: 'form-check-input' %>
+        非外傷性（ケガ以外）による痛み
       </label>
     </div>
     <div class="text-center">
@@ -64,7 +56,7 @@
 /* Custom label with margin and width */
 .custom-label {
   margin: 10px !important;
-  min-width: 150px; /* Adjust this value to ensure the text fits */
+  min-width: 200px; /* Adjust this value to ensure the text fits */
   text-align: center; /* Center the text within the label */
 }
 
