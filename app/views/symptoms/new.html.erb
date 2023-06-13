@@ -2,13 +2,14 @@
   <h1 class="text-center title">問診1</h1>
   <h2 class="text-center instruction">症状のある部位を教えてください</h2>
     <%= form_with model: @symptom, local: true do |f| %>
+    <%= f.hidden_field :pain_location %>
     <div class="d-flex justify-content-around" style="width: 100%; max-width: 600px;">
-      <label for="neck" class="btn btn-outline-primary btn-lg">
+      <label for="neck" class="btn btn-outline-primary btn-lg <%= 'active' if @symptom.pain_location == '首' %>">
         <%= f.radio_button :pain_location, '首', style: 'display:none', id: 'neck', class: 'form-check-input' %>
         <%= image_tag('11514_color.png', alt: '首', class: 'img-thumbnail', style: 'width: 200px; height: 200px;') %>
         首
       </label>
-      <label for="waist" class="btn btn-outline-primary btn-lg">
+      <label for="waist" class="btn btn-outline-primary btn-lg <%= 'active' if @symptom.pain_location == '腰' %>">
         <%= f.radio_button :pain_location, '腰', style: 'display:none', id: 'waist', class: 'form-check-input' %>
         <%= image_tag('11581_color.png', alt: '腰', class: 'img-thumbnail', style: 'width: 200px; height: 200px;') %>
         腰
@@ -19,67 +20,3 @@
     </div>
   <% end %>
 </div>
-<!-- 以下のJavaScriptとCSSは変更なし -->
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.btn-outline-primary').forEach(function(label){
-      label.addEventListener('click', function(e){
-        // Clear previous selection
-        document.querySelectorAll('.btn-outline-primary').forEach(function(otherLabel){
-          otherLabel.classList.remove('active');
-        })
-        // Set the clicked label as active
-        e.currentTarget.classList.add('active');
-      })
-    })
-  })
-</script>
-
-/* Hide the radio buttons */
-.form-check-input {
-  display: none;
-}
-
-/* Style for active label */
-.active {
-  border-color: #FF0000; /* This will make the border red */
-  background-color: #FF0000; /* This will make the background red */
-  color: white;
-  box-shadow: 0 0 10px #FF0000; /* This will add a red shadow around the item */
-}
-
-/* Add margin to the buttons */
-.btn-outline-primary {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-/* Custom button size */
-.custom-button {
-  width: 200px;
-  height: 60px;
-}
-
-/* Custom title */
-.title {
-  font-size: 3em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 0.5em;
-}
-
-/* Custom instruction */
-.instruction {
-  font-size: 1.5em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 1em;
-}
-
-.active {
-  border-color: #FF0000; /* This will make the border red */
-  background-color: #FF0000; /* This will make the background red */
-  color: white;
-  box-shadow: 0px 0px 20px 3px rgba(255, 0, 0, 0.6); /* This will add a bigger and more visible red shadow around the item */
-}
-

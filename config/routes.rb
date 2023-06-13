@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create,:edit, :update]
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :symptoms do
     resources :steps, only: [:show, :update], controller: 'symptom_steps'

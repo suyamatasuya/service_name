@@ -1,34 +1,49 @@
+<!DOCTYPE html>
+<html>
 <head>
+  <title>Your Website</title>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
     .navbar {
       position: fixed;
       top: 0;
-      left: 0;
+      right: 0;
       height: 100px;
       width: 100%;
       background: linear-gradient(to right, #428625, #7bdd95);
       z-index: 999;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
     }
 
     .navbar-title {
       font-size: 28px;
       font-weight: bold;
       color: #fff;
-      margin-left: -100px; /* 適切な間隔に調整してください */
+      margin-right: auto; 
       cursor: pointer;
+    }
+
+    .navbar-links {
+      color: #fff;
+      margin-right: 15px;
     }
 
     .side-bar {
       position: fixed;
-      left: 0;
+      right: 0;
       top: 100px;
       height: 100vh;
-      width: 200;
+      width: 0;
       background-color: #f8f9fa;
       overflow: auto;
-      transition: width 1s;
+      transition: width 0.5s;
       z-index: 1000;
     }
 
@@ -50,29 +65,66 @@
     .side-bar a:hover {
       color: #007f5f;
     }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      height: 4px;
+      background: #fff;
+    }
   </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const hamburger = document.querySelector(".hamburger");
+      const title = document.querySelector(".navbar-title");
+      const sideBar = document.querySelector(".side-bar");
+
+      // Apply the event listener to the hamburger menu
+      hamburger.addEventListener("click", () => {
+        sideBar.classList.toggle("open");
+      });
+
+      // Also apply the event listener to the title
+      title.addEventListener("click", (event) => {
+        event.preventDefault();
+        sideBar.classList.toggle("open");
+      });
+    });
+  </script>
 </head>
 <body>
-  <!-- logged_in_header.html.erb -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container d-flex justify-content-between">
-      <a href="<%= root_path %>" class="navbar-title">なごみ首腰：痛みケアナビ</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to 'ヘルプ・サポート', '#', class: 'nav-link', style: 'color: #fff;' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '使い方', '#', class: 'nav-link', style: 'color: #fff;' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link', style: 'color: #fff;' %>
-          </li>
-        </ul>
-      </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="navbar-title">なごみ首腰：痛みケアナビ</a>
+    <div>
+      <a href="#" class="navbar-links">ヘルプ・サポート</a>
+      <a href="#" class="navbar-links">使い方</a>
+      <%= link_to 'ログアウト', logout_path, method: :delete, class: 'navbar-links' %>
+    </div>
+    <!-- Hamburger menu -->
+    <div class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </nav>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="side-bar">
+    <p><%= @current_user %></p>
+    <a href="#">ユーザー設定</a>
+    <a href="#">紹介されたケア方法の履歴</a>
+    <%= link_to '通知設定', edit_user_path(current_user), class: "nav-link" %>
+  </div>
+  <!-- Content goes here -->
 </body>
+</html>

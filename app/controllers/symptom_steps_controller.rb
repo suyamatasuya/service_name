@@ -16,17 +16,23 @@ class SymptomStepsController < ApplicationController
 
   def next_wizard_path
     case step
+    when :pain_location
+      symptom_step_path(@symptom, :pain_type)
     when :pain_type
       symptom_step_path(@symptom, :pain_intensity)
     when :pain_intensity
       symptom_step_path(@symptom, :pain_start_time)
     when :pain_start_time
       symptom_step_path(@symptom, :injury_related)
-    else
+    when :injury_related
       completed_wizard_path
+    else
+      nil
     end
   end
   
+  
+
   private
 
   def symptom_params
