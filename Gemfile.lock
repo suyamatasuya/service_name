@@ -78,6 +78,8 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
+    dockerfile-rails (1.4.2)
+      rails
     erubi (1.12.0)
     execjs (2.8.1)
     faraday (2.7.5)
@@ -118,6 +120,7 @@ GEM
     google-cloud-location (0.5.1)
       gapic-common (>= 0.19.1, < 2.a)
       google-cloud-errors (~> 1.0)
+    google-protobuf (3.23.2-aarch64-linux)
     google-protobuf (3.23.2-arm64-darwin)
     google-protobuf (3.23.2-x86_64-linux)
     googleapis-common-protos (1.4.0)
@@ -181,6 +184,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.2-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
@@ -244,6 +249,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbtree (0.4.6)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
     redis-client (0.14.1)
       connection_pool
     ruby2_keywords (0.0.5)
@@ -312,6 +319,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-21
   x86_64-linux
 
@@ -319,6 +327,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   bootstrap (~> 4.3.1)
   byebug
+  dockerfile-rails (>= 1.4)
   fcm
   google-cloud-firestore
   jbuilder (~> 2.7)
@@ -329,6 +338,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.3)
+  redis (~> 5.0)
   sass-rails (>= 6)
   sidekiq
   sorcery

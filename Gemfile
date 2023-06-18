@@ -56,3 +56,6 @@ gem 'jquery-ui-rails'
 gem 'fcm'
 gem 'google-cloud-firestore'
 gem 'sidekiq'
+gem "dockerfile-rails", ">= 1.4", :group => :development
+
+gem "redis", "~> 5.0"

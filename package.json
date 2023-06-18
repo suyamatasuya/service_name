@@ -11,6 +11,7 @@
     "@rails/webpacker": "5.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "4.5.0",
+    "bootstrap-vue": "^2.23.1",
     "firebase": "^9.22.2",
     "jquery": "3.5.1",
     "nouislider": "^15.7.0",
@@ -24,9 +25,11 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "webpack-dev-server": "^3"
   },
   "engines": {
     "node": "14.x"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
