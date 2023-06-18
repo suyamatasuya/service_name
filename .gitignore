@@ -35,3 +35,4 @@
 yarn-debug.log*
 .yarn-integrity
 /vendor
+/firebase_notification_service.rb

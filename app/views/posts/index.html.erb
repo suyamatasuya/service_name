@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>首と腰の痛み共有掲示板</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #e6f5e9;
+        }
+        .card-header {
+            background-color: #5f9ea0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .card-body {
+            padding: 15px;
+            background-color: #f5f5f5;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            height: auto;
+            resize: none;
+        }
+        .btn-primary {
+            background-color: #2f4f4f;
+            border-color: #2f4f4f;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #708090;
+            border-color: #708090;
+        }
+        .message-card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+            transition: transform 0.3s ease-in-out;
+        }
+        .message-card:hover {
+            transform: scale(1.02);
+        }
+        .message-card .card-header {
+            background-color: #5f9ea0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .message-card .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+        .message-card .card-text {
+            margin-top: 10px;
+            color: #333333;
+        }
+        .row-cols-4 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .edit-link,
+        .delete-link {
+            color: #2f4f4f;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .edit-link:hover,
+        .delete-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">首と腰の痛み共有掲示板</h1>
+        <div class="card">
+            <div class="card-header">
+                新規投稿
+            </div>
+            <div class="card-body">
+                <%= form_for(Post.new, url: posts_path, id: 'postForm') do |f| %>
+                    <div class="form-group">
+                        <%= f.label :content, 'メッセージ:' %>
+                        <%= f.text_area :content, class: 'form-control', rows: 3, placeholder: 'メッセージを入力してください' %>
+                    </div>
+                    <button type="submit" class="btn btn-primary">投稿する</button>
+                <% end %>
+            </div>
+        </div>
+        <div id="messages" class="mt-4">
+            <h2>投稿一覧</h2>
+            <div class="row row-cols-4">
+                <% @posts.each do |post| %>
+                    <div class="message-card card">
+                        <div class="card-header">
+                            <%= post.user.name %>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><%= post.content %></p>
+                            <div>
+                                <%= link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'delete-link' %>
+                                <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#postForm').submit(function(e) {
+                e.preventDefault();
+
+                var name = '<%= current_user.name %>';
+                var message = $('#post_content').val();
+
+                var newMessage = `
+                    <div class="message-card card">
+                        <div class="card-header">
+                            ${name}
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">${message}</p>
+                            <div>
+                                <a href="#" class="edit-link">編集</a>
+                                <a href="#" class="delete-link" data-confirm="本当に削除しますか？">削除</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                $('.row-cols-4').prepend(newMessage);
+
+                $('#post_content').val('');
+            });
+
+            $(document).on('click', '.edit-link', function(e) {
+                e.preventDefault();
+
+                var cardBody = $(this).closest('.card-body');
+                var cardText = cardBody.find('.card-text');
+                var message = cardText.text().trim();
+                var editForm = `
+                    <form class="edit-form">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3">${message}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">更新</button>
+                    </form>
+                `;
+
+                cardText.html(editForm);
+            });
+
+            $(document).on('submit', '.edit-form', function(e) {
+                e.preventDefault();
+
+                var cardBody = $(this).closest('.card-body');
+                var textarea = cardBody.find('textarea');
+                var message = textarea.val().trim();
+                var cardText = `
+                    <p class="card-text">${message}</p>
+                    <div>
+                        <a href="#" class="edit-link">編集</a>
+                        <a href="#" class="delete-link" data-confirm="本当に削除しますか？">削除</a>
+                    </div>
+                `;
+
+                cardBody.html(cardText);
+            });
+
+            $(document).on('click', '.delete-link', function(e) {
+                e.preventDefault();
+
+                var confirmed = confirm($(this).data('confirm'));
+
+                if (confirmed) {
+                    $(this).closest('.message-card').remove();
+                }
+            });
+        });
+
+        $(document).on('keydown', function(e) {
+            if (e.keyCode === 13) {
+                $('#postForm').submit();
+            }
+        });
+    </script>
+</body>
+</html>
