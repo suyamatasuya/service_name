@@ -1,22 +1,96 @@
+<style>
+body {
+  background-color: #e9e7e0;  /* A light brown color */
+}
+
+h1 {
+  color: #709775;  /* A matcha color */
+}
+
+h2 {
+  color: #709775;  /* A matcha color */
+}
+
+label {
+  color: #709775;  /* A matcha color */
+  margin: 0 20px;  /* Increase the distance between images */
+}
+
+.btn-primary {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+/* Style for active label */
+.active {
+  border-color: #FF0000; /* This will make the border red */
+  background-color: #FF0000; /* This will make the background red */
+  color: white;
+  box-shadow: 0 0 10px #FF0000; /* This will add a red shadow around the item */
+}
+
+/* Custom button size */
+.custom-button {
+  width: 200px;
+  height: 60px;
+}
+
+/* Custom label with margin and width */
+.custom-label {
+  margin: 10px !important;
+  min-width: 150px; /* Adjust this value to ensure the text fits */
+  text-align: center; /* Center the text within the label */
+}
+
+/* Custom title */
+.title {
+  font-size: 3em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 0.5em;
+}
+
+/* Custom instruction */
+.instruction {
+  font-size: 1.5em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 1em;
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.custom-label').forEach(function(label){
+      label.addEventListener('click', function(e){
+        // Clear previous selection
+        document.querySelectorAll('.custom-label').forEach(function(otherLabel){
+          otherLabel.classList.remove('active');
+        })
+        // Set the clicked label as active
+        e.currentTarget.classList.add('active');
+      })
+    })
+  })
+</script>
+
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title">問診1</h1>
   <h2 class="text-center instruction">症状のある部位を教えてください</h2>
-    <%= form_with model: @symptom, local: true do |f| %>
-    <%= f.hidden_field :pain_location %>
-    <div class="d-flex justify-content-around" style="width: 100%; max-width: 600px;">
-      <label for="neck" class="btn btn-outline-primary btn-lg <%= 'active' if @symptom.pain_location == '首' %>">
-        <%= f.radio_button :pain_location, '首', style: 'display:none', id: 'neck', class: 'form-check-input' %>
-        <%= image_tag('11514_color.png', alt: '首', class: 'img-thumbnail', style: 'width: 200px; height: 200px;') %>
-        首
-      </label>
-      <label for="waist" class="btn btn-outline-primary btn-lg <%= 'active' if @symptom.pain_location == '腰' %>">
-        <%= f.radio_button :pain_location, '腰', style: 'display:none', id: 'waist', class: 'form-check-input' %>
-        <%= image_tag('11581_color.png', alt: '腰', class: 'img-thumbnail', style: 'width: 200px; height: 200px;') %>
-        腰
-      </label>
-    </div>
-    <div class="text-center">
-     <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
-    </div>
+  <%= form_with model: @symptom, url: symptoms_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :pain_location %>
+  <div class="d-flex justify-content-around" style="width: 100%; max-width: 600px;">
+    <label for="neck" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == '首' %>">
+      <%= f.radio_button :pain_location, '首', style: 'display:none', id: 'neck', class: 'form-check-input' %>
+      <%= image_tag('11514_color.png', alt: '首', class: 'img-thumbnail', style: 'width: 200px; height: 200px;') %>
+      首
+    </label>
+    <label for="waist" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == '腰' %>">
+      <%= f.radio_button :pain_location, '腰', style: 'display:none', id: 'waist', class: 'form-check-input' %>
+      <%= image_tag('11581_color.png', alt: '腰', class: 'img-thumbnail', style: 'width: 200px; height: 200px;') %>
+      腰
+    </label>
+  </div>
+  <div class="text-center">
+    <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
+  </div>
   <% end %>
 </div>

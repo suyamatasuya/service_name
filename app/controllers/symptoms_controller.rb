@@ -8,10 +8,11 @@ class SymptomsController < ApplicationController
   end
 
   def create
-    @symptom = Symptom.new(symptom_params)
+    @symptom = current_user.symptoms.new(symptom_params)
     if @symptom.save
-      redirect_to symptoms_path, notice: "Symptom was successfully created."
+      redirect_to symptom_step_path(@symptom, :pain_location)
     else
+      puts @symptom.errors.full_messages
       render :new
     end
   end

@@ -1,13 +1,13 @@
-<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-  <h1 class="text-center title">問診4</h1>
-  <h2 class="text-center instruction">痛みの原因を教えてください</h2>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh; background-color: #e9e7e0;">
+  <h1 class="text-center title" style="color: #709775;">問診5</h1>
+  <h2 class="text-center instruction" style="color: #709775;">痛みの原因を教えてください</h2>
   <%= form_with model: @symptom, url: symptom_step_path(@symptom, :generate_care_methods), method: :patch do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
-      <label for="injury_related_yes" class="btn btn-outline-primary btn-lg custom-label">
+      <label for="injury_related_yes" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.injury_related == true %>">
         <%= f.radio_button :injury_related, true, style: 'display:none', id: 'injury_related_yes', class: 'form-check-input' %>
         外傷（ケガ）による痛み
       </label>
-      <label for="injury_related_no" class="btn btn-outline-primary btn-lg custom-label">
+      <label for="injury_related_no" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.injury_related == false %>">
         <%= f.radio_button :injury_related, false, style: 'display:none', id: 'injury_related_no', class: 'form-check-input' %>
         非外傷性（ケガ以外）による痛み
       </label>
@@ -65,6 +65,7 @@
   font-size: 3em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 0.5em;
+  color: #709775; /* A matcha color */
 }
 
 /* Custom instruction */
@@ -72,5 +73,6 @@
   font-size: 1.5em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 1em;
+  color: #709775; /* A matcha color */
 }
 </style>

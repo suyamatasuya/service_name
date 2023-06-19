@@ -1,18 +1,32 @@
-class StepsController < ApplicationController
+class SymptomStepsController < ApplicationController
   include Wicked::Wizard
 
   steps :pain_location, :pain_type, :pain_intensity, :pain_start_time, :injury_related
 
   def show
     @symptom = Symptom.find(params[:symptom_id])
-    render_wizard
+    Rails.logger.debug "Current step: #{step}"
+    if step == steps.first
+      render steps.second
+    else
+      Rails.logger.debug "Rendering step template: #{step}"
+      render_wizard
+    end
   end
-
+  
+  
   def update
     @symptom = Symptom.find(params[:symptom_id])
-    @symptom.update(symptom_params(step))
-    render_wizard @symptom
+    if @symptom.update(symptom_params(step))
+      render_wizard @symptom
+    else
+      Rails.logger.debug "Failed to update symptom: #{@symptom.errors.full_messages.join(", ")}"
+      render_wizard
+    end
+    Rails.logger.debug "Next step: #{step}"
   end
+  
+  
 
   private
 
