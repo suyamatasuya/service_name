@@ -1,7 +1,83 @@
+<style>
+body {
+  background-color: #e9e7e0;  /* A light brown color */
+}
+
+h1 {
+  color: #709775;  /* A matcha color */
+}
+
+h2 {
+  color: #709775;  /* A matcha color */
+}
+
+label {
+  color: #709775;  /* A matcha color */
+  margin: 0 20px;  /* Increase the distance between images */
+}
+
+.btn-primary {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #c5a35a !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-outline-primary {
+  color: #c5a35a;  /* Changes the text color of the unselected labels to match the "Next" button */
+  border-color: #c5a35a;  /* Changes the border color of the unselected labels to match the "Next" button */
+}
+
+.btn-outline-primary:hover {
+  background-color: #c5a35a;  /* Changes the background color of the labels when the mouse is hovering over them */
+  color: #fff;  /* Changes the text color of the labels when the mouse is hovering over them */
+}
+
+/* Style for active label */
+.active {
+  border-color: #FF0000; /* This will make the border red */
+  background-color: #FF0000; /* This will make the background red */
+  color: white;
+  box-shadow: 0 0 10px #FF0000; /* This will add a red shadow around the item */
+}
+
+/* Custom button size */
+.custom-button {
+  width: 200px;
+  height: 60px;
+}
+
+/* Custom label with margin and width */
+.custom-label {
+  margin: 10px !important;
+  min-width: 150px; /* Adjust this value to ensure the text fits */
+  text-align: center; /* Center the text within the label */
+}
+
+/* Custom title */
+.title {
+  font-size: 3em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 0.5em;
+}
+
+/* Custom instruction */
+.instruction {
+  font-size: 1.5em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 1em;
+}
+</style>
+
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title">問診2</h1>
   <h2 class="text-center instruction">痛みの種類を選択してください</h2>
-  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_intensity), method: :patch do |f| %>
+  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_type), method: :patch do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
       <label for="sharp_pain" class="btn btn-outline-primary btn-lg custom-label">
         <%= f.radio_button :pain_type, '鋭い痛み', style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>
@@ -40,45 +116,3 @@
     })
   })
 </script>
-
-<style>
-/* Hide the radio buttons */
-.form-check-input {
-  display: none;
-}
-
-/* Style for active label */
-.active {
-  border-color: #FF0000; /* This will make the border red */
-  background-color: #FF0000; /* This will make the background red */
-  color: white;
-  box-shadow: 0 0 10px #FF0000; /* This will add a red shadow around the item */
-}
-
-/* Custom button size */
-.custom-button {
-  width: 200px;
-  height: 60px;
-}
-
-/* Custom label with margin and width */
-.custom-label {
-  margin: 10px !important;
-  min-width: 150px; /* Adjust this value to ensure the text fits */
-  text-align: center; /* Center the text within the label */
-}
-
-/* Custom title */
-.title {
-  font-size: 3em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 0.5em;
-}
-
-/* Custom instruction */
-.instruction {
-  font-size: 1.5em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 1em;
-}
-</style>

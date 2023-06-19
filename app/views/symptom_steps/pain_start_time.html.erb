@@ -1,17 +1,17 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-  <h1 class="text-center title">問診3</h1>
-  <h2 class="text-center instruction">痛みが出た時間を選択してください</h2>
+  <h1 class="text-center title" style="color: #709775;">問診4</h1>
+  <h2 class="text-center instruction" style="color: #709775;">痛みが出た時間を選択してください</h2>
   <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
-      <label for="today" class="btn btn-outline-primary btn-lg custom-label">
+      <label for="today" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_start_time == '今日' %>">
         <%= f.radio_button :pain_start_time, '今日', style: 'display:none', id: 'today', class: 'form-check-input' %>
         今日
       </label>
-      <label for="1-3-days-ago" class="btn btn-outline-primary btn-lg custom-label">
+      <label for="1-3-days-ago" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_start_time == '1日から3日前' %>">
         <%= f.radio_button :pain_start_time, '1日から3日前', style: 'display:none', id: '1-3-days-ago', class: 'form-check-input' %>
         1日から3日前
       </label>
-      <label for="4-days-ago" class="btn btn-outline-primary btn-lg custom-label">
+      <label for="4-days-ago" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_start_time == '4日以上前' %>">
         <%= f.radio_button :pain_start_time, '4日以上前', style: 'display:none', id: '4-days-ago', class: 'form-check-input' %>
         4日以上前
       </label>
@@ -69,6 +69,7 @@
   font-size: 3em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 0.5em;
+  color: #709775; /* A matcha color */
 }
 
 /* Custom instruction */
@@ -76,5 +77,24 @@
   font-size: 1.5em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 1em;
+  color: #709775; /* A matcha color */
+}
+
+/* Background color */
+body {
+  background-color: #e9e7e0; /* A light brown color */
+}
+
+/* Button color */
+.btn-primary {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #c5a35a !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 </style>

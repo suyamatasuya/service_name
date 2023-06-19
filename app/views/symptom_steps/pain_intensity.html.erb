@@ -1,16 +1,9 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <title>アプリのタイトル</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
 
   <!-- Add jQuery and Bootstrap from a CDN -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-  <!-- Add noUiSlider library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
 
@@ -32,11 +25,11 @@
         <div id="slider-value" class="text-center mt-2"></div> <!-- スライダーの値表示領域 -->
         <div id="slider-comments" class="text-center mt-2">
           <span class="comment">痛くない</span>
-          <span class="comment ml-2 pain-comment">痛い</span>
+          <span class="comment ml-2 comment">痛い</span>
           <span class="comment ml-2">耐えがたい痛み</span>
         </div>
 
-        <%= form_with model: @symptom, url: symptom_path(@symptom), method: :patch do |f| %>
+        <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
           <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
 
           <div class="text-center mt-5">
@@ -90,56 +83,81 @@
   </script>
 
   <style>
-    /* Custom button size */
-    .custom-button {
-      width: 200px;
-      height: 60px;
-    }
+    body {
+    background-color: #e9e7e0;  /* A light brown color */
+  }
 
-    /* Custom title */
-    .title {
-      font-size: 3em;
-      font-family: 'Yu Gothic', sans-serif;
-      margin-bottom: 0.5em;
-    }
+  h1 {
+    color: #709775;  /* A matcha color */
+  }
 
-    /* Custom instruction */
-    .instruction {
-      font-size: 1.5em;
-      font-family: 'Yu Gothic', sans-serif;
-      margin-bottom: 1em;
-    }
+  h2 {
+    color: #709775;  /* A matcha color */
+  }
 
-    /* スライダーコンテナのスタイル */
-    #slider {
-      width: 60%; /* スライダーの幅 */
-      height: 30px; /* スライダーの高さ */
-      margin-left: 0px; /* スライダーを右に少し移動 */
-      background-color: #d3d3d3; /* スライダーの背景色 */
-    }
-    
-    /* コメントのスタイル */
-    #slider-comments {
-      display: flex;
-      justify-content: space-between;
-      width: 60%; /* スライダーの幅に合わせる */
-      margin: 0 auto;
-      font-size: 12px;
-      color: #888;
-    }
+  .btn-primary {
+    background-color: #c5a35a;
+    color: #fff;
+  }
 
-    .pain-comment {
-      margin-right: center:
-    }
-    
-    /* メーターの色と数字の文字の大きさ */
-    #slider .noUi-connect {
-      background-color: #98FB98; /* メーターの色を医療的な色に変更 */
-    }
-    
-    #slider-value {
-      font-size: 24px; /* 数字の文字の大きさを変更 */
-    }
-  </style>
+  .btn-primary:focus,
+  .btn-primary:active {
+    background-color: #c5a35a !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Custom button size */
+  .custom-button {
+    width: 200px;
+    height: 60px;
+  }
+
+  /* Custom title */
+  .title {
+    font-size: 3em;
+    font-family: 'Yu Gothic', sans-serif;
+    margin-bottom: 0.5em;
+  }
+
+  /* Custom instruction */
+  .instruction {
+    font-size: 1.5em;
+    font-family: 'Yu Gothic', sans-serif;
+    margin-bottom: 1em;
+  }
+
+  /* Slider container style */
+  #slider {
+    width: 60%; /* Slider width */
+    height: 30px; /* Slider height */
+    margin: 0 auto; /* Center the slider */
+    background-color: #d3d3d3; /* Slider background color */
+  }
+
+  /* Comment style */
+  #slider-comments {
+    display: flex;
+    justify-content: space-between;
+    width: 60%; /* Align width with the slider */
+    margin: 0 auto;
+    font-size: 12px;
+    color: #709775; /* A matcha color */
+  }
+
+  .pain-comment {
+    margin-right: auto;
+  }
+
+  /* Color of the meter and size of the numbers */
+  #slider .noUi-connect {
+    background-color: #98FB98; /* Change the color of the meter to a medical color */
+  }
+
+  #slider-value {
+    font-size: 24px; /* Change the size of the number characters */
+    color: #709775; /* A matcha color */
+  }
+</style>
 </body>
 </html>
