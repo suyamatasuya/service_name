@@ -1,13 +1,16 @@
 require 'google/cloud/firestore'
+require 'bundler/setup'
+Bundler.require(:default)
 require 'google/apis/fcm_v1'
 
 class FirebaseNotificationService
+  FirebaseMessaging = Google::Apis::FcmV1
   def initialize
     @firestore = Google::Cloud::Firestore.new(
       project_id: 'care-time-reminder',
-      credentials: 'Users/suyamatatsuya/Downloads/care-time-reminder-firebase-adminsdk-d0zmh-2c6a45ceee.json'
+      credentials: '/Users/suyamatatsuya/Downloads/care-time-reminder-firebase-adminsdk-d0zmh-2c6a45ceee.json'
     )
-    @fcm = Google::Apis::FcmV1::FirebaseCloudMessagingService.new
+    @fcm = FirebaseMessaging::FirebaseCloudMessagingService.new
     @fcm.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
       json_key_io: File.open('Users/suyamatatsuya/Downloads/care-time-reminder-firebase-adminsdk-d0zmh-2c6a45ceee.json'),
       scope: 'https://www.googleapis.com/auth/firebase.messaging'

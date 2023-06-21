@@ -58,18 +58,18 @@ label {
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.custom-label').forEach(function(label){
-      label.addEventListener('click', function(e){
-        // Clear previous selection
-        document.querySelectorAll('.custom-label').forEach(function(otherLabel){
-          otherLabel.classList.remove('active');
-        })
-        // Set the clicked label as active
-        e.currentTarget.classList.add('active');
+document.addEventListener('turbolinks:load', function(){
+  document.querySelectorAll('.custom-label').forEach(function(label){
+    label.addEventListener('click', function(e){
+      // Clear previous selection
+      document.querySelectorAll('.custom-label').forEach(function(otherLabel){
+        otherLabel.classList.remove('active');
       })
+      // Set the clicked label as active
+      e.currentTarget.classList.add('active');
     })
   })
+})
 </script>
 
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">

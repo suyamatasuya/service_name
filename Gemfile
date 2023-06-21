@@ -51,11 +51,12 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'wicked'
-gem 'byebug'
 gem 'jquery-ui-rails'
 gem 'fcm'
 gem 'google-cloud-firestore'
 gem 'sidekiq'
 gem "dockerfile-rails", ">= 1.4", :group => :development
-
+gem 'firebase'
 gem "redis", "~> 5.0"
+gem 'google-api-client', '~> 0.53.0'
+gem 'google-apis-fcm_v1'
