@@ -3,90 +3,89 @@
 <head>
   <title>Your Website</title>
   <style>
-   <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-  .navbar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100px;
-    width: 100%;
-    background: linear-gradient(to right, #428625, #7bdd95);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
+    .navbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100px;
+      width: 100%;
+      background: linear-gradient(to right, #428625, #7bdd95);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-  .navbar-title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    margin-right: auto; 
-    cursor: pointer;
-  }
+    .navbar-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      margin-right: auto;
+      cursor: pointer;
+      font-family: 'Pacifico', cursive;
+    }
 
-  .navbar-links {
-    color: #fff;
-    margin-right: 15px;
-  }
 
-  .side-bar {
-    position: fixed;
-    right: 0;
-    top: 100px;
-    height: 100vh;
-    width: 0;
-    background-color: #f8f9fa;
-    overflow: auto;
-    transition: width 0.5s;
-    z-index: 1000;
-  }
+    .navbar-links {
+      color: #fff;
+      margin-right: 15px;
+    }
 
-  .side-bar.open {
-    width: 250px;
-  }
+    .side-bar {
+      position: fixed;
+      right: 0;
+      top: 100px;
+      height: 100vh;
+      width: 0;
+      background-color: #f8f9fa;
+      overflow: auto;
+      transition: width 0.5s;
+      z-index: 1000;
+    }
 
-  .side-bar a {
-    text-decoration: none;
-    color: #000;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    height: 80px;
-    line-height: 70px;
-    transition: color 0.3s;
-  }
+    .side-bar.open {
+      width: 250px;
+    }
 
-  .side-bar a:hover {
-    color: #007f5f;
-  }
+    .side-bar a {
+      text-decoration: none;
+      color: #000;
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      height: 80px;
+      line-height: 70px;
+      transition: color 0.3s;
+    }
 
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    margin-right: 15px;
-    cursor: pointer;
-  }
+    .side-bar a:hover {
+      color: #007f5f;
+    }
 
-  .hamburger div {
-    height: 4px;
-    background: #fff;
-  }
-</style>
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      margin-right: 15px;
+      cursor: pointer;
+    }
 
+    .hamburger div {
+      height: 4px;
+      background: #fff;
+    }
   </style>
 
   <script>
-    document.addEventListener("DOMContentLoaded", (event) => {
+    document.addEventListener("turbolinks:load", (event) => {
       const hamburger = document.querySelector(".hamburger");
       const sideBar = document.querySelector(".side-bar");
 
@@ -96,6 +95,7 @@
       });
     });
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Navbar -->

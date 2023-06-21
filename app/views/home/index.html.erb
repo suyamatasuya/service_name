@@ -1,12 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Hiragino Mincho Pro', serif;
-    }
+  <!-- 必要なメタタグ -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
     body {
       font-family: 'Arial', sans-serif;
       position: relative;
@@ -19,15 +24,14 @@
       align-items: center;
       height: 100vh;
       text-align: center;
-      color: #000;
       background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(144, 238, 144, 0.7));
-      background-position: left center; 
+      background-position: left center;
       background-repeat: no-repeat;
       background-size: cover;
-      padding-top: 60px;  /* Adjust this according to your header height */
+      padding-top: 60px;
     }
 
-    .cta-button {
+    .cta-button, .board-link {
       display: inline-block;
       padding: 15px 30px;
       background-color: #007f5f;
@@ -39,57 +43,94 @@
       margin-bottom: 20px;
     }
 
-    .cta-button:hover {
+    .cta-button:hover, .board-link:hover {
       background-color: #00593f;
     }
 
-    .intro {
-      margin-top: 40px;
+    .intro, .catchphrase {
       font-size: 20px;
       line-height: 1.5;
-    }
-
-    .intro p {
       margin-bottom: 10px;
-    }
-
-    .board-link {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #007f5f;
-      color: #fff;
-      font-size: 24px;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      margin-bottom: 20px;
-    }
-
-    .board-link:hover {
-      background-color: #00593f;
-    }
-
-    .catchphrase {
-      font-size: 28px;
-      margin-bottom: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
     }
 
     .spacer {
-      height: 50px; /* 適切な高さに調整してください */
+      height: 50px;
+    }
+
+    .vertical-text {
+      font-family: 'Noto Serif JP', serif;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+    }
+
+    #sakura {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .petals {
+      position: absolute;
+      height: 14px;
+      width: 14px;
+      background-image: url('sakura-petal-image-url'); /* 花びらの画像のURLを指定してください */
+      background-size: contain;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
 
-<div class="hero">
+<div class="hero vertical-text">
   <%= link_to "問診を始める", symptoms_path, class: 'cta-button' %>
-  <p class="catchphrase">身体の痛みをケアしましょう</p>
+  <p class="catchphrase">首と腰の痛み、一緒に克服しましょう</p>
   <div class="intro">
-    <p>自宅でできるセルフケア方法を学びましょう</p>
+    <p>自宅でできるセルフケア方法を学び、生活の質を向上させましょう</p>
   </div>
-  <div class="spacer"></div> <!-- 新しく追加 -->
+  <div class="spacer"></div>
   <%= link_to "掲示板", posts_path, class: 'board-link' %>
-  <p class="catchphrase">痛みの共有掲示板で支え合いの輪を広げよう</p>
+  <p class="catchphrase">あなたの痛みは一人だけのものではありません、共有しましょう</p>
 </div>
 
+<div id="sakura"></div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // 花びらを生成する関数
+  function createPetal() {
+    let petal = document.createElement('div');
+    petal.classList.add('petals');
+
+    // 初期位置と落下スピードをランダムに設定
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.animationDuration = Math.random() * 2 + 3 + 's'; // 3-5 seconds
+
+    // 花びらをDOMに追加
+    document.getElementById('sakura').appendChild(petal);
+
+    // 花びらが落ちきったらDOMから削除
+    setTimeout(() => {
+      petal.remove();
+    }, 5000);
+  }
+
+  // 0.1秒ごとに新しい花びらを生成
+  setInterval(createPetal, 100);
+</script>
+
 </body>
+</html>
