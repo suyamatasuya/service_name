@@ -1,11 +1,52 @@
 class Symptom < ApplicationRecord
   belongs_to :user
 
-  def self.form_steps
-    %w[pain_type pain_intensity pain_start_time injury_related]
+  validates :pain_location, presence: true, if: :on_pain_location_step?
+  validates :pain_type, presence: true, if: :on_pain_type_step?
+  validates :pain_intensity, presence: true, if: :on_pain_intensity_step?
+  validates :pain_start_time, presence: true, if: :on_pain_start_time_step?
+  validates :injury_related, presence: true, if: :on_injury_related_step?
+
+  def required_for_step?(step)
+    # All fields are required if no step is present
+    return true if current_step.nil?
+
+    # All fields from previous steps are required if the
+    # current step is higher than the step parameter
+    return true if self.class.form_steps.index(step.to_s) <= self.class.form_steps.index(current_step)
+
+    # The current field is not required
+    false
   end
 
+  def on_pain_location_step?
+    current_step == 'pain_location'
+  end
+
+  def on_pain_type_step?
+    current_step == 'pain_type'
+  end
   
+  def on_pain_intensity_step?
+    current_step == 'pain_intensity'
+  end
+  
+  def on_pain_start_time_step?
+    current_step == 'pain_start_time'
+  end
+  
+  def on_injury_related_step?
+    current_step == 'injury_related'
+  end
+  
+  def on_generate_care_methods_step?
+    current_step == 'generate_care_methods'
+  end
+  
+
+  def self.form_steps
+    %w[pain_location pain_type pain_intensity pain_start_time injury_related]
+  end
 
   def generate_care_methods
     return [] unless pain_location && pain_start_time && pain_type && pain_intensity
@@ -49,7 +90,7 @@ class Symptom < ApplicationRecord
       if pain_type == '鈍い痛み'
         care_methods << "普通のケア方法"
       else
-        care_methods << "強い痛みに対するケア方法"
+        care_methods << "強い痛みに対するケア方法 安静にしましょう"
       end
     elsif pain_intensity >= 8 && pain_intensity <= 10
       care_methods << "早急に病院へ受診する"

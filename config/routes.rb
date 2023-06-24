@@ -3,9 +3,15 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update]
   resources :user_sessions, only: [:new, :create, :destroy]
+  
   resources :symptoms do
-    resources :steps, only: [:show, :update, :create], controller: 'symptom_steps'
-  end  
+    resources :steps, only: [:show, :update, :create], controller: 'symptom_steps' do
+      member do
+        get :generate_care_methods
+      end
+    end
+  end
+  
   resources :posts
 
   get 'login', to: 'user_sessions#new', as: :login
