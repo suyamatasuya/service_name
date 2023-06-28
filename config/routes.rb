@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'care_methods/new'
+  get 'care_methods/create'
+  get '/sakura-petal-image-url', to: 'controller_name#action_name'
   root 'home#index'
 
   resources :users, only: [:new, :create, :edit, :update]
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
   end
   
   resources :posts
+  resources :care_methods, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
