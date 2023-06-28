@@ -9,6 +9,9 @@ class SymptomStepsController < ApplicationController
     Rails.logger.debug "Current step: #{step}"
     if step == steps.first
       render steps.second
+    elsif step == :generate_care_methods
+      @care_methods = @symptom.generate_care_methods
+      render_wizard
     else
       Rails.logger.debug "Rendering step template: #{step}"
       render_wizard
@@ -22,20 +25,15 @@ class SymptomStepsController < ApplicationController
 
     if @symptom.update(symptom_params)
       Rails.logger.debug "After successful update: #{@symptom.inspect}"
+      if step == :generate_care_methods
+        @care_methods = @symptom.generate_care_methods
+      end
       render_wizard @symptom
     else
       Rails.logger.debug "Failed to update symptom: #{@symptom.errors.full_messages.join(", ")}"
       render_wizard
     end
     Rails.logger.debug "Next step: #{step}"
-end
-
-  
-  
-  
-  def generate_care_methods
-    @symptom = Symptom.find(params[:symptom_id])
-    @care_methods = @symptom.generate_care_methods
   end
 
   def finish_wizard_path
