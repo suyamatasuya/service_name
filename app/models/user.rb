@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :symptoms
   has_many :posts
   has_many :comments
+  has_many :user_care_histories
   
   authenticates_with_sorcery!
   

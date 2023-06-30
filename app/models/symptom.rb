@@ -1,6 +1,7 @@
 class Symptom < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :care_methods
+  has_many :user_care_histories
 
   validates :pain_location, presence: true, if: :on_pain_location_step?
   validates :pain_type, presence: true, if: :on_pain_type_step?
