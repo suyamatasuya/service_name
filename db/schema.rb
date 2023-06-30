@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_27_215042) do
+ActiveRecord::Schema.define(version: 2023_06_30_214649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 2023_06_27_215042) do
     t.index ["user_id"], name: "index_symptoms_on_user_id"
   end
 
+  create_table "user_care_histories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "care_method_id", null: false
+    t.bigint "symptom_id", null: false
+    t.date "care_received_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["care_method_id"], name: "index_user_care_histories_on_care_method_id"
+    t.index ["symptom_id"], name: "index_user_care_histories_on_symptom_id"
+    t.index ["user_id"], name: "index_user_care_histories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -75,4 +87,7 @@ ActiveRecord::Schema.define(version: 2023_06_27_215042) do
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "symptoms", "users"
+  add_foreign_key "user_care_histories", "care_methods"
+  add_foreign_key "user_care_histories", "symptoms"
+  add_foreign_key "user_care_histories", "users"
 end
