@@ -1,0 +1,25 @@
+document.addEventListener('DOMContentLoaded', function() {
+  if (!window.flashContainer) {
+    window.flashContainer = document.createElement('div');
+    flashContainer.className = 'flash-container';
+    document.body.appendChild(window.flashContainer);
+  }
+
+  // Remove any existing flash message before creating a new one
+  if (window.flashMessage) {
+    window.flashMessage.remove();
+  }
+
+  window.flashMessage = document.createElement('div');
+  window.flashMessage.className = 'flash-message flash-notice';
+  window.flashMessage.textContent = '<%= j flash[:notice] %>';
+
+  window.flashContainer.appendChild(window.flashMessage);
+
+  setTimeout(function() {
+    window.flashMessage.remove();
+  }, 3000);
+
+  // Close the modal window (assuming you are using Bootstrap)
+  $('#loginModal').modal('hide');
+});

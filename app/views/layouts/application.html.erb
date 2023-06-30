@@ -9,10 +9,14 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
+  <!-- Add Noto Serif JP font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
 
   <!-- CSS や JavaScript のリンクをここに追加 -->
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 </head>
 <body>
   <div id="page-container">
@@ -23,14 +27,15 @@
   <% end %>
 
   <div id="content-wrap">
+    <!-- フラッシュメッセージを表示 -->
+    <% flash.each do |message_type, message| %>
+      <p class="alert-<%= message_type %>">
+        <%= message %>
+      </p>
+    <% end %>
+    
     <!-- ここに各ページのコンテンツを表示 -->
     <%= yield %>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>">
-        <%= message %>
-      </div>
-    <% end %>
-
   </div>
 
   <!-- フッターを表示 -->
