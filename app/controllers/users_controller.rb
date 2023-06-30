@@ -5,14 +5,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      SendNotificationJob.set(wait_until: @user.notification_time).perform_later(@user.device_token, "It's time to take care!")
-      redirect_to new_user_session_path, success: '登録成功!'
-    else
-      flash.now[:alert] = '登録失敗!'
-      render :new
+  
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to root_path, notice: 'ユーザーが正常に登録されました。' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
+  
 
   def edit
     @user = User.find(params[:id])

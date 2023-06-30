@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <title>首と腰の痛み共有掲示板</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -8,6 +6,9 @@
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .container {
             max-width: 800px;
@@ -77,11 +78,13 @@
             margin-top: 10px;
             color: #333333;
         }
-        .row-cols-4 {
+        .card-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 20px;
+        }
+        .message-card {
+            flex-basis: calc(33.33% - 20px);
         }
         .edit-link,
         .delete-link {
@@ -95,7 +98,7 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <div class="container">
         <h1 class="text-center mb-4">首と腰の痛み共有掲示板</h1>
         <div class="card">
@@ -114,7 +117,7 @@
         </div>
         <div id="messages" class="mt-4">
             <h2>投稿一覧</h2>
-            <div class="row row-cols-4">
+            <div class="row card-container">
                 <% @posts.each do |post| %>
                     <div class="message-card card">
                         <div class="card-header">
@@ -157,7 +160,7 @@
                     </div>
                 `;
 
-                $('.row-cols-4').prepend(newMessage);
+                $('.card-container').prepend(newMessage);
 
                 $('#post_content').val('');
             });
@@ -200,19 +203,9 @@
             $(document).on('click', '.delete-link', function(e) {
                 e.preventDefault();
 
-                var confirmed = confirm($(this).data('confirm'));
-
-                if (confirmed) {
-                    $(this).closest('.message-card').remove();
-                }
+                var card = $(this).closest('.message-card');
+                card.remove();
             });
-        });
-
-        $(document).on('keydown', function(e) {
-            if (e.keyCode === 13) {
-                $('#postForm').submit();
-            }
         });
     </script>
 </body>
-</html>
