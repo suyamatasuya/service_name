@@ -1,0 +1,2 @@
+module UserCareHistoriesHelper
+end

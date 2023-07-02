@@ -118,8 +118,8 @@
   <div id="mySidebar" class="side-bar">
     <p><%= @current_user %></p>
     <a href="#">ユーザー設定</a>
-    <a href="#">紹介されたケア方法の履歴</a>
     <%= link_to '通知設定', edit_user_path(current_user), class: "nav-link" %>
+    <%= link_to 'ケア方法の履歴', user_care_histories_path, class: "nav-link" %> <!-- Added this line -->
   </div>
   <!-- Content goes here -->
 </body>

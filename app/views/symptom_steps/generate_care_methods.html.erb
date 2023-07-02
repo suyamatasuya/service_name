@@ -4,15 +4,15 @@
     <title>ケア方法</title>
     <link
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cor4uKdmFDea5575J6V4pV1Bk4Kx5"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-dZjF8D+K7dbJz2vyiqDn0B2K6tbK43Cl3tbFahj8IK9gC6s+0916ur8B+6A9IDOZ"
       crossorigin="anonymous"
     >
     <style>
       /* 全体のスタイル */
+      html,
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
+        height: 100%;
         margin: 0;
         padding: 0;
       }
@@ -67,26 +67,57 @@
       .card-link i {
         margin-left: 5px;
       }
+
+      /* フラッシュメッセージのスタイル */
+      .flash-message {
+        height: 200px;
+        line-height: 200px;
+        color: white;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .flash-message.alert-notice {
+        background-color: #28a745;
+      }
+
+      .flash-message.alert-alert {
+        background-color: #dc3545;
+      }
     </style>
   </head>
   <body>
-    <div class="care-methods">
-      <div class="card">
-        <h5 class="card-title">ケア方法</h5>
-        <% if @care_methods && @care_methods.any? %>
-          <% @care_methods.each do |method| %>
-            <h5 class="card-title"><%= method.name %></h5>
-            <p class="card-text"><%= method.description %></p>
-            <% if method.link.present? %>
-              <a href="<%= method.link %>" class="card-link" target="_blank">
-                詳細リンク
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            <% end %>
-          <% end %>
-        <% else %>
-          <p class="card-text">No care methods found.</p>
+    <div id="page-container">
+      <div id="content-wrap">
+        <% flash.each do |message_type, message| %>
+          <div class="flash-message alert-<%= message_type %>">
+            <%= message %>
+          </div>
         <% end %>
+
+        <div class="care-methods">
+          <div class="card">
+            <h5 class="card-title">ケア方法</h5>
+            <% if @care_methods && @care_methods.any? %>
+              <%= form_tag user_care_histories_path, method: :post do %>
+                <% @care_methods.each do |method| %>
+                  <%= hidden_field_tag 'care_method_ids[]', method.id %>
+                  <h5 class="card-title"><%= method.name %></h5>
+                  <p class="card-text"><%= method.description %></p>
+                  <% if method.link.present? %>
+                    <a href="<%= method.link %>" class="card-link" target="_blank">
+                      詳細リンク
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                  <% end %>
+                <% end %>
+                <%= submit_tag 'ケア方法を保存', class: 'btn btn-primary' %>
+              <% end %>
+            <% else %>
+              <p class="card-text">No care methods found.</p>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </body>

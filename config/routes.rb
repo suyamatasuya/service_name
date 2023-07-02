@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   
   resources :posts
   resources :care_methods, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-
+  resources :user_care_histories, only: [:index, :create, :destroy]
+  
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 end
