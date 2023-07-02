@@ -8,8 +8,11 @@ class SymptomsController < ApplicationController
   end
 
   def create
+    
     @symptom = current_user.symptoms.new(symptom_params.merge(current_step: 'pain_location'))
     if @symptom.save
+      session[:symptom_id] = @symptom.id # セッションにsymptom_idを格納
+      puts "Debug: Stored symptom_id in session = #{session[:symptom_id]}" # デバッグ出力
       redirect_to symptom_step_path(@symptom, :pain_location)
     else
       puts "Error: Symptom not saved"
@@ -17,7 +20,7 @@ class SymptomsController < ApplicationController
       puts @symptom.errors.full_messages
       render :new
     end
-  end
+  end  
 
   def update
     @symptom = Symptom.find(params[:symptom_id])
@@ -40,7 +43,6 @@ class SymptomsController < ApplicationController
 
   def generate_care_methods
     @symptom = Symptom.find(params[:id])
-    byebug
     puts "Found symptom: #{@symptom.inspect}"
     puts "Pain start time: #{@symptom.pain_start_time}"
     puts @symptom.generate_care_methods.inspect
