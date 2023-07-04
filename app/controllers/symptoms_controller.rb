@@ -8,7 +8,6 @@ class SymptomsController < ApplicationController
   end
 
   def create
-    
     @symptom = current_user.symptoms.new(symptom_params.merge(current_step: 'pain_location'))
     if @symptom.save
       session[:symptom_id] = @symptom.id # セッションにsymptom_idを格納
@@ -47,6 +46,9 @@ class SymptomsController < ApplicationController
     puts "Pain start time: #{@symptom.pain_start_time}"
     puts @symptom.generate_care_methods.inspect
     @care_methods = @symptom.generate_care_methods
+
+    # 追加：地図の表示制御のためのインスタンス変数を設定
+    @show_map = @symptom.pain_intensity >= 8 && @symptom.pain_intensity <= 10
   end
   
   private

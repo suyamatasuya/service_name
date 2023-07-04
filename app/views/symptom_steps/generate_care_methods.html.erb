@@ -5,86 +5,81 @@
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-dZjF8D+K7dbJz2vyiqDn0B2K6tbK43Cl3tbFahj8IK9gC6s+0916ur8B+6A9IDOZ"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     >
     <style>
-      /* 全体のスタイル */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* ケア方法のコンテナ */
-      .care-methods {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 20px;
-      }
-
-      /* カードのスタイル */
-      .card {
-        width: 300px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 20px;
-      }
-
-      /* タイトルのスタイル */
-      .card-title {
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-
-      /* 説明文のスタイル */
-      .card-text {
-        font-size: 16px;
-        color: #555;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-
-      /* リンクのスタイル */
-      .card-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        color: #007bff;
-        text-decoration: none;
-        margin-top: 10px;
-      }
-
-      .card-link i {
-        margin-left: 5px;
-      }
-
-      /* フラッシュメッセージのスタイル */
-      .flash-message {
-        height: 200px;
-        line-height: 200px;
-        color: white;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .flash-message.alert-notice {
-        background-color: #28a745;
-      }
-
-      .flash-message.alert-alert {
-        background-color: #dc3545;
+      /* CSSを適用 */
+      #map {
+        height: 500px;  /* マップの高さを400pxに変更 */
+        width: 500px;  /* マップの幅を400pxに変更 */
+        margin: 0 auto; /* マップを中央寄せ */
       }
     </style>
+
+    <script>
+      function initMap() {
+        // Use HTML5 geolocation to get the user's current position
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var currentLocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: currentLocation,
+              zoom: 15
+            });
+
+            var request = {
+              location: currentLocation,
+              radius: '5000',  // 5km
+              type: ['hospital', 'doctor'],  // 整形外科を含む病院と医師を検索
+              keyword: ['整形外科', '総合病院']  // '整形外科'と'総合病院'を含む場所を検索
+            };
+
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, callback);
+
+            function callback(results, status) {
+              if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                  createMarker(results[i]);
+                }
+              }
+            }
+
+            function createMarker(place) {
+              var placeLoc = place.geometry.location;
+              var markerIcon = {
+                url: 'https://maps.google.com/mapfiles/marker_green.png',  // Change marker color to green
+                scaledSize: new google.maps.Size(50, 50)  // Decrease marker size
+              };
+              var marker = new google.maps.Marker({
+                map: map,
+                position: placeLoc,
+                icon: markerIcon,
+                animation: google.maps.Animation.DROP
+              });
+
+              var infowindow = new google.maps.InfoWindow();
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, marker);
+              });
+            }
+          }, function(error) {
+            // 現在位置の取得に失敗した時の処理
+            console.error('Error occurred in geolocation: ' + error.message);
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          console.log("Geolocation is not supported by this browser.");
+        }
+      }
+    </script>
+
   </head>
   <body>
     <div id="page-container">
@@ -115,6 +110,12 @@
               <% end %>
             <% else %>
               <p class="card-text">No care methods found.</p>
+            <% end %>
+
+            <% if @show_map %>
+              <div id="map"></div> <!-- 地図を表示する要素 -->
+              <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap"
+              async defer></script>
             <% end %>
           </div>
         </div>
