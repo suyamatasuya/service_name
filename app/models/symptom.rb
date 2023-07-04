@@ -96,6 +96,7 @@ class Symptom < ApplicationRecord
       end
     elsif pain_intensity >= 8 && pain_intensity <= 10
       care_methods = care_methods.or(CareMethod.where(name: "早急に病院へ受診する"))
+      @show_map = true
     end
 
     care_methods # 生成したケア方法のリストを返す
