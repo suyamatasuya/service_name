@@ -82,10 +82,6 @@ GEM
     declarative (0.0.20)
     dockerfile-rails (1.4.2)
       rails
-    dotenv (2.8.1)
-    dotenv-rails (2.8.1)
-      dotenv (= 2.8.1)
-      railties (>= 3.2)
     erubi (1.12.0)
     execjs (2.8.1)
     faraday (2.7.5)
@@ -377,7 +373,6 @@ DEPENDENCIES
   bootstrap (~> 4.3.1)
   byebug
   dockerfile-rails (>= 1.4)
-  dotenv-rails
   fcm
   firebase
   google-api-client (~> 0.53.0)

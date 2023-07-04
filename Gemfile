@@ -61,4 +61,3 @@ gem 'firebase'
 gem "redis", "~> 5.0"
 gem 'google-api-client', '~> 0.53.0'
 gem 'google-apis-fcm_v1'
-gem 'dotenv-rails', groups: [:development, :test]

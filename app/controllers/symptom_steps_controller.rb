@@ -7,18 +7,11 @@ class SymptomStepsController < ApplicationController
     @symptom = Symptom.find(params[:symptom_id])
     @symptom.current_step = step
     Rails.logger.debug "Current step: #{step}"
-    
-    if @symptom.pain_intensity && @symptom.pain_intensity >= 8 && @symptom.pain_intensity <= 10
-      @show_map = true
-    else
-      @show_map = false
-    end
-
     if step == steps.first
       render steps.second
     elsif step == :generate_care_methods
       @care_methods = @symptom.generate_care_methods
-      render 'generate_care_methods'
+      render_wizard
     else
       Rails.logger.debug "Rendering step template: #{step}"
       render_wizard
@@ -32,13 +25,6 @@ class SymptomStepsController < ApplicationController
 
     if @symptom.update(symptom_params)
       Rails.logger.debug "After successful update: #{@symptom.inspect}"
-      
-      if @symptom.pain_intensity && @symptom.pain_intensity >= 8 && @symptom.pain_intensity <= 10
-        @show_map = true
-      else
-        @show_map = false
-      end
-
       if step == :generate_care_methods
         @care_methods = @symptom.generate_care_methods
       end

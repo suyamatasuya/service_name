@@ -51,5 +51,5 @@ class CareMethodsController < ApplicationController
 
   def care_method_params
     params.require(:care_method).permit(:name, :description, :link, symptom_ids: [])
-  end
+  end  
 end

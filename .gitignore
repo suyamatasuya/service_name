@@ -36,5 +36,3 @@ yarn-debug.log*
 .yarn-integrity
 /vendor
 /firebase_notification_service.rb
-/.env
-/config/local_env.yml

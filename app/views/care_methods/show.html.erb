@@ -38,7 +38,7 @@
         <p><strong>Link:</strong> <%= care_method.link %></p>
         <div class="care-method-actions">
           <%= link_to '編集', edit_care_method_path(care_method), class: "btn btn-primary" %>
-          <%= link_to '削除', care_method_path(care_method), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+         <%= link_to '削除', care_method_path(care_method), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
         </div>
       </div>
     <% end %>
