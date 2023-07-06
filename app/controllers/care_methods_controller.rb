@@ -3,12 +3,12 @@ class CareMethodsController < ApplicationController
 
   def new
     @care_method = CareMethod.new
-    @symptoms = Symptom.all # 新しいケア方法を作成する際に、どの症状に対するものかを選択できるようにすべての症状を取得
+    @symptoms = Symptom.all
   end
   
   def create
     @care_method = CareMethod.new(care_method_params)
-    @symptoms = Symptom.all # make sure to set @symptoms here too
+    @symptoms = Symptom.all
     if @care_method.save
       flash[:notice] = 'ケア方法が保存されました'
       render :new
@@ -50,6 +50,6 @@ class CareMethodsController < ApplicationController
   end
 
   def care_method_params
-    params.require(:care_method).permit(:name, :description, :link, symptom_ids: [])
+    params.require(:care_method).permit(:name, :description, :video_links_and_titles, symptom_ids: [])
   end
 end

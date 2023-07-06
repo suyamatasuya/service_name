@@ -1,3 +1,10 @@
+<style>
+  .description-text-area {
+  height: 500px;
+  resize: vertical; /* Allow vertical resize */
+  }
+</style>
+
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="w-50">
     <h1 class="text-center">Edit Care Method</h1>
@@ -22,12 +29,12 @@
 
       <div class="form-group">
         <%= form.label :description %>
-        <%= form.text_field :description, class: "form-control" %>
+       <%= form.text_area :description, class: "form-control description-text-area" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :link %>
-        <%= form.text_field :link, class: "form-control" %>
+        <%= form.label :video_links_and_titles, "Video Links and Titles" %>
+        <%= form.text_area :video_links_and_titles, class: "form-control", placeholder: "Enter each video URL and title, separated by a comma. Each pair should be on a new line." %>
       </div>
 
       <div class="form-actions text-center">

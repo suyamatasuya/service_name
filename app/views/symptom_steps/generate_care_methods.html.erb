@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ケア方法</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -10,12 +11,84 @@
     >
     <style>
       /* CSSを適用 */
+      body {
+        font-family: 'Noto Serif JP', serif;
+        background-color: #f5f1e8;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* コンテンツを画面中央に配置 */
+        min-height: 100vh; /* viewportの高さを最小限に設定 */
+        margin: 0;
+        padding: 0;
+      }
+      .card {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        background-color: #fdf5e3;
+      }
+      .card h5 {
+        margin-bottom: 1em;
+      }
+      .card-text {
+        font-size: 1.1em; /* 既存の文字サイズより50%大きくなります。 */
+        margin-bottom: 1.5em;
+      }
+      .btn-primary {
+        color: #fff;
+        background-color: #755839;
+        border-color: #755839;
+        padding: 0.5em 1em;
+        font-size: 1em;
+        transition: background-color 0.3s; /* トランジション */
+      }
+      .btn-primary:hover {
+        background-color: #a39170; /* ホバーカラー */
+      }
+
+      .results-title {
+        text-align: center;
+        margin-top: 50px;
+      }
+
       #map {
-        height: 500px;  /* マップの高さを400pxに変更 */
-        width: 500px;  /* マップの幅を400pxに変更 */
+        height: 500px;
+        width: 80%; /* マップの幅を80%に調整 */
+        margin: 20px auto; /* マップを中央寄せ */
+      }
+      #page-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100vw;
+      }
+      #content-wrap {
+        width: 1000px;
+        margin: 10px; /* 必要に応じて上下のマージンを調整 */
+        box-sizing: border-box; /* Make sure padding is included in width */
+      }
+      #page-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Vertically center the contents */
+        align-items: center; /* Horizontally center the contents */
+        min-height: 100vh; /* Make sure the container covers the whole viewport height */
+        width: 100%; /* Make sure the container covers the whole viewport width */
+        overflow: hidden; /* Hide any content extending beyond the container */
+      }
+      #map {
+        height: 40vh;  /* マップの高さをビューポートの高さの80%に設定 */
+        width: 50vw;  /* マップの幅をビューポートの幅の80%に設定 */
         margin: 0 auto; /* マップを中央寄せ */
       }
+      .save-button {
+        display: block;
+        margin: 0 auto;
+      }
     </style>
+
 
     <script>
       function initMap() {
@@ -79,45 +152,56 @@
         }
       }
     </script>
-
-  </head>
+     </head>
   <body>
     <div id="page-container">
       <div id="content-wrap">
-        <% flash.each do |message_type, message| %>
-          <div class="flash-message alert-<%= message_type %>">
-            <%= message %>
-          </div>
+        <% if flash.any? %>
+          <% flash.each do |message_type, message| %>
+            <div class="flash-message alert-<%= message_type %>">
+              <%= message %>
+            </div>
+          <% end %>
         <% end %>
 
-        <div class="care-methods">
-          <div class="card">
-            <h5 class="card-title">ケア方法</h5>
-            <% if @care_methods && @care_methods.any? %>
-              <%= form_tag user_care_histories_path, method: :post do %>
-                <% @care_methods.each do |method| %>
-                  <%= hidden_field_tag 'care_method_ids[]', method.id %>
-                  <h5 class="card-title"><%= method.name %></h5>
-                  <p class="card-text"><%= method.description %></p>
-                  <% if method.link.present? %>
-                    <a href="<%= method.link %>" class="card-link" target="_blank">
-                      詳細リンク
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                  <% end %>
-                <% end %>
-                <%= submit_tag 'ケア方法を保存', class: 'btn btn-primary' %>
-              <% end %>
-            <% else %>
-              <p class="card-text">No care methods found.</p>
-            <% end %>
+        <h1 class="results-title">問診結果</h1>
 
-            <% if @show_map %>
-              <div id="map"></div> <!-- 地図を表示する要素 -->
-              <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap"
-              async defer></script>
+        <div class="care-methods">
+          <% if @care_methods && @care_methods.any? %>
+            <%= form_tag user_care_histories_path, method: :post do %>
+              <% @care_methods.each do |method| %>
+                <%= hidden_field_tag 'care_method_ids[]', method.id %>
+                <div class="card">
+                  <h5 class="card-title"><%= method.name %></h5>
+                  <% method.description.split(' ').each do |sentence| %>
+                    <p class="card-text"><%= sentence %></p>
+                  <% end %>
+                  <% if method.video_links.present? %>
+                    <div class="card-body">
+                      <% method.video_links.zip(method.video_titles).each do |link, title| %>
+                        <% if link.present? %>
+                          <a href="<%= link %>" class="card-link" target="_blank">
+                            <%= title.present? ? title : "詳細リンク" %>
+                            <i class="fas fa-external-link-alt"></i>
+                          </a>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+              <%= submit_tag 'ケア方法を保存', class: 'btn btn-primary save-button' %>
             <% end %>
-          </div>
+          <% else %>
+            <p class="card-text">No care methods found.</p>
+          <% end %>
+
+          <% if @show_map %>
+            <p id="map-text">近くの病院を探す</p>
+            <div id="map"></div> <!-- 地図を表示する要素 -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap"
+            async defer></script>
+          <% end %>
         </div>
       </div>
     </div>

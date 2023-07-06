@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
     .cta-button, .board-link {
       display: inline-block;
       padding: 15px 30px;
-      background-color: #007f5f;
+      background-color: #009688; /* 問診を始めるの背景色 */
       color: #fff;
       font-size: 24px;
       text-decoration: none;
@@ -78,21 +78,36 @@
 <body>
 
 <div class="hero vertical-text">
-  <%= link_to "問診を始める", symptoms_path, class: 'cta-button' %>
+  <%= link_to "問診を始める", symptoms_path, class: 'cta-button', style: 'background-color: #009688;' %>
   <p class="catchphrase">首と腰の痛み、一緒に克服しましょう</p>
   <div class="intro">
     <p>自宅でできるセルフケア方法を学び、生活の質を向上させましょう</p>
   </div>
   <div class="spacer"></div>
-  <%= link_to "掲示板", posts_path, class: 'board-link' %>
+  <%= link_to "掲示板", posts_path, class: 'board-link', style: 'background-color: #009688;' %>
   <p class="catchphrase">あなたの痛みは一人だけのものではありません、共有しましょう</p>
 </div>
 
-<div id="sakura"></div>
+<!-- アニメーションの設定 -->
+<script>
+  anime({
+    targets: '.cta-button, .board-link',
+    translateY: [50, 0],
+    opacity: [0, 1],
+    delay: anime.stagger(300),
+    duration: 1000,
+    easing: 'easeOutExpo'
+  });
 
-<!-- Optional JavaScript; choose one of the two! -->
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  anime({
+    targets: '.catchphrase, .intro',
+    translateY: [30, 0],
+    opacity: [0, 1],
+    delay: anime.stagger(300),
+    duration: 1000,
+    easing: 'easeOutExpo'
+  });
+</script>
 
 </body>
 </html>
