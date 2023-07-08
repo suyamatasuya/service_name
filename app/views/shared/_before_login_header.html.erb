@@ -79,19 +79,20 @@
           <li class="nav-item">
             <%= link_to '使い方', '#', class: 'nav-link', style: 'color: #fff;' %>
           </li>
-          <% unless current_user %>
+          <% if current_user %>
             <li class="nav-item">
-              <%= link_to 'ログイン', '#', class: 'nav-link', style: 'color: #fff;', "data-toggle" => "modal", "data-target" => "#loginModal" %>
+              <%= link_to 'ログアウト', user_session_path(current_user), method: :delete, class: 'nav-link', style: 'color: #fff;' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'ログイン', new_user_session_path, class: 'nav-link', style: 'color: #fff;' %>
             </li>
             <li class="nav-item">
-              <%= link_to '新規登録', '#', class: 'nav-link', style: 'color: #fff;', "data-toggle" => "modal", "data-target" => "#signUpModal" %>
+              <%= link_to '新規登録', new_user_path, class: 'nav-link', style: 'color: #fff;' %>
             </li>
           <% end %>
         </ul>
       </div>
     </div>
   </nav>
-
-  <%= render 'user_sessions/modal' %> <!-- ログインのモーダルウィンドウをレンダリング -->
-  <%= render 'users/modal' %> <!-- 新規登録のモーダルウィンドウをレンダリング -->
 </body>

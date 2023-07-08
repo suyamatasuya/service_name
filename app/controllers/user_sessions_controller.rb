@@ -4,24 +4,24 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:user][:email], params[:user][:password])
-      respond_to do |format|
-        flash.now[:notice] = 'ログイン成功'  # フラッシュメッセージをセット
-        format.js { render 'success' } # success.js.erbを描画
-        format.html { redirect_to root_path, notice: 'ログイン成功' }
-      end
+    @user = User.find_by(email: params[:user][:email])
+  
+    if @user&.valid_password?(params[:user][:password])
+      # User was found and password is correct, log them in and redirect to root path
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: 'ログイン成功'
     else
-      respond_to do |format|
-        flash[:alert] = 'ログインに失敗しました。' # ここで flash を使います
-        flash.keep[:alert] # このフラッシュメッセージを保持します
-        format.js { render 'error' } # error.js.erbを描画
-        format.html { render 'new', formats: :html }
-      end
+      flash[:alert] = 'ログインに失敗しました。' # ここで flash を使います
+      render :new
     end
   end  
-  
+
   def destroy
-    logout
-    redirect_to root_path, notice: 'ログアウトしました！'
+    if logged_in?
+      logout
+      redirect_to root_path, notice: 'ログアウトしました！'
+    else
+      redirect_to root_path, notice: 'すでにログアウトしています'
+    end
   end
 end
