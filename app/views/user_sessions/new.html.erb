@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ログイン</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <!-- Bootstrap JavaScript and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #A0D080; /* 抹茶色 */
+            color: #5B2C00; /* ほうじ茶色 */
+            font-family: 'Hiragino Mincho Pro', serif; /* 日本調のフォント */
+        }
+
+        h2, h3, h4 {
+            color: #5B2C00; /* ほうじ茶色 */
+        }
+
+        .form-control, .btn {
+            border-radius: 0; /* フォームとボタンの角を四角にする */
+        }
+
+        .btn {
+            background-color: #5B2C00; /* ほうじ茶色 */
+            color: #A0D080; /* 抹茶色 */
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #3B2200; /* 濃いほうじ茶色 */
+            color: #A0D080; /* 抹茶色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">ログイン</h2>
+
+        <%= form_for @user, url: user_sessions_path, html: { class: 'mt-4' } do |f| %>
+            <% if @user.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                    <ul>
+                        <% @user.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "ログイン", class: 'btn btn-block' %>
+            </div>
+        <% end %>
+    </div>
+</body>
+</html>
