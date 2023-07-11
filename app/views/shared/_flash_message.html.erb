@@ -2,6 +2,13 @@
   <style>
     .flash-message {
       margin-bottom: 10px;
+      background-color: #faf0e6; /* 明るめの色に変更 */
+      border: 1px solid #6a3906;
+      border-radius: 3px;
+      padding: 10px;
+      font-family: 'Noto Serif JP', serif;
+      text-align: center; /* メッセージを中央に配置 */
+      box-shadow: 2px 2px 4px #888; /* 影を追加して立体感を出す */
     }
 
     .flash-alert {
@@ -17,9 +24,9 @@
   <!-- Your body content here -->
 
   <% flash.each do |message_type, message| %>
-    <p class="flash-message alert-<%= message_type %>">
+    <div class="flash-message flash-<%= message_type %>">
       <%= message %>
-    </p>
+    </div>
   <% end %>
 
   <!-- Rest of the body content -->

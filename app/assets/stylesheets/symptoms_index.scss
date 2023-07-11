@@ -1,0 +1,23 @@
+body {
+    background-color: #e9e7e0;  /* A light brown color */
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;  // この値を変えることで、全体のフォントサイズを調整できます。
+  }
+  
+  h2, .start-button {
+    color: #c5a35a;  /* A gold color */
+  }
+  
+  .start-button.clicked {
+    transform: scale(0.95);
+  }
+  
+  strong {
+    color: #709775;  /* A matcha color */
+  }
+  
+  .start-button {
+    background-color: #c5a35a;
+    color: #fff;
+  }
+  

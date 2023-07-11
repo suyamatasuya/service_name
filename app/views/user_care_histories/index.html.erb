@@ -1,45 +1,9 @@
-<head>
+  <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <style>
-      body {
-        height: 0px;
-        background-color: #f5f1e8;
-        font-family: Arial, sans-serif; /* Use Arial or a similar sans-serif font */
-        font-size: 16px; /* Font size */
-        line-height: 1.5; /* Line height */
-      }
-      .container {
-        max-width: 90%; /* Make the container 80% of full-width */
-        margin: 0 auto; /* Center the container */
-        padding: 10px; /* Add padding to the container */
-      }
-      h1 {
-        font-size: 28px; /* Larger heading font size */
-        text-align: center; /* Center the heading */
-        margin-bottom: 30px; /* Add space below the heading */
-      }
-      .modal-lg {
-        max-width: 80%; /* Large modal */
-      }
-      .modal-content {
-        overflow: auto; /* Add scrollbar if necessary */
-        height: 80vh; /* 80% of the viewport height */
-      }
-      .table td, .table th {
-        padding: 10px; /* Add padding to table cells */
-        vertical-align: top; /* Align cell contents to the top */
-      }
-      .modal-body {
-        font-size: 18px; /* Larger modal body font size */
-        white-space: pre-wrap; /* Respect newline characters in text */
-        text-align: justify; /* Justify text for better readability */
-      }
-    </style>
+    <%= stylesheet_link_tag 'user_care_histories' %>
+    <%= javascript_pack_tag 'user_care_histories' %>
   </head>
-  <body>
+<body>
     <div class="container py-5">
       <h1 class="mb-5 text-center">あなたの問診結果</h1>
 

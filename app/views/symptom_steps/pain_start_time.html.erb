@@ -1,3 +1,8 @@
+<head>
+  <%= stylesheet_link_tag 'symptoms_steps_pain_start_time' %>
+  <%= javascript_pack_tag 'symptoms_steps_pain_start_time' %>
+</head>
+
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title" style="color: #709775;">問診4</h1>
   <h2 class="text-center instruction" style="color: #709775;">痛みが出た時間を選択してください</h2>
@@ -21,80 +26,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.custom-label').forEach(function(label){
-      label.addEventListener('click', function(e){
-        // Clear previous selection
-        document.querySelectorAll('.custom-label').forEach(function(otherLabel){
-          otherLabel.classList.remove('active');
-        })
-        // Set the clicked label as active
-        e.currentTarget.classList.add('active');
-      })
-    })
-  })
-</script>
-
-<style>
-/* Hide the radio buttons */
-.form-check-input {
-  display: none;
-}
-
-/* Style for active label */
-.active {
-  border-color: #FF0000; /* This will make the border red */
-  background-color: #FF0000; /* This will make the background red */
-  color: white;
-  box-shadow: 0px 0px 20px 3px rgba(255, 0, 0, 0.6); /* This will add a bigger and more visible red shadow around the item */
-}
-
-/* Custom button size */
-.custom-button {
-  width: 200px;
-  height: 60px;
-}
-
-/* Custom label with margin and width */
-.custom-label {
-  margin: 10px !important;
-  min-width: 200px; /* Adjust this value to ensure the text fits */
-  text-align: center; /* Center the text within the label */
-}
-
-/* Custom title */
-.title {
-  font-size: 3em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 0.5em;
-  color: #709775; /* A matcha color */
-}
-
-/* Custom instruction */
-.instruction {
-  font-size: 1.5em;
-  font-family: 'Yu Gothic', sans-serif;
-  margin-bottom: 1em;
-  color: #709775; /* A matcha color */
-}
-
-/* Background color */
-body {
-  background-color: #e9e7e0; /* A light brown color */
-}
-
-/* Button color */
-.btn-primary {
-  background-color: #c5a35a;
-  color: #fff;
-}
-
-.btn-primary:focus,
-.btn-primary:active {
-  background-color: #c5a35a !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-</style>

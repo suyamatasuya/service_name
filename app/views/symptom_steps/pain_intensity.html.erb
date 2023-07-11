@@ -1,13 +1,9 @@
-<html>
 <head>
-
-  <!-- Add jQuery and Bootstrap from a CDN -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
-
-  
+  <%= stylesheet_link_tag 'symptoms_steps_pain_intensity' %>
+  <%= javascript_pack_tag 'symptoms_steps_pain_intensity' %>
 </head>
 <body>
   <div id="page-container">
@@ -42,122 +38,4 @@
     <!-- フッターを表示 -->
     <%= render 'shared/footer' %>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var slider = document.getElementById('slider');
-      var painIntensity = document.getElementById('pain_intensity');
-      var sliderValue = document.getElementById('slider-value');
-      var sliderComments = document.getElementById('slider-comments');
-
-      noUiSlider.create(slider, {
-        start: 0,
-        step: 1,
-        range: {
-          'min': 0,
-          'max': 10
-        },
-        pips: {
-          mode: 'positions',
-          values: [0, 20, 40, 60, 80, 100],
-          density: 10,
-          format: {
-            to: function(value) {
-              if (value === '0') {
-                return '痛くない';
-              } else if (value === '10') {
-                return '耐えがたい痛み';
-              } else {
-                return Math.floor(value);
-              }
-            }
-          }
-        }
-      });
-
-      slider.noUiSlider.on('update', function(values, handle) {
-        painIntensity.value = values[handle];
-        sliderValue.textContent = Math.floor(values[handle]);
-      });
-    });
-  </script>
-
-  <style>
-    body {
-    background-color: #e9e7e0;  /* A light brown color */
-  }
-
-  h1 {
-    color: #709775;  /* A matcha color */
-  }
-
-  h2 {
-    color: #709775;  /* A matcha color */
-  }
-
-  .btn-primary {
-    background-color: #c5a35a;
-    color: #fff;
-  }
-
-  .btn-primary:focus,
-  .btn-primary:active {
-    background-color: #c5a35a !important;
-    box-shadow: none !important;
-    outline: none !important;
-  }
-
-  /* Custom button size */
-  .custom-button {
-    width: 200px;
-    height: 60px;
-  }
-
-  /* Custom title */
-  .title {
-    font-size: 3em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 0.5em;
-  }
-
-  /* Custom instruction */
-  .instruction {
-    font-size: 1.5em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 1em;
-  }
-
-  /* Slider container style */
-  #slider {
-    width: 60%; /* Slider width */
-    height: 30px; /* Slider height */
-    margin: 0 auto; /* Center the slider */
-    background-color: #d3d3d3; /* Slider background color */
-  }
-
-  /* Comment style */
-  #slider-comments {
-    display: flex;
-    justify-content: space-between;
-    width: 60%; /* Align width with the slider */
-    margin: 0 auto;
-    font-size: 12px;
-    color: #709775; /* A matcha color */
-  }
-
-  .pain-comment {
-    margin-right: auto;
-  }
-
-  /* Color of the meter and size of the numbers */
-  #slider .noUi-connect {
-    background-color: #98FB98; /* Change the color of the meter to a medical color */
-  }
-
-  #slider-value {
-    font-size: 24px; /* Change the size of the number characters */
-    color: #709775; /* A matcha color */
-  }
-</style>
 </body>
-</html>

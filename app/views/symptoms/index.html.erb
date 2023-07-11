@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>問診を受ける前に知っておくべきこと</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    body {
-      background-color: #e9e7e0;  /* A light brown color */
-    }
-
-    h2, .start-button {
-      color: #c5a35a;  /* A gold color */
-    }
-
-    .start-button.clicked {
-      transform: scale(0.95);
-    }
-
-    strong {
-      color: #709775;  /* A matcha color */
-    }
-
-    .start-button {
-      background-color: #c5a35a;
-      color: #fff;
-    }
-  </style>
 </head>
 <body>
-
-<div class="container py-5">
+   <%= stylesheet_link_tag 'symptoms_index' %>
+   <%= javascript_pack_tag 'symptoms_index' %>
+ <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="text-center mb-4">
@@ -54,21 +31,5 @@
       </div>
     </div>
   </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-    const startButton = document.querySelector('.start-button');
-
-    startButton.addEventListener('mousedown', () => {
-      startButton.classList.add('clicked');
-    });
-
-    startButton.addEventListener('mouseup', () => {
-      startButton.classList.remove('clicked');
-    });
-  });
-</script>
-
+ </div>
 </body>
-</html>

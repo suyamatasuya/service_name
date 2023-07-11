@@ -151,21 +151,13 @@
           console.log("Geolocation is not supported by this browser.");
         }
       }
+      
     </script>
      </head>
   <body>
     <div id="page-container">
       <div id="content-wrap">
-        <% if flash.any? %>
-          <% flash.each do |message_type, message| %>
-            <div class="flash-message alert-<%= message_type %>">
-              <%= message %>
-            </div>
-          <% end %>
-        <% end %>
-
         <h1 class="results-title">問診結果</h1>
-
         <div class="care-methods">
           <% if @care_methods && @care_methods.any? %>
             <%= form_tag user_care_histories_path, method: :post do %>
