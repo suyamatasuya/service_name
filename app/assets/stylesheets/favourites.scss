@@ -1,0 +1,35 @@
+// Place all the styles related to the Favourites controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  background-color: #fdf6e3;
+  font-family: 'Hiragino Sans', sans-serif;
+}
+
+h1 {
+  border-bottom: 1px solid #3e4039;
+  padding-bottom: 10px;
+}
+
+.row.card-container {
+  margin-top: 20px;
+}
+
+.message-card {
+  border: 1px solid #3e4039;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #5f9ea0;
+  color: #3e4039;
+}
+
+.btn-danger {
+  background-color: #709775;
+  border-color: #709775;
+}
+
+.favourite-icon {
+  cursor: pointer;
+}

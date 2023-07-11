@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     else
       render :new
     end
-end
+  end
 
   def edit; end
 
@@ -23,8 +23,7 @@ end
     else
       render :edit
     end
-  end  
-
+  end
   private
 
   def set_user

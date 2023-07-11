@@ -1,0 +1,24 @@
+<body class="favourites-page">
+  <div class="d-flex justify-content-center align-items-center" style="height: 75vh;">
+    <div class="flex-container">
+      <h1 class="text-center"><%= @user.name %>'s Favourited Posts</h1>
+
+      <div class="row card-container">
+        <% @posts.each do |post| %>
+          <% favourite = current_user.favourites.find_by(post_id: post.id) %>
+          <div class="message-card card" data-post-id="<%= post.id %>">
+            <div class="card-header">
+              <%= post.user.name %>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><%= post.content %></p>
+              <div>
+                <%= link_to 'Remove from favourites', post_favourite_path(post, favourite), method: :delete, data: { remote: true }, class: 'btn btn-danger' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>
