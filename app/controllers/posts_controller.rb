@@ -3,11 +3,14 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_posts, only: [:index]
 
-  def authenticate_user!
-    redirect_to login_path unless current_user
-  end
-
   def index
+    if params[:search].present?
+      @posts = Post.where('content LIKE ?', "%#{params[:search]}%").order(created_at: :desc).page(params[:page]).per(10)
+    elsif params[:sort_by_favourites].present?
+      @posts = Post.left_joins(:favourites).group(:id).order('COUNT(favourites.id) DESC').page(params[:page]).per(12)
+    else
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
+    end
   end
 
   def set_posts
@@ -31,7 +34,6 @@ class PostsController < ApplicationController
       render :index
     end
   end
-  
 
   def edit
   end
@@ -57,6 +59,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :body_part)
+    params.require(:post).permit(:content, :pain_location)
   end
 end

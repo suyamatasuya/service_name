@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :user_care_histories
+  has_many :favourites
+  has_many :favourited_posts, through: :favourites, source: :post
   
   authenticates_with_sorcery!
   
