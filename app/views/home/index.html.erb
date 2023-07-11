@@ -1,83 +1,14 @@
-<!DOCTYPE html>
-<html lang="ja">
 <head>
-  <!-- 必要なメタタグ -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Anime.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      position: relative;
-      padding-bottom: 80px;  
-    }
-
-    .hero {
-      width: 80%;  /* Add this */
-      margin: auto;  /* Add this */
-      height: calc(100vh - 80px); 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(144, 238, 144, 0.7));
-      background-position: left center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      padding-top: 60px;
-    }
-
-    .cta-button, .board-link {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #009688; /* 問診を始めるの背景色 */
-      color: #fff;
-      font-size: 24px;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      margin-bottom: 20px;
-    }
-
-    .cta-button:hover, .board-link:hover {
-      background-color: #00593f;
-    }
-
-    .intro, .catchphrase {
-      font-size: 20px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-    .spacer {
-      height: 50px;
-    }
-
-    .vertical-text {
-      font-family: 'Noto Serif JP', serif;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-    }
-  </style>
+  <%= javascript_pack_tag 'home' %>
+  <%= stylesheet_link_tag 'home' %>
 </head>
-<body>
 
-<div class="hero vertical-text">
+<body>
+  <div class="hero vertical-text">
   <%= link_to "問診を始める", symptoms_path, class: 'cta-button', style: 'background-color: #009688;' %>
   <p class="catchphrase">首と腰の痛み、一緒に克服しましょう</p>
   <div class="intro">
@@ -87,27 +18,3 @@
   <%= link_to "掲示板", posts_path, class: 'board-link', style: 'background-color: #009688;' %>
   <p class="catchphrase">あなたの痛みは一人だけのものではありません、共有しましょう</p>
 </div>
-
-<!-- アニメーションの設定 -->
-<script>
-  anime({
-    targets: '.cta-button, .board-link',
-    translateY: [50, 0],
-    opacity: [0, 1],
-    delay: anime.stagger(300),
-    duration: 1000,
-    easing: 'easeOutExpo'
-  });
-
-  anime({
-    targets: '.catchphrase, .intro',
-    translateY: [30, 0],
-    opacity: [0, 1],
-    delay: anime.stagger(300),
-    duration: 1000,
-    easing: 'easeOutExpo'
-  });
-</script>
-
-</body>
-</html>

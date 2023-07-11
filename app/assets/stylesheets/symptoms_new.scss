@@ -1,0 +1,47 @@
+body {
+    background-color: #e9e7e0;
+  }
+  
+  h1, h2, label {
+    color: #709775;
+  }
+  
+  label {
+    margin: 0 20px;
+  }
+  
+  .btn-primary {
+    background-color: #c5a35a;
+    color: #fff;
+  }
+  
+  .active {
+    border-color: #FF0000;
+    background-color: #FF0000;
+    color: white;
+    box-shadow: 0 0 10px #FF0000;
+  }
+  
+  .custom-button {
+    width: 200px;
+    height: 60px;
+  }
+  
+  .custom-label {
+    margin: 10px !important;
+    min-width: 150px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 3em;
+    font-family: 'Yu Gothic', sans-serif;
+    margin-bottom: 0.5em;
+  }
+  
+  .instruction {
+    font-size: 1.5em;
+    font-family: 'Yu Gothic', sans-serif;
+    margin-bottom: 1em;
+  }
+  

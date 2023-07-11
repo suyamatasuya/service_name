@@ -1,0 +1,75 @@
+body {
+    background-color: #e9e7e0;  /* A light brown color */
+  }
+
+  h1 {
+    color: #709775;  /* A matcha color */
+  }
+
+  h2 {
+    color: #709775;  /* A matcha color */
+  }
+
+  .btn-primary {
+    background-color: #c5a35a;
+    color: #fff;
+  }
+
+  .btn-primary:focus,
+  .btn-primary:active {
+    background-color: #c5a35a !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Custom button size */
+  .custom-button {
+    width: 200px;
+    height: 60px;
+  }
+
+  /* Custom title */
+  .title {
+    font-size: 3em;
+    font-family: 'Yu Gothic', sans-serif;
+    margin-bottom: 0.5em;
+  }
+
+  /* Custom instruction */
+  .instruction {
+    font-size: 1.5em;
+    font-family: 'Yu Gothic', sans-serif;
+    margin-bottom: 1em;
+  }
+
+  /* Slider container style */
+  #slider {
+    width: 60%; /* Slider width */
+    height: 30px; /* Slider height */
+    margin: 0 auto; /* Center the slider */
+    background-color: #d3d3d3; /* Slider background color */
+  }
+
+  /* Comment style */
+  #slider-comments {
+    display: flex;
+    justify-content: space-between;
+    width: 60%; /* Align width with the slider */
+    margin: 0 auto;
+    font-size: 12px;
+    color: #709775; /* A matcha color */
+  }
+
+  .pain-comment {
+    margin-right: auto;
+  }
+
+  /* Color of the meter and size of the numbers */
+  #slider .noUi-connect {
+    background-color: #98FB98; /* Change the color of the meter to a medical color */
+  }
+
+  #slider-value {
+    font-size: 24px; /* Change the size of the number characters */
+    color: #709775; /* A matcha color */
+  }

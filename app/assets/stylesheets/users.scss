@@ -1,3 +1,33 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+    background-color: #f8f4e8; /* A light bamboo color */
+    color: #8B4513; /* A dark brown color */
+    font-family: 'Hiragino Mincho Pro', serif; /* 日本調のフォント */
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  .card-body {
+    background-color: #709775; /* A matcha color */
+    color: #8B4513; /* A dark brown color */
+  }
+
+  .form-control, .btn {
+    border-radius: 0; /* フォームとボタンの角を四角にする */
+  }
+
+  .btn-tea {
+    background-color:  #a5d6a7; /* matcha color */
+    color: #004d40; /* dark green color */
+    border: none;
+  }
+
+  .btn-tea:hover {
+    background-color:  #66bb6a; /* dark matcha color */
+    color: #004d40; /* dark green color */
+  }
