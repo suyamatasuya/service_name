@@ -42,6 +42,10 @@
   #footer a:last-child {
     margin-right: 0;
   }
+
+  .alert-notice, .alert-alert {
+    font-size: 50px;  /* 文字サイズを変更 */
+  }
   
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

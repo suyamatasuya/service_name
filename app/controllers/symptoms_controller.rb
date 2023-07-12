@@ -1,4 +1,13 @@
 class SymptomsController < ApplicationController
+  before_action :require_login
+
+  def require_login
+    unless logged_in? # Sorceryによって提供されるメソッド
+      flash[:alert] = '問診を始めるにはログインしてください'
+      redirect_to request.referrer || root_url # リファラー（直前のページ）にリダイレクト。リファラーがない場合はroot_urlにリダイレクト。
+    end
+  end  
+  
   def index
     @symptoms = Symptom.all
   end

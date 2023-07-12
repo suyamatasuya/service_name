@@ -5,7 +5,7 @@
     }
 
     .hero {
-      margin-top: 30px; /* これを追加 */
+      margin-top: 70px; /* これを追加 */
       height: 100vh; /* Update this */
       display: flex;
       flex-direction: column;
@@ -56,4 +56,11 @@
       justify-content: space-around;
       align-items: center;
       width: 100%;
+    }
+    
+    .flash-message {
+      color: #0e0606; /* テキストの色を赤に設定 */
+      padding: 10px; /* 内側の余白を10pxに設定 */
+      margin: 10px 0; /* 上下の外側の余白を10pxに設定 */
+      font-size: 20px;
     }

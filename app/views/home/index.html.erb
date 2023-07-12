@@ -9,6 +9,11 @@
 
 <body>
   <div class="hero vertical-text">
+  <% if flash[:alert] %>
+    <div class="flash-message">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
   <%= link_to "問診を始める", symptoms_path, class: 'cta-button', style: 'background-color: #009688;' %>
   <p class="catchphrase">首と腰の痛み、一緒に克服しましょう</p>
   <div class="intro">
