@@ -1,0 +1,80 @@
+/* CSSを適用 */
+body {
+    font-family: 'Noto Serif JP', serif;
+    background-color: #f5f1e8;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* コンテンツを画面中央に配置 */
+    min-height: 100vh; /* viewportの高さを最小限に設定 */
+    margin: 0;
+    padding: 0;
+  }
+  .card {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    background-color: #fdf5e3;
+  }
+  .card h5 {
+    margin-bottom: 1em;
+  }
+  .card-text {
+    font-size: 1.1em; /* 既存の文字サイズより50%大きくなります。 */
+    margin-bottom: 1.5em;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #755839;
+    border-color: #755839;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    transition: background-color 0.3s; /* トランジション */
+  }
+  .btn-primary:hover {
+    background-color: #a39170; /* ホバーカラー */
+  }
+
+  .results-title {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #map {
+    height: 500px;
+    width: 80%; /* マップの幅を80%に調整 */
+    margin: 20px auto; /* マップを中央寄せ */
+  }
+  #page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+  }
+  #content-wrap {
+    width: 1000px;
+    margin: 10px; /* 必要に応じて上下のマージンを調整 */
+    box-sizing: border-box; /* Make sure padding is included in width */
+  }
+  #page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the contents */
+    align-items: center; /* Horizontally center the contents */
+    min-height: 100vh; /* Make sure the container covers the whole viewport height */
+    width: 100%; /* Make sure the container covers the whole viewport width */
+    overflow: hidden; /* Hide any content extending beyond the container */
+  }
+  #map {
+    height: 40vh;  /* マップの高さをビューポートの高さの80%に設定 */
+    width: 50vw;  /* マップの幅をビューポートの幅の80%に設定 */
+    margin: 0 auto; /* マップを中央寄せ */
+  }
+  .save-button {
+    display: block;
+    margin: 0 auto;
+  }
+  .alert {
+    font-size: 20px; /* 20pxに設定 */
+  }

@@ -10,11 +10,14 @@ class CareMethodsController < ApplicationController
     @care_method = CareMethod.new(care_method_params)
     @symptoms = Symptom.all
     if @care_method.save
-      flash.now[:notice] = 'ケア方法が保存されました'
-      render :new
+      flash[:notice] = 'ケア方法が保存されました'
+      redirect_to @care_method
     else
+      flash.now[:alert] = '保存に失敗しました'
       render :new
     end
+  end  
+  
   end  
 
   def show

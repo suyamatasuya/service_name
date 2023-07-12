@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
   <head>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
@@ -7,157 +5,19 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    >
-    <style>
-      /* CSSを適用 */
-      body {
-        font-family: 'Noto Serif JP', serif;
-        background-color: #f5f1e8;
-        display: flex;
-        justify-content: center;
-        align-items: center; /* コンテンツを画面中央に配置 */
-        min-height: 100vh; /* viewportの高さを最小限に設定 */
-        margin: 0;
-        padding: 0;
-      }
-      .card {
-        width: 80%;
-        margin: 0 auto;
-        padding: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-        background-color: #fdf5e3;
-      }
-      .card h5 {
-        margin-bottom: 1em;
-      }
-      .card-text {
-        font-size: 1.1em; /* 既存の文字サイズより50%大きくなります。 */
-        margin-bottom: 1.5em;
-      }
-      .btn-primary {
-        color: #fff;
-        background-color: #755839;
-        border-color: #755839;
-        padding: 0.5em 1em;
-        font-size: 1em;
-        transition: background-color 0.3s; /* トランジション */
-      }
-      .btn-primary:hover {
-        background-color: #a39170; /* ホバーカラー */
-      }
-
-      .results-title {
-        text-align: center;
-        margin-top: 50px;
-      }
-
-      #map {
-        height: 500px;
-        width: 80%; /* マップの幅を80%に調整 */
-        margin: 20px auto; /* マップを中央寄せ */
-      }
-      #page-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 100vh;
-        width: 100vw;
-      }
-      #content-wrap {
-        width: 1000px;
-        margin: 10px; /* 必要に応じて上下のマージンを調整 */
-        box-sizing: border-box; /* Make sure padding is included in width */
-      }
-      #page-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Vertically center the contents */
-        align-items: center; /* Horizontally center the contents */
-        min-height: 100vh; /* Make sure the container covers the whole viewport height */
-        width: 100%; /* Make sure the container covers the whole viewport width */
-        overflow: hidden; /* Hide any content extending beyond the container */
-      }
-      #map {
-        height: 40vh;  /* マップの高さをビューポートの高さの80%に設定 */
-        width: 50vw;  /* マップの幅をビューポートの幅の80%に設定 */
-        margin: 0 auto; /* マップを中央寄せ */
-      }
-      .save-button {
-        display: block;
-        margin: 0 auto;
-      }
-    </style>
-
-
-    <script>
-      function initMap() {
-        // Use HTML5 geolocation to get the user's current position
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var currentLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: currentLocation,
-              zoom: 15
-            });
-
-            var request = {
-              location: currentLocation,
-              radius: '5000',  // 5km
-              type: ['hospital', 'doctor'],  // 整形外科を含む病院と医師を検索
-              keyword: ['整形外科', '総合病院']  // '整形外科'と'総合病院'を含む場所を検索
-            };
-
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, callback);
-
-            function callback(results, status) {
-              if (status === google.maps.places.PlacesServiceStatus.OK) {
-                for (var i = 0; i < results.length; i++) {
-                  createMarker(results[i]);
-                }
-              }
-            }
-
-            function createMarker(place) {
-              var placeLoc = place.geometry.location;
-              var markerIcon = {
-                url: 'https://maps.google.com/mapfiles/marker_green.png',  // Change marker color to green
-                scaledSize: new google.maps.Size(50, 50)  // Decrease marker size
-              };
-              var marker = new google.maps.Marker({
-                map: map,
-                position: placeLoc,
-                icon: markerIcon,
-                animation: google.maps.Animation.DROP
-              });
-
-              var infowindow = new google.maps.InfoWindow();
-              google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(place.name);
-                infowindow.open(map, marker);
-              });
-            }
-          }, function(error) {
-            // 現在位置の取得に失敗した時の処理
-            console.error('Error occurred in geolocation: ' + error.message);
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          console.log("Geolocation is not supported by this browser.");
-        }
-      }
-      
-    </script>
-     </head>
+      crossorigin="anonymous">
+      <%= stylesheet_link_tag 'generate_care_methods' %>
+      <%= javascript_pack_tag 'generate_care_methods' %>
+  </head>
   <body>
     <div id="page-container">
       <div id="content-wrap">
         <h1 class="results-title">問診結果</h1>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
         <div class="care-methods">
           <% if @care_methods && @care_methods.any? %>
             <%= form_tag user_care_histories_path, method: :post do %>
@@ -198,4 +58,3 @@
       </div>
     </div>
   </body>
-</html>

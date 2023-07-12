@@ -30,14 +30,6 @@
   <% else %>
     <%= render 'shared/before_login_header' %>
   <% end %>
-
-  <div id="content-wrap">
-    <!-- フラッシュメッセージを表示 -->
-    <% flash.each do |message_type, message| %>
-      <p class="alert-<%= message_type %>">
-        <%= message %>
-      </p>
-    <% end %>
     
     <!-- ここに各ページのコンテンツを表示 -->
     <%= yield %>
