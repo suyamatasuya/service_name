@@ -81,6 +81,8 @@ test:
 #
 production:
   <<: *default
-  database: service_name_production
-  username: service_name
-  password: <%= ENV['SERVICE_NAME_DATABASE_PASSWORD'] %>
+  database: ddb7ekk1gqdrrk
+  username: breicyqhxmioqm
+  port: 5432
+  password: <%= ENV['PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
