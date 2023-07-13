@@ -1,29 +1,29 @@
 <head><%= stylesheet_link_tag 'care_methods_index' %><head>
 <div class="care-methods-container">
-  <h1>Care Methods</h1>
+  <h1><%= t('care_methods.index.title') %></h1>
 
-  <%= link_to 'New Care Method', new_care_method_path %>
+  <%= link_to t('care_methods.index.new_method'), new_care_method_path %>
 
   <% if @care_methods.any? %>
     <% @care_methods.each do |care_method| %>
       <div class="care-method">
         <h2><%= care_method.name %></h2>
-        <p><strong>Description:</strong> <%= care_method.description %></p>
+        <p><strong><%= t('care_methods.index.description') %>:</strong> <%= care_method.description %></p>
         <% care_method.video_links.each_with_index do |link, index| %>
           <p>
-            <strong>Video Link <%= index + 1 %> :</strong> <%= link %>
+            <strong><%= t('care_methods.index.video_link') %> <%= index + 1 %> :</strong> <%= link %>
             <br/>
-            <strong>Video Title <%= index + 1 %> :</strong> <%= care_method.video_titles[index] %>
+            <strong><%= t('care_methods.index.video_title') %> <%= index + 1 %> :</strong> <%= care_method.video_titles[index] %>
           </p>
         <% end %>
         <div class="care-method-actions">
-          <%= link_to 'Show', care_method_path(care_method), class: "btn btn-primary" %>
-          <%= link_to 'Edit', edit_care_method_path(care_method), class: "btn btn-primary" %>
-          <%= link_to 'Delete', care_method_path(care_method), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <%= link_to t('care_methods.index.show'), care_method_path(care_method), class: "btn btn-primary" %>
+          <%= link_to t('care_methods.index.edit'), edit_care_method_path(care_method), class: "btn btn-primary" %>
+          <%= link_to t('care_methods.index.delete'), care_method_path(care_method), method: :delete, data: { confirm: t('care_methods.index.confirm_delete') }, class: "btn btn-danger" %>
         </div>
       </div>
     <% end %>
   <% else %>
-    <p>No care methods found.</p>
+    <p><%= t('care_methods.index.no_care_methods') %></p>
   <% end %>
 </div>

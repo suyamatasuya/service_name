@@ -15,27 +15,24 @@
 
     <div id="content-wrap">
       <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-        <h1 class="text-center title">問診3</h1>
-        <h2 class="text-center instruction">痛みの強度を選択してください</h2>
+        <h1 class="text-center title"><%= t('symptoms_steps_pain_intensity.title') %></h1>
+        <h2 class="text-center instruction"><%= t('symptoms_steps_pain_intensity.instruction') %></h2>
         <div id="slider"></div> <!-- スライダーのコンテナ要素 -->
         <div id="slider-value" class="text-center mt-2"></div> <!-- スライダーの値表示領域 -->
         <div id="slider-comments" class="text-center mt-2">
-          <span class="comment">痛くない</span>
-          <span class="comment ml-2 comment">痛い</span>
-          <span class="comment ml-2">耐えがたい痛み</span>
+          <span class="comment"><%= t('symptoms_steps_pain_intensity.comment_no_pain') %></span>
+          <span class="comment ml-2 comment"><%= t('symptoms_steps_pain_intensity.comment_pain') %></span>
+          <span class="comment ml-2"><%= t('symptoms_steps_pain_intensity.comment_unbearable_pain') %></span>
         </div>
 
         <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
           <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
 
           <div class="text-center mt-5">
-            <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
+            <%= f.submit t('symptoms_steps_pain_intensity.next'), class: 'btn btn-primary btn-lg custom-button' %>
           </div>
         <% end %>
       </div>
     </div>
-
-    <!-- フッターを表示 -->
-    <%= render 'shared/footer' %>
   </div>
 </body>

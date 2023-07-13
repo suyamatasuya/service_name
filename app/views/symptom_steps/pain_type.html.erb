@@ -4,29 +4,29 @@
 </head>
 
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-  <h1 class="text-center title">問診2</h1>
-  <h2 class="text-center instruction">痛みの種類を選択してください</h2>
+  <h1 class="text-center title"><%= t('symptoms_steps_pain_type.title') %></h1>
+  <h2 class="text-center instruction"><%= t('symptoms_steps_pain_type.instruction') %></h2>
   <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_type), method: :patch do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
       <label for="sharp_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '鋭い痛み', style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>
-        鋭い痛み
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.sharp_pain'), style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.sharp_pain') %>
       </label>
       <label for="dull_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '鈍い痛み', style: 'display:none', id: 'dull_pain', class: 'form-check-input' %>
-        鈍い痛み
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.dull_pain'), style: 'display:none', id: 'dull_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.dull_pain') %>
       </label>
       <label for="throbbing_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '脈打つ痛み', style: 'display:none', id: 'throbbing_pain', class: 'form-check-input' %>
-        脈打つ痛み
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.throbbing_pain'), style: 'display:none', id: 'throbbing_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.throbbing_pain') %>
       </label>
       <label for="electric_pain" class="btn btn-outline-primary btn-lg custom-label">
-        <%= f.radio_button :pain_type, '電撃のように痺れる痛み', style: 'display:none', id: 'electric_pain', class: 'form-check-input' %>
-        電撃のように痺れる痛み
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.electric_pain'), style: 'display:none', id: 'electric_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.electric_pain') %>
       </label>
     </div>
     <div class="text-center">
-      <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
+      <%= f.submit t('symptoms_steps_pain_type.next'), class: 'btn btn-primary btn-lg custom-button' %>
     </div>
   <% end %>
 </div>

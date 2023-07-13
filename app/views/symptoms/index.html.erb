@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>問診を受ける前に知っておくべきこと</title>
+  <title><%= t('symptoms_index.title') %></title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -12,22 +12,22 @@
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="text-center mb-4">
-        <h2>問診を受ける前に知っておくべきこと</h2>
+        <h2><%= t('symptoms_index.title') %></h2>
       </div>
 
       <p class="lead">
-        以下に提供する自己ケア方法に取り組む前に、次の<strong>注意事項</strong>をお読みください：
+        <%= raw(t('symptoms_index.note_lead')) %>
       </p>
       <ol>
-        <li><strong>プロの意見:</strong> 首や腰の痛みは様々な原因からくることがあります。ここで紹介する方法は、一部の一般的な症状に対して有効かもしれませんが、それが全ての人に当てはまるわけではありません。痛みがひどい、または長期間続く場合は、必ず医療専門家に相談してください。</li>
-        <li><strong>痛みに注意:</strong> セルフケアの方法を試すときは、自分の体の反応を注意深く観察してください。もし痛みが増すようであれば、すぐにその活動を中止し、医療専門家に相談してください。</li>
-        <li><strong>正しい方法で:</strong> エクササイズやストレッチングを行うときは、正しい方法で行うことが重要です。間違った方法で行うと、かえって怪我を引き起こす可能性があります。</li>
-        <li><strong>既存の健康状態:</strong> 既に何らかの健康上の問題がある人は、新しいエクササイズやストレッチングを始める前に、必ず医療専門家に相談してください。</li>
-        <li><strong>無理をしない:</strong> 新しいエクササイズを始めるときは、無理をせず、徐々に進めるようにしてください。</li>
+        <li><%= raw(t('symptoms_index.professional_opinion')) %></li>
+        <li><%= raw(t('symptoms_index.pay_attention')) %></li>
+        <li><%= raw(t('symptoms_index.correct_way')) %></li>
+        <li><%= raw(t('symptoms_index.existing_conditions')) %></li>
+        <li><%= raw(t('symptoms_index.no_overdoing')) %></li>
       </ol>
 
       <div class="text-center mt-5">
-        <%= link_to '問診を開始する', new_symptom_path, class: 'btn btn-lg start-button' %>
+        <%= link_to t('symptoms_index.start_symptoms'), new_symptom_path, class: 'btn btn-lg start-button' %>
       </div>
     </div>
   </div>

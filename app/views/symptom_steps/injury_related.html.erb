@@ -3,21 +3,21 @@
   <%= javascript_pack_tag 'symptoms_steps_injury_related' %>
 </head>
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh; background-color: #e9e7e0;">
-  <h1 class="text-center title" style="color: #709775;">問診5</h1>
-  <h2 class="text-center instruction" style="color: #709775;">痛みの原因を教えてください</h2>
+  <h1 class="text-center title" style="color: #709775;"><%= t('symptoms_steps_injury_related.title') %></h1>
+  <h2 class="text-center instruction" style="color: #709775;"><%= t('symptoms_steps_injury_related.instruction') %></h2>
   <%= form_with model: @symptom, url: symptom_step_path(@symptom, :generate_care_methods), method: :patch do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
       <label for="injury_related_yes" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.injury_related == true %>">
         <%= f.radio_button :injury_related, true, style: 'display:none', id: 'injury_related_yes', class: 'form-check-input' %>
-        外傷（ケガ）による痛み
+        <%= t('symptoms_steps_injury_related.trauma_pain') %>
       </label>
       <label for="injury_related_no" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.injury_related == false %>">
         <%= f.radio_button :injury_related, false, style: 'display:none', id: 'injury_related_no', class: 'form-check-input' %>
-        非外傷性（ケガ以外）による痛み
+        <%= t('symptoms_steps_injury_related.non_trauma_pain') %>
       </label>
     </div>
     <div class="text-center">
-      <%= f.submit '次へ', class: 'btn btn-primary btn-lg custom-button' %>
+      <%= f.submit t('symptoms_steps_injury_related.next'), class: 'btn btn-primary btn-lg custom-button' %>
     </div>
   <% end %>
 </div>

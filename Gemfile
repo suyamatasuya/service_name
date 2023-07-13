@@ -59,3 +59,4 @@ gem "redis", "~> 5.0"
 gem 'google-apis-fcm_v1'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'kaminari'
+gem 'rails-i18n', '~> 6.0.0'

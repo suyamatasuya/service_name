@@ -4,21 +4,21 @@
     <% @care_methods.each do |care_method| %>
       <div class="care-method">
         <h1><%= care_method.name %></h1>
-        <p><strong>Description:</strong> <%= care_method.description %></p>
+        <p><strong><%= t('care_methods.show.description') %></strong> <%= care_method.description %></p>
         <% care_method.video_links.each_with_index do |link, index| %>
           <p>
-            <strong>Video Link <%= index + 1 %> :</strong> <%= link %>
+            <strong><%= t('care_methods.show.video_link') %> <%= index + 1 %> :</strong> <%= link %>
             <br/>
-            <strong>Video Title <%= index + 1 %> :</strong> <%= care_method.video_titles[index] %>
+            <strong><%= t('care_methods.show.video_title') %> <%= index + 1 %> :</strong> <%= care_method.video_titles[index] %>
           </p>
         <% end %>
         <div class="care-method-actions">
-          <%= link_to '編集', edit_care_method_path(care_method), class: "btn btn-primary" %>
-          <%= link_to '削除', care_method_path(care_method), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+          <%= link_to t('care_methods.show.edit'), edit_care_method_path(care_method), class: "btn btn-primary" %>
+          <%= link_to t('care_methods.show.delete'), care_method_path(care_method), method: :delete, data: { confirm: t('care_methods.show.confirm_delete') }, class: "btn btn-danger" %>
         </div>
       </div>
     <% end %>
   <% else %>
-    <p>No care methods found.</p>
+    <p><%= t('care_methods.show.no_methods_found') %></p>
   <% end %>
 </div>

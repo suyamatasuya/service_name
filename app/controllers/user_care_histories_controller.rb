@@ -19,12 +19,12 @@ class UserCareHistoriesController < ApplicationController
         care_received_date: Time.now
       )
     end
-    redirect_to request.referrer || care_methods_path, notice: 'ケア方法が保存されました'
+    redirect_to request.referrer || care_methods_path, notice: t('controllers.user_care_histories.create.notice')
   end
 
   def destroy
     @user_care_history.destroy
-    redirect_to user_care_histories_url, notice: 'ケア方法の履歴が削除されました'
+    redirect_to user_care_histories_url, notice: t('controllers.user_care_histories.destroy.notice')
   end
 
   private

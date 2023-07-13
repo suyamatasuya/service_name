@@ -1,0 +1,49 @@
+ja:
+  controllers:
+    care_methods:
+      create:
+        success: "ケア方法が保存されました"
+        failure: "保存に失敗しました"
+      update:
+        success: "ケア方法が更新されました"
+      destroy:
+        success: "ケア方法が削除されました"
+    favourites:
+      create:
+        already_favourited: "この投稿はすでにお気に入りに登録されています"
+        created: "作成済み"
+      destroy:
+        not_found: "お気に入りが見つかりません"
+        deleted: "削除済み"
+        failed: "お気に入りの削除に失敗しました"
+    posts:
+      create:
+        success: "投稿が作成されました"
+        failure: "投稿の作成に失敗しました"
+      update:
+        success: "投稿が更新されました"
+        failure: "投稿の更新に失敗しました"
+      destroy:
+        success: "投稿が削除されました"
+    symptom_steps:
+      update:
+        alert: "症状を選択してください"
+    symptoms:
+      require_login:
+        alert: "問診を始めるにはログインしてください"
+    user_care_histories:
+      create:
+        notice: "ケア方法が保存されました"
+      destroy:
+        notice: "ケア方法の履歴が削除されました"
+    user_sessions:
+      create:
+        success: "ログイン成功"
+        failure: "ログインに失敗しました。"
+      destroy:
+        logout_success: "ログアウトしました！"
+        already_logged_out: "すでにログアウトしています"
+    users:
+      create:
+        success: 'ユーザー作成に成功しました！'
+        fail: '新規作成に失敗しました'
