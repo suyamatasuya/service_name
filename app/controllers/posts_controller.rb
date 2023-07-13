@@ -27,10 +27,10 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to posts_path, notice: '投稿が作成されました'
+      redirect_to posts_path, notice: t('controllers.posts.create.success')
     else
       set_posts # 追加
-      flash.now[:error] = '投稿の作成に失敗しました'
+      flash.now[:error] = t('controllers.posts.create.failure')
       render :index
     end
   end
@@ -40,16 +40,16 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: '投稿が更新されました'
+      redirect_to @post, notice: t('controllers.posts.update.success')
     else
-      flash.now[:error] = '投稿の更新に失敗しました'
+      flash.now[:error] = t('controllers.posts.update.failure')
       render :edit
     end
   end
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: '投稿が削除されました'
+    redirect_to posts_path, notice: t('controllers.posts.destroy.success')
   end
 
   private

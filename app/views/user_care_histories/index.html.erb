@@ -1,20 +1,20 @@
-  <head>
+<head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag 'user_care_histories' %>
     <%= javascript_pack_tag 'user_care_histories' %>
   </head>
 <body>
     <div class="container py-5">
-      <h1 class="mb-5 text-center">あなたの問診結果</h1>
+      <h1 class="mb-5 text-center"><%= t('user_care_histories.title') %></h1>
 
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>問診結果</th>
-            <th>ケア内容</th>
-            <th>ケア方法提案日</th>
-            <th>症状</th>
-            <th>関連動画</th>
+            <th><%= t('user_care_histories.table.diagnosis') %></th>
+            <th><%= t('user_care_histories.table.care_content') %></th>
+            <th><%= t('user_care_histories.table.date_proposed') %></th>
+            <th><%= t('user_care_histories.table.symptoms') %></th>
+            <th><%= t('user_care_histories.table.related_videos') %></th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
               <td><%= history.care_method.name %></td>
               <td>
                 <!-- Trigger modal with a button -->
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#descModal<%= history.id %>">詳細</button>
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#descModal<%= history.id %>"><%= t('user_care_histories.modal.details') %></button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="descModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -31,7 +31,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"><%= history.care_method.name %> </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="<%= t('user_care_histories.modal.close') %>">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
@@ -48,7 +48,7 @@
                 <!-- Only show the Details button if there are video links -->
                 <% if history.care_method.video_links.present? %>
                   <!-- Trigger modal with a button -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal<%= history.id %>">動画一覧</button>
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal<%= history.id %>"><%= t('user_care_histories.modal.video_list') %></button>
 
                   <!-- Modal -->
                   <div class="modal fade" id="detailModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,7 +56,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel"><%= history.care_method.name %></h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="<%= t('user_care_histories.modal.close') %>">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
@@ -65,7 +65,7 @@
                           <% history.care_method.video_links.each_with_index do |video, index| %>
                             <div>
                               <strong><%= history.care_method.video_titles[index] %></strong><br>
-                              <a href="<%= video %>" target="_blank" rel="noopener noreferrer">動画を見る</a>
+                              <a href="<%= video %>" target="_blank" rel="noopener noreferrer"><%= t('user_care_histories.modal.watch_video') %></a>
                             </div>
                           <% end %>
                         </div>

@@ -1,10 +1,10 @@
 <div class="container mt-4">
-  <h1 class="mb-4">New Care Method</h1>
+  <h1 class="mb-4"><%= t('care_methods.new.title') %></h1>
 
   <%= form_with model: @care_method, local: true, html: { class: 'p-3 bg-light rounded-3' } do |form| %>
     <% if @care_method.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
-        <h2><%= pluralize(@care_method.errors.count, "error") %> prohibited this care_method from being saved:</h2>
+        <h2><%= pluralize(@care_method.errors.count, t('error')) %> <%= t('care_methods.new.error_message') %></h2>
 
         <ul>
           <% @care_method.errors.full_messages.each do |message| %>
@@ -15,22 +15,22 @@
     <% end %>
 
     <div class="form-group">
-      <%= form.label :name, class: "form-label" %>
+      <%= form.label :name, t('care_methods.new.name'), class: "form-label" %>
       <%= form.text_field :name, required: false, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :description, class: "form-label" %>
+      <%= form.label :description, t('care_methods.new.description'), class: "form-label" %>
       <%= form.text_field :description, required: false, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <%= form.label :video_links_and_titles, "Video Links and Titles", class: "form-label" %>
-      <%= form.text_area :video_links_and_titles, required: false, class: "form-control", placeholder: "Enter each video URL and title, separated by a comma. Each pair should be on a new line." %>
+      <%= form.label :video_links_and_titles, t('care_methods.new.video_links_and_titles'), class: "form-label" %>
+      <%= form.text_area :video_links_and_titles, required: false, class: "form-control", placeholder: t('care_methods.new.placeholder_video_links') %>
     </div>
 
     <div class="form-group">
-      <%= form.label :symptom_ids, class: "form-label" %>
+      <%= form.label :symptom_ids, t('care_methods.new.symptom_ids'), class: "form-label" %>
       <div class="accordion" id="symptoms-accordion">
         <% @symptoms.group_by(&:group_name).each_with_index do |(group_name, symptoms), index| %>
           <div class="accordion-item">
@@ -55,7 +55,7 @@
     </div>
 
     <div class="actions mt-3">
-      <%= form.submit "Submit", class: "btn btn-primary" %>
+      <%= form.submit t('care_methods.new.submit'), class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

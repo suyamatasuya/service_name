@@ -1,5 +1,5 @@
 <head>
- <%= stylesheet_link_tag 'shared_before_login_header' %>
+  <%= stylesheet_link_tag 'shared_before_login_header' %>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg">
@@ -7,28 +7,28 @@
       <% if current_user %>
         <div class="hamburger-menu navbar-toggler" onclick="toggleMenu()">&#9776;</div>
       <% end %>
-      <a href="<%= root_path %>" class="navbar-title">なごみ首腰：痛みケアナビ</a>
+      <a href="<%= root_path %>" class="navbar-title"><%= t('shared_header.title') %></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to 'ヘルプ・サポート', '#', class: 'nav-link', style: 'color: #fff;' %>
+            <%= link_to t('shared_header.help_support'), '#', class: 'nav-link', style: 'color: #fff;' %>
           </li>
           <li class="nav-item">
-            <%= link_to '使い方', '#', class: 'nav-link', style: 'color: #fff;' %>
+            <%= link_to t('shared_header.usage'), '#', class: 'nav-link', style: 'color: #fff;' %>
           </li>
           <% if current_user %>
             <li class="nav-item">
-              <%= link_to 'ログアウト', user_session_path(current_user), method: :delete, class: 'nav-link', style: 'color: #fff;' %>
+              <%= link_to t('shared_header.logout'), user_session_path(current_user), method: :delete, class: 'nav-link', style: 'color: #fff;' %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to 'ログイン', new_user_session_path, class: 'nav-link', style: 'color: #fff;' %>
+              <%= link_to t('shared_header.login'), new_user_session_path, class: 'nav-link', style: 'color: #fff;' %>
             </li>
             <li class="nav-item">
-              <%= link_to '新規登録', new_user_path, class: 'nav-link', style: 'color: #fff;' %>
+              <%= link_to t('shared_header.signup'), new_user_path, class: 'nav-link', style: 'color: #fff;' %>
             </li>
           <% end %>
         </ul>

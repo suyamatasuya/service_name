@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to new_user_session_path(@user), notice: 'ユーザー作成に成功しました！' 
+      redirect_to new_user_session_path(@user), notice: I18n.t('controllers.users.create.success') 
     else
       render :new
     end
@@ -16,14 +16,6 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def update
-    if @user.update(user_params)
-      SendNotificationJob.set(wait_until: @user.notification_time).perform_later(@user.device_token, "It's time to take care!")
-      redirect_to root_path, notice: 'Notification time was successfully updated.'
-    else
-      render :edit
-    end
-  end
   private
 
   def set_user

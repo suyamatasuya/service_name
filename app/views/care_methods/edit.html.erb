@@ -1,12 +1,12 @@
 <%= stylesheet_link_tag 'care_methods_edit' %>
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="w-50">
-    <h1 class="text-center">Edit Care Method</h1>
+    <h1 class="text-center"><%= t('care_methods.edit.title') %></h1>
 
     <%= form_with model: @care_method, local: true do |form| %>
       <% if @care_method.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
-          <h2><%= pluralize(@care_method.errors.count, "エラー") %>があります。このケア方法の保存ができませんでした:</h2>
+          <h2><%= pluralize(@care_method.errors.count, t('care_methods.edit.errors')) %>:</h2>
 
           <ul>
             <% @care_method.errors.full_messages.each do |message| %>
@@ -17,27 +17,27 @@
       <% end %>
 
       <div class="form-group">
-        <%= form.label :name %>
+        <%= form.label :name, t('care_methods.edit.form.name') %>
         <%= form.text_field :name, class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :description %>
-       <%= form.text_area :description, class: "form-control description-text-area" %>
+        <%= form.label :description, t('care_methods.edit.form.description') %>
+        <%= form.text_area :description, class: "form-control description-text-area" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :video_links_and_titles, "Video Links and Titles" %>
-        <%= form.text_area :video_links_and_titles, class: "form-control", placeholder: "Enter each video URL and title, separated by a comma. Each pair should be on a new line." %>
+        <%= form.label :video_links_and_titles, t('care_methods.edit.form.video_links_and_titles') %>
+        <%= form.text_area :video_links_and_titles, class: "form-control", placeholder: t('care_methods.edit.form.placeholder') %>
       </div>
 
       <div class="form-actions text-center">
-        <%= form.submit "更新する", class: "btn btn-primary" %>
+        <%= form.submit t('care_methods.edit.form.submit'), class: "btn btn-primary" %>
       </div>
     <% end %>
 
     <div class="text-center mt-3">
-      <%= link_to '戻る', @care_method, class: "btn btn-secondary" %>
+      <%= link_to t('care_methods.edit.back'), @care_method, class: "btn btn-secondary" %>
     </div>
   </div>
 </div>

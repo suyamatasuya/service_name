@@ -43,7 +43,7 @@ class SymptomStepsController < ApplicationController
       
       render_wizard @symptom
     else
-      flash[:alert] = "症状を選択してください"
+      flash[:alert] = t('controllers.symptom_steps.update.alert')
       render_wizard
     end
   end

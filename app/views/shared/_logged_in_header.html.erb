@@ -1,4 +1,3 @@
-
 <head>
   <%= stylesheet_link_tag 'shared_logged_in_header' %>
   <%= javascript_pack_tag 'logged_in_header' %>
@@ -6,11 +5,11 @@
 </head>
 <body>
   <nav class="navbar">
-    <%= link_to 'なごみ首腰：痛みケアナビ', root_path, class: 'navbar-title' %>
+    <%= link_to t('logged_in_header.home'), root_path, class: 'navbar-title' %>
     <div>
-      <a href="#" class="navbar-links">ヘルプ・サポート</a>
-      <a href="#" class="navbar-links">使い方</a>
-      <%= link_to 'ログアウト', logout_path, method: :delete, class: 'navbar-links' %>
+      <a href="#" class="navbar-links"><%= t('logged_in_header.help_support') %></a>
+      <a href="#" class="navbar-links"><%= t('logged_in_header.how_to_use') %></a>
+      <%= link_to t('logged_in_header.logout'), logout_path, method: :delete, class: 'navbar-links' %>
     </div>
     <!-- Hamburger menu -->
     <div class="hamburger">
@@ -23,10 +22,9 @@
   <!-- Sidebar -->
   <div id="mySidebar" class="side-bar">
     <p><%= @current_user %></p>
-    <a href="#">ユーザー設定</a>
-    <%= link_to '通知設定', edit_user_path(current_user), class: "nav-link" %>
-    <%= link_to 'ケア方法の履歴', user_care_histories_path, class: "nav-link" %> <!-- Added this line -->
+    <a href="#"><%= t('logged_in_header.user_settings') %></a>
+    <%= link_to t('logged_in_header.notification_settings'), edit_user_path(current_user), class: "nav-link" %>
+    <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link" %> <!-- Added this line -->
   </div>
   <!-- Content goes here -->
 </body>
-</html>
