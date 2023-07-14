@@ -160,13 +160,16 @@ ja:
       password: "パスワード"
       login: "ログイン"
   users:
-      new:
-        title: '新規ユーザー作成'
-        email: 'メール'
-        password: 'パスワード'
-        password_confirmation: 'パスワード（確認）'
-        name: '名前'
-        submit_button: '新規作成'
+    new:
+      title: '新規ユーザー作成'
+      error: 'エラー'
+      prohibited_saving: 'このユーザーの保存に失敗しました'
+      email: 'メール'
+      password: 'パスワード'
+      password_confirmation: 'パスワード（確認）'
+      name: '名前'
+      submit_button: '新規作成'
+
 
 
 
