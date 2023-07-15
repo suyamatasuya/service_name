@@ -1,0 +1,23 @@
+body {
+    background-color: #e9e7e0;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+  }
+  
+  h2, .start-button {
+    color: #c5a35a;
+  }
+  
+  .start-button.clicked {
+    transform: scale(0.95);
+  }
+  
+  strong {
+    color: #709775;
+  }
+  
+  .start-button {
+    background-color: #c5a35a;
+    color: #fff;
+  }
+  

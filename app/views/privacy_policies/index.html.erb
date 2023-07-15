@@ -1,0 +1,52 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= t('privacy_policy.title') %></title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <%= stylesheet_link_tag 'privacy_policy' %>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-4">
+          <h2><%= t('privacy_policy.header') %></h2>
+        </div>
+
+        <h3><%= t('privacy_policy.section1.title') %></h3>
+        <p class="mb-4"><%= t('privacy_policy.section1.paragraph') %></p>
+
+        <ul class="mb-4">
+          <%= t('privacy_policy.section1.list').each do |item| %>
+            <li class="mb-2"><%= item %></li>
+          <% end %>
+        </ul>
+
+        <h3><%= t('privacy_policy.section2.title') %></h3>
+        <p class="mb-4"><%= t('privacy_policy.section2.paragraph') %></p>
+
+        <ul class="mb-4">
+          <%= t('privacy_policy.section2.list').each do |item| %>
+            <li class="mb-2"><%= item %></li>
+          <% end %>
+        </ul>
+
+        <h3><%= t('privacy_policy.section3.title') %></h3>
+        <p class="mb-4"><%= t('privacy_policy.section3.paragraph') %></p>
+
+        <h3><%= t('privacy_policy.section4.title') %></h3>
+        <p class="mb-4"><%= t('privacy_policy.section4.paragraph') %></p>
+        <p class="mb-4"><%= t('privacy_policy.section4.link', href: link_to(t('privacy_policy.section4.link_text'), "https://marketingplatform.google.com/about/analytics/terms/jp/")).html_safe %></p>
+
+        <h3><%= t('privacy_policy.section5.title') %></h3>
+        <p class="mb-4"><%= t('privacy_policy.section5.paragraph') %></p>
+
+        <h3><%= t('privacy_policy.section6.title') %></h3>
+        <p class="mb-4"><%= t('privacy_policy.section6.paragraph') %></p>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
