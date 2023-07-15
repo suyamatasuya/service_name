@@ -8,18 +8,13 @@
 </head>
 
 <body>
-  <div class="hero vertical-text">
-  <% if flash[:alert] %>
-    <div class="flash-message">
-      <%= flash[:alert] %>
+  <div class="side-text side-text-1">健康な体には健康な心が宿る</div>
+  <div class="hero">
+    <div class="cta-section">
+      <%= link_to t('home.start_diagnosis'), symptoms_path, class: 'cta-button' %>
+      <%= link_to t('home.discussion_board'), posts_path, class: 'board-link' %>
     </div>
-  <% end %>
-  <%= link_to t('home.start_diagnosis'), symptoms_path, class: 'cta-button', style: 'background-color: #009688;' %>
-  <p class="catchphrase"><%= t('home.overcome_pain_catchphrase') %></p>
-  <div class="intro">
-    <p><%= t('home.learn_self_care') %></p>
   </div>
-  <div class="spacer"></div>
-  <%= link_to t('home.discussion_board'), posts_path, class: 'board-link', style: 'background-color: #009688;' %>
-  <p class="catchphrase"><%= t('home.share_pain_catchphrase') %></p>
-</div>
+  <div class="side-text side-text-2">心豊かな人は、常に身体も心も健康だ</div>
+</body>
+
