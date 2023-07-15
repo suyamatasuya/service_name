@@ -1,66 +1,78 @@
-    body {
-      font-family: 'Arial', sans-serif;
-      position: relative;
-      padding-bottom: 80px;  
-    }
+body {
+  font-family: 'Noto Serif JP', serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 80px;
+  background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(144, 238, 144, 0.7));
+}
 
-    .hero {
-      margin-top: 70px; /* これを追加 */
-      height: 100vh; /* Update this */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(144, 238, 144, 0.7));
-      background-position: left center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      padding-top: 60px;
-    }
+.side-text {
+  position: static;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+  line-height: 0.9;
+  font-size: 24px;
+  color: #333;
+}
 
-    .cta-button, .board-link {
-      display: inline-block;
-      padding: 15px 30px;
-      background-color: #009688; /* 問診を始めるの背景色 */
-      color: #fff;
-      font-size: 24px;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      margin-bottom: 20px;
-    }
+.side-text-1 {
+  left: 250px; /* adjust this value */
+}
 
-    .cta-button:hover, .board-link:hover {
-      background-color: #00593f;
-    }
+.side-text-2 {
+  left: 350px; /* adjust this value */
+}
 
-    .intro, .catchphrase {
-      font-size: 20px;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
+.hero {
+  margin-top: 100px;
+  width: 60%; /* adjust this value */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
 
-    .spacer {
-      height: 50px;
-    }
+.cta-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
 
-    .vertical-text {
-      font-family: 'Noto Serif JP', serif;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-    }
-    
-    .flash-message {
-      color: #0e0606; /* テキストの色を赤に設定 */
-      padding: 10px; /* 内側の余白を10pxに設定 */
-      margin: 10px 0; /* 上下の外側の余白を10pxに設定 */
-      font-size: 20px;
-    }
+.cta-button, .board-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  line-height: 60px;
+  padding: 0 15px;
+  background-color: #009688;
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin: 0 50px; /* Adjust the horizontal margin */
+  position: static;
+}
+
+.cta-button:hover, .board-link:hover {
+  background-color: #00593f;
+}
