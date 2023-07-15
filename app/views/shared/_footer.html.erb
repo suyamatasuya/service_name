@@ -7,7 +7,7 @@
             <div class="d-flex justify-content-center">
                 <a href="#" style="margin-right: 20px; text-decoration: none; color: #333;"><%= t('shared_footer.developer_info') %></a>
                 <a href="#" style="margin-right: 20px; text-decoration: none; color: #333;"><%= t('shared_footer.terms_of_service') %></a>
-                <a href="#" style="text-decoration: none; color: #333;"><%= t('shared_footer.privacy_policy') %></a>
+                <%= link_to t('shared_footer.privacy_policy'), privacy_policy_path, style: "text-decoration: none; color: #333;" %>
             </div>
         </div>
     </footer>

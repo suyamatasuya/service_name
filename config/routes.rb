@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'privacy_policies/index'
   get 'care_methods/new'
   get 'care_methods/create'
   root 'home#index'
@@ -27,4 +28,5 @@ Rails.application.routes.draw do
 
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
+  get 'privacy_policy', to: 'privacy_policies#index'
 end
