@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag 'user_care_histories' %>
     <%= javascript_pack_tag 'user_care_histories' %>
-  </head>
+</head>
 <body>
     <div class="container py-5">
       <h1 class="mb-5 text-center"><%= t('user_care_histories.title') %></h1>
@@ -15,6 +15,7 @@
             <th><%= t('user_care_histories.table.date_proposed') %></th>
             <th><%= t('user_care_histories.table.symptoms') %></th>
             <th><%= t('user_care_histories.table.related_videos') %></th>
+            <th><%= t('user_care_histories.table.actions') %></th> <!-- 追加 -->
           </tr>
         </thead>
         <tbody>
@@ -73,6 +74,10 @@
                     </div>
                   </div>
                 <% end %>
+              </td>
+              <!-- 削除ボタンの追加（動画の存在に関わらず常に表示） -->
+              <td>
+                <%= link_to t('user_care_histories.table.delete'), user_care_history_path(history), method: :delete, data: { confirm: t('user_care_histories.table.confirm_delete') } %>
               </td>
             </tr>
           <% end %>

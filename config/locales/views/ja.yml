@@ -138,13 +138,16 @@ ja:
     waist: "腰"
     next: "次へ"
   user_care_histories:
-    title: "あなたの問診結果"
+    title: "あなたのケア履歴"
     table:
-      diagnosis: "問診結果"
+      diagnosis: "診断結果"
       care_content: "ケア内容"
-      date_proposed: "ケア方法提案日"
+      date_proposed: "提案日"
       symptoms: "症状"
       related_videos: "関連動画"
+      actions: "アクション"
+      delete: "削除"
+      confirm_delete: "本当に削除しますか？"
     modal:
       close: "閉じる"
       details: "詳細"
