@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'terms_of_service/index'
   get 'privacy_policies/index'
   get 'care_methods/new'
   get 'care_methods/create'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :care_methods, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :user_care_histories, only: [:index, :create, :destroy]
+  resources :terms_of_service, only: [:index]
 
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
