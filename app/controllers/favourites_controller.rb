@@ -7,30 +7,23 @@ class FavouritesController < ApplicationController
   end
   
   def create
-    if current_user.favourites.exists?(post: @post)
-      render json: { error: t('controllers.favourites.create.already_favourited') }, status: :unprocessable_entity
-    else
-      favourite = current_user.favourites.build(post: @post)
+    favourite = current_user.favourites.build(post: @post)
   
-      if favourite.save
-        render json: { status: t('controllers.favourites.create.created'), favourite_id: favourite.id }
-      else
-        render json: { error: favourite.errors.full_messages }, status: :unprocessable_entity
-      end
+    if favourite.save
+      render json: { favourite_count: @post.favourites.count }
+    else
+      Rails.logger.debug favourite.errors.full_messages.join("\n")
+      render json: { error: favourite.errors.full_messages }, status: :unprocessable_entity
     end
   end
-
-  def destroy
-    favourite = Favourite.find(params[:id]) # 修正: IDを使ってお気に入りを探す
   
-    if favourite.nil?
-      render json: { error: t('controllers.favourites.destroy.not_found') }, status: :unprocessable_entity
+  def destroy
+    favourite = current_user.favourites.find_by(post_id: params[:post_id])
+  
+    if favourite&.destroy
+      render json: { favourite_count: @post.favourites.count }
     else
-      if favourite.destroy
-        render json: { status: t('controllers.favourites.destroy.deleted') } # 修正: 成功したらステータスを返す
-      else
-        render json: { error: t('controllers.favourites.destroy.failed') }, status: :unprocessable_entity
-      end
+      render json: { error: 'Error' }, status: :unprocessable_entity
     end
   end  
 

@@ -1,6 +1,6 @@
 class SymptomStepsController < ApplicationController
   include Wicked::Wizard
-
+  before_action :require_login, only: [:update, :finish_wizard_path]
   steps :pain_location, :pain_type, :pain_intensity, :pain_start_time, :injury_related, :generate_care_methods
 
   def show

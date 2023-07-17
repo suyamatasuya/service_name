@@ -1,78 +1,50 @@
 body {
-  font-family: 'Noto Serif JP', serif;
+  background-color: #B2D8B2; /* 薄い抹茶色 */
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw; 
+  align-items: flex-start;
+  height: 110vh; /* Body height */
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  position: relative;
-  padding-bottom: 80px;
-  background: linear-gradient(rgba(173, 216, 230, 0.7), rgba(144, 238, 144, 0.7));
-}
-
-.side-text {
-  position: static;
+  }
+  .left-text {
   writing-mode: vertical-rl;
-  text-orientation: upright;
+  font-family: 'Noto Serif JP', serif;
+  color: #594A42; /* テキストの色をちょっと暗めに */
+  font-size: 1.6em;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 30px;
-  line-height: 0.9;
-  font-size: 24px;
-  color: #333;
-}
-
-.side-text-1 {
-  left: 250px; /* adjust this value */
-}
-
-.side-text-2 {
-  left: 350px; /* adjust this value */
-}
-
-.hero {
-  margin-top: 100px;
-  width: 60%; /* adjust this value */
+  left: 150px; /* 左からの位置を調整 */
+  top: 50%; /* 上からの位置を調整 */
+  transform: translateY(-50%); /* 上下中央寄せ */
+  line-height: 1.8; /* 文字間隔（行間）を広げる */
+  }
+  .center-line {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
-}
-
-.cta-section {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  border-left: 2px solid #1b4036; /* 濃い抹茶色 */
+  border-right: 2px solid #1b4036; /* 濃い抹茶色 */
+  background-color: #1b4036; /* 縦ライン内の色を濃い抹茶色に */
+  padding: 1em 2em;
+  height: 110vh; /* Center-line height */
+  }
+  .title-text {
   writing-mode: vertical-rl;
-  text-orientation: upright;
-}
-
-.cta-button, .board-link {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  line-height: 60px;
-  padding: 0 15px;
-  background-color: #009688;
-  color: #fff;
-  font-size: 24px;
+  text-align: center;
+  font-family: 'Noto Serif JP', serif;
+  color: #F3EAD7; /* タイトルの色を和紙の色に */
+  font-size: 2.2em;
+  margin: 1em 0;
+  }
+  .cta-button,
+  .board-link {
+  border-radius: 24px;
+  font-family: 'Noto Serif JP', serif;
+  color: #F3EAD7; /* リンクの色を和紙の色に */
+  background-color: transparent;
+  margin: 0.25em 0; /* リンクとリンクの幅を近づける */
+  padding: 0.5em;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  margin: 0 50px; /* Adjust the horizontal margin */
-  position: static;
-}
-
-.cta-button:hover, .board-link:hover {
-  background-color: #00593f;
-}
+  font-size: 1em;
+  }
