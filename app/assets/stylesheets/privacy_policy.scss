@@ -2,6 +2,7 @@ body {
     background-color: #e9e7e0;
     font-family: 'Noto Serif JP', serif;
     font-size: 20px;
+    height: 70vh;
   }
   
   h2, .start-button {
@@ -20,4 +21,9 @@ body {
     background-color: #c5a35a;
     color: #fff;
   }
-  
+
+  .page-container {
+    height: 150vh;
+    overflow: auto;
+  }
+

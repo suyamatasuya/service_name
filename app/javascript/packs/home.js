@@ -1,18 +1,9 @@
+window.onload = function() {
   anime({
-    targets: '.cta-button, .board-link',
-    translateY: [50, 0],
-    opacity: [0, 1],
-    delay: anime.stagger(300),
-    duration: 1000,
-    easing: 'easeOutExpo'
+      targets: '.left-text p, .title-text, .cta-button, .board-link',
+      opacity: [0, 1],
+      duration: 2000,
+      delay: anime.stagger(500), // Each element will start animating 500ms after the previous one
+      easing: 'easeInOutSine',
   });
-  
-  anime({
-    targets: '.catchphrase, .intro',
-    translateY: [30, 0],
-    opacity: [0, 1],
-    delay: anime.stagger(300),
-    duration: 1000,
-    easing: 'easeOutExpo'
-  });
-
+};

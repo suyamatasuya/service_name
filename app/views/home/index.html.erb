@@ -8,13 +8,14 @@
 </head>
 
 <body>
-  <div class="side-text side-text-1">健康な体には健康な心が宿る</div>
-  <div class="hero">
-    <div class="cta-section">
-      <%= link_to t('home.start_diagnosis'), symptoms_path, class: 'cta-button' %>
-      <%= link_to t('home.discussion_board'), posts_path, class: 'board-link' %>
-    </div>
+  <div class="left-text">
+    <p>一期一会、大切な自分を守る</p>
+    <p>心身一如、健やかな毎日を</p>
+    <p>穏やかな心で美しい姿勢を</p>
   </div>
-  <div class="side-text side-text-2">心豊かな人は、常に身体も心も健康だ</div>
+  <div class="center-line">
+  <div class="title-text">なごみ首腰｜痛みケアナビ</div>
+    <%= link_to t('home.start_diagnosis'), symptoms_path, class: 'cta-button' %>
+    <%= link_to t('home.discussion_board'), posts_path, class: 'board-link' %>
+  </div>
 </body>
-
