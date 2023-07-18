@@ -11,7 +11,8 @@ class UserSessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path, notice: t('controllers.user_sessions.create.success')
     else
-      flash[:alert] = t('controllers.user_sessions.create.failure') # ここで flash を使います
+      @user = User.new(email: params[:user][:email]) # Add this line
+      flash[:alert] = t('controllers.user_sessions.create.failure') # Use flash here
       render :new
     end
   end  
