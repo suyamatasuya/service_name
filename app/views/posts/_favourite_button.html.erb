@@ -1,0 +1,7 @@
+<div id="js-favourite-button-for-post-<%= post.id %>">
+  <% if (favourite = post.favourites.find_by(user_id: current_user.id)) %>
+    <%= render 'posts/unfavourite', post: post %>
+  <% else %>
+    <%= render 'posts/favourite', post: post %>
+  <% end %>
+</div>

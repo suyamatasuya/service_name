@@ -24,7 +24,7 @@
             <% @care_methods.each do |method| %>
               <%= hidden_field_tag 'care_method_ids[]', method.id %>
               <div class="card">
-                <h5 class="card-title"><%= method.name %></h5>
+               <h5 class="card-title text-center"><%= method.name %></h5>
                 <% method.description.split(' ').each do |sentence| %>
                   <p class="card-text"><%= sentence %></p>
                 <% end %>

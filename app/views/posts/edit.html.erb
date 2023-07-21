@@ -1,0 +1,27 @@
+<head>
+    <meta name="csrf-token" content="<%= form_authenticity_token %>">
+    <title><%= t('posts.edit_title') %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <%= stylesheet_link_tag 'posts' %>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container">
+        <h1 class="text-center mb-4"><%= t('posts.edit_title') %></h1>
+        <%= form_with model: @post, url: post_path(@post), method: :put, id: 'postForm', local: true do |f| %>
+            <div class="form-group">
+                <%= f.label :content, t('posts.message_label') %>
+                <%= f.text_area :content, class: 'form-control', rows: 3, placeholder: t('posts.message_placeholder') %>
+            </div>
+            <div class="form-group">
+                <%= f.label :pain_location, t('posts.location_label') %>
+                <%= f.select :pain_location, [t('posts.location_options.neck'), t('posts.location_options.lower_back')], {}, class: 'form-control' %>
+            </div>
+            <button type="submit" class="btn btn-primary"><%= t('posts.update_button') %></button>
+        <% end %>
+        <div class="text-center mt-4">
+            <%= link_to t('posts.back_to_posts'), posts_path, class: 'btn btn-secondary' %>
+        </div>
+    </div>
+</body>

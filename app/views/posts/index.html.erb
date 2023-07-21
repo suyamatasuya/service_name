@@ -5,24 +5,24 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <%= stylesheet_link_tag 'posts' %>
-    <%= javascript_pack_tag 'posts' %>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div class="container">
         <h1 class="text-center mb-4"><%= t('posts.title') %></h1>
 
-        <!-- ここに検索フォームを追加します -->
+        <!-- 検索フォーム -->
         <div class="mb-4">
-          <%= form_with url: posts_path, method: :get, local: true, class: 'input-group' do |f| %>
-            <%= f.text_field :search, placeholder: t('posts.search_placeholder'), class: 'form-control form-control-lg' %>
-            <%= f.select :filter_by_location, [t('posts.search_location_options.all'), t('posts.search_location_options.neck'), t('posts.search_location_options.lower_back')], {}, class: 'form-control' %>
-            <%= f.select :sort_by_favourites, [t('posts.search_favourite_options.most_favourite'), t('posts.search_favourite_options.regular')], {}, class: 'form-control' %>
-            <span class="input-group-btn">
-               <%= f.submit t('posts.search_button'), class: 'btn btn-primary btn-lg' %>
-            </span>
-        <% end %>
-    </div>
+            <%= form_with url: posts_path, method: :get, local: true, class: 'input-group' do |f| %>
+                <%= f.text_field :search, placeholder: t('posts.search_placeholder'), class: 'form-control form-control-lg' %>
+                <%= f.select :filter_by_location, [t('posts.search_location_options.all'), t('posts.search_location_options.neck'), t('posts.search_location_options.lower_back')], {}, class: 'form-control' %>
+                <%= f.select :sort_by_favourites, [t('posts.search_favourite_options.most_favourite'), t('posts.search_favourite_options.regular')], {}, class: 'form-control' %>
+                <span class="input-group-btn">
+                   <%= f.submit t('posts.search_button'), class: 'btn btn-primary btn-lg' %>
+                </span>
+            <% end %>
+        </div>
 
+        <% if current_user %>
         <div class="card">
             <div class="card-header">
                 <%= t('posts.new_post_header') %>
@@ -41,29 +41,42 @@
                 <% end %>
             </div>
         </div>
+        <div class="text-center mt-4">
+            <%= link_to t('posts.favourite_posts'), user_favourites_path(current_user), class: 'btn btn-primary' %>
+        </div>
+        <% end %>
+
         <div id="messages" class="mt-4">
-          <div class="text-center mt-4">
-            <%= link_to t('posts.favourite_posts'), favourites_user_path(current_user), class: 'btn btn-primary' %>
-          </div>
             <h2><%= t('posts.post_list_header') %></h2>
             <div class="row card-container">
                 <% @posts.each do |post| %>
-                    <div class="message-card card" data-post-id="<%= post.id %>" data-user-id="<%= current_user.id %>">
+                    <div class="message-card card" data-post-id="<%= post.id %>">
                         <div class="card-header">
                             <%= post.user.name %>
                         </div>
                         <div class="card-body">
                             <p class="card-text"><%= post.content %></p>
-                            <div>
-                                <% if current_user.id == post.user.id %>
-                                    <%= link_to t('posts.delete_confirmation'), post, method: :delete, data: { confirm: t('posts.delete_confirmation') }, class: 'delete-link' %>
-                                    <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
-                                <% end %>
-                            </div>
-                            <div class="favourite-link" data-post-id="<%= post.id %>" data-user-id="<%= current_user.id %>">
-                              <i class="favourite-icon <%= post.favourites.find_by(user_id: current_user.id) ? 'fas' : 'far' %> fa-thumbs-up"></i> 
-                              <span class="favourite-count"><%= post.favourites.count %></span>
-                            </div>
+                            <% if current_user %>
+                                <div>
+                                    <% if current_user.id == post.user.id %>
+                                        <%= link_to t('posts.delete_button'), post, method: :delete, data: { confirm: t('posts.delete_confirmation') }, class: 'delete-link' %>
+                                        <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
+                                    <% end %>
+                                </div>
+                                <div class="favourite-link" data-post-id="<%= post.id %>" data-user-id="<%= current_user.id %>">
+                                  <% favourite = post.favourites.find_by(user_id: current_user.id) %>
+                                  <% if favourite %>
+                                    <%= link_to post_favourite_path(post, favourite), remote: true, method: :delete, class: 'favourite-icon' do %>
+                                      <i class="fas fa-thumbs-up"></i>
+                                    <% end %>
+                                  <% else %>
+                                    <%= link_to post_favourites_path(post), remote: true, method: :post, class: 'favourite-icon' do %>
+                                      <i class="far fa-thumbs-up"></i>
+                                    <% end %>
+                                  <% end %>
+                                  <span class="favourite-count" data-post-id="<%= post.id %>"><%= post.favourites.count %></span>
+                                </div>
+                            <% end %>
                             <p class="pain-location"><strong><%= post.pain_location %></strong></p>
                         </div>
                     </div>
@@ -72,5 +85,4 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

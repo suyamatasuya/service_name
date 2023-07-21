@@ -1,0 +1,4 @@
+<%= link_to post_favourites_path(post), remote: true, method: :post, class: 'favourite-icon' do %>
+  <i class="far fa-thumbs-up"></i>
+<% end %>
+<span class="favourite-count" data-post-id="<%= post.id %>"><%= post.favourites.count %></span>

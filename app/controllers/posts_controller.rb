@@ -1,20 +1,15 @@
 class PostsController < ApplicationController
-  before_action :require_login, only: [:new, :create]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_posts, only: [:index]
+  before_action :require_login, only: [:new, :create, :edit, :update, :favourite, :unfavourite]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :favourite, :unfavourite]
 
   def index
-    if params[:search].present?
-      @posts = Post.where('content LIKE ?', "%#{params[:search]}%").order(created_at: :desc).page(params[:page]).per(10)
-    elsif params[:sort_by_favourites].present?
-      @posts = Post.left_joins(:favourites).group(:id).order('COUNT(favourites.id) DESC').page(params[:page]).per(12)
-    else
-      @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
-    end
-  end
-
-  def set_posts
-    @posts = Post.all
+    @posts = if params[:search].present?
+               Post.where('content LIKE ?', "%#{params[:search]}%")
+             elsif params[:sort_by_favourites].present?
+               Post.left_joins(:favourites).group(:id).order('COUNT(favourites.id) DESC')
+             else
+               Post.order(created_at: :desc)
+             end.page(params[:page]).per(12)
   end
 
   def show
@@ -29,7 +24,6 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: t('controllers.posts.create.success')
     else
-      set_posts # 追加
       flash.now[:error] = t('controllers.posts.create.failure')
       render :index
     end
@@ -40,7 +34,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: t('controllers.posts.update.success')
+      redirect_to posts_path, notice: t('controllers.posts.update.success')
     else
       flash.now[:error] = t('controllers.posts.update.failure')
       render :edit
@@ -52,6 +46,17 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: t('controllers.posts.destroy.success')
   end
 
+  def favourite
+    @post.favourites.create(user_id: current_user.id)
+    render json: { favourites_count: @post.favourites.count }
+  end
+  
+  def unfavourite
+    favourite = @post.favourites.find_by(user_id: current_user.id)
+    favourite.destroy if favourite
+    render json: { favourites_count: @post.favourites.count }
+  end
+  
   private
 
   def set_post

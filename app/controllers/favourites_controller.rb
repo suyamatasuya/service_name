@@ -1,35 +1,36 @@
 class FavouritesController < ApplicationController
-  before_action :set_post, only: [:create]
-
+  before_action :set_post, only: [:create, :destroy]
+  before_action :set_user, only: [:index]
+  
   def index
-    @user = User.find(params[:user_id])
-    @posts = @user.favourites.map(&:post)
+    @posts = @user.favourited_posts
   end
   
   def create
-    favourite = current_user.favourites.build(post: @post)
-  
-    if favourite.save
-      render json: { favourite_count: @post.favourites.count }
+    @favourite = current_user.favourites.build(post: @post)
+    if @favourite.save
+      redirect_back fallback_location: root_path, success: t('.success')
     else
-      Rails.logger.debug favourite.errors.full_messages.join("\n")
-      render json: { error: favourite.errors.full_messages }, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, danger: t('.failure')
     end
   end
-  
+
   def destroy
-    favourite = current_user.favourites.find_by(post_id: params[:post_id])
-  
-    if favourite&.destroy
-      render json: { favourite_count: @post.favourites.count }
+    @favourite = current_user.favourites.find_by(post_id: @post.id)
+    if @favourite&.destroy
+      redirect_back fallback_location: root_path, success: t('.success')
     else
-      render json: { error: 'Error' }, status: :unprocessable_entity
+      redirect_back fallback_location: root_path, danger: t('.failure')
     end
-  end  
+  end
 
   private
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end

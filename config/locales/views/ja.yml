@@ -69,6 +69,16 @@ ja:
     favourite_posts: "いいねした投稿一覧"
     post_list_header: "投稿一覧"
     delete_confirmation: "本当に削除しますか？"
+    delete_button: "削除"
+    edit_title: "投稿を編集"
+    message_label: "メッセージ"
+    message_placeholder: "あなたのメッセージを書いてください..."
+    location_label: "痛みの位置"
+    location_options:
+      neck: "首"
+      lower_back: "腰"
+    update_button: "投稿を更新"
+    back_to_posts: "投稿に戻る"
   shared_header:
     title: "なごみ首腰：痛みケアナビ"
     help_support: "ヘルプ・サポート"
@@ -82,7 +92,6 @@ ja:
     privacy_policy: "プライバシーポリシー"
   logged_in_header:
     home: "なごみ首腰：痛みケアナビ"
-    help_support: "ヘルプ・サポート"
     how_to_use: "使い方"
     logout: "ログアウト"
     user_settings: "ユーザー設定"
@@ -209,7 +218,8 @@ ja:
       paragraph: "当方は、必要に応じて、本ポリシーの内容を変更します。本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、お客様に通知することなく、変更することができるものとします。当方が別途定める場合を除いて、変更後のプライバシーポリシーは、本サービス中のウェブページに掲載したときから効力を生じるものとします。"
     section6:
       title: "6. お問合せ"
-      paragraph: "お客様の情報の開示、情報の訂正、利用停止、削除をご希望される場合、または本ポリシーについてのお問い合わせやご意見は、下記の連絡先までお知らせください。"
+      paragraph: "本ポリシーについてのお問い合わせやご意見は、こちらの%{link}からお願いいたします。"
+      link: "フォーム"
   terms_of_service:
     title: "利用規約"
     intro: "この利用規約（以下、「本規約」といいます。）は、（以下、なごみ首腰：痛みケアナビ「当方」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。"

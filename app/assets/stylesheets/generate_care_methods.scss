@@ -67,10 +67,10 @@ body {
     overflow: hidden; /* Hide any content extending beyond the container */
   }
   #map {
-    height: 40vh;  /* マップの高さをビューポートの高さの80%に設定 */
-    width: 50vw;  /* マップの幅をビューポートの幅の80%に設定 */
+    height: 60vh;  /* マップの高さをビューポートの高さの40%に設定 */
+    width: 70vw;  /* マップの幅をビューポートの幅の50%に設定 */
     margin: 0 auto; /* マップを中央寄せ */
-  }
+}
   .save-button {
     display: block;
     margin: 0 auto;

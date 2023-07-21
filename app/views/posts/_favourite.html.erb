@@ -1,0 +1,6 @@
+<% if (favourite = post.favourites.find_by(user_id: current_user.id)) %>
+  <%= link_to post_favourite_path(post, favourite), remote: true, method: :delete, class: 'favourite-icon' do %>
+    <i class="fas fa-thumbs-up"></i>
+  <% end %>
+  <span class="favourite-count" data-post-id="<%= post.id %>"><%= post.favourites.count %></span>
+<% end %>

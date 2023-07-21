@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users, only: [:new, :create, :edit, :update] do
-    resources :favourites, only: [:index] # ここを変更
-    get :favourites, on: :member  # Use member instead of collection
+    resources :favourites, only: [:index] 
+    
   end
   resources :user_sessions, only: [:new, :create, :destroy]
 
-  # ネストされたfavouritesのルートを追加
   resources :posts do
     resources :favourites, only: [:create, :destroy]
   end

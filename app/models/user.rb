@@ -16,4 +16,12 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   validates :name, presence: true, length: { maximum: 255 }
+
+  def favourite(post)
+    favourites.create(post: post)
+  end
+
+  def unfavourite(post)
+    favourites.find_by(post: post)&.destroy
+  end
 end

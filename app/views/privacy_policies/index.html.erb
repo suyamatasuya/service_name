@@ -43,8 +43,9 @@
         <p class="mb-4"><%= t('privacy_policy.section5.paragraph') %></p>
 
         <h3><%= t('privacy_policy.section6.title') %></h3>
-        <p class="mb-4"><%= t('privacy_policy.section6.paragraph') %></p>
-
+        <p class="mb-4">
+          <%= t('privacy_policy.section6.paragraph', link: link_to(t('privacy_policy.section6.link'), "https://docs.google.com/forms/d/1usZZxaxO_MXK2KPHdO8z2plc5Y6JRXYW4FUMXl_9aSs/edit?hl=ja")).html_safe %>
+        </p>
       </div>
     </div>
   </div>
