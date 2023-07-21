@@ -1,0 +1,2 @@
+module CareRecordsHelper
+end

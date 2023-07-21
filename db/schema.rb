@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_11_211559) do
+ActiveRecord::Schema.define(version: 2023_07_21_140705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,18 +25,21 @@ ActiveRecord::Schema.define(version: 2023_07_11_211559) do
   end
 
   create_table "care_methods_symptoms", id: false, force: :cascade do |t|
-    t.bigint "symptom_id", null: false
-    t.bigint "care_method_id", null: false
+    t.bigint "symptom_id"
+    t.bigint "care_method_id"
+    t.index ["care_method_id"], name: "index_care_methods_symptoms_on_care_method_id"
+    t.index ["symptom_id"], name: "index_care_methods_symptoms_on_symptom_id"
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "care_records", force: :cascade do |t|
+    t.date "date"
+    t.string "care_type"
+    t.integer "duration"
+    t.text "notes"
     t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
-    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["user_id"], name: "index_care_records_on_user_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -93,8 +96,7 @@ ActiveRecord::Schema.define(version: 2023_07_11_211559) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
+  add_foreign_key "care_records", "users"
   add_foreign_key "favourites", "posts"
   add_foreign_key "favourites", "users"
   add_foreign_key "posts", "users"
