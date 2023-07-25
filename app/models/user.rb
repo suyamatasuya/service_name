@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_care_histories
   has_many :favourites
   has_many :favourited_posts, through: :favourites, source: :post
+  has_many :care_records
   
   authenticates_with_sorcery!
   

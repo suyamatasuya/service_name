@@ -1,0 +1,70 @@
+<body class="body">
+  <main class="main container">
+    <div class="text-center">
+      <h1 class="h1 mt-5 mb-4"><%= t('new.title') %></h1>
+
+      <!-- Form to create a new care record -->
+      <form id="new-care-record-form" action="/api/care_records" method="post">
+        <div class="form-group">
+          <label for="date">日付</label>
+          <input type="date" id="date" name="date" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="care-type">ケアタイプ</label>
+          <select id="care-type" name="care-type" class="form-control">
+            <option value="">選択してください</option>
+            <option value="stretch">ストレッチ</option>
+            <option value="strength_training">筋力トレーニング</option>
+            <option value="exercise">エクササイズ</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">説明</label>
+          <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="button btn btn-primary">作成</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    $(document).ready(function() {
+      $("#new-care-record-form").on("submit", function(event) {
+        event.preventDefault();
+
+        var date = $("#date").val();
+        var careType = $("#care-type").val();
+        var description = $("#description").val();
+
+        var payload = {
+          care_record: {
+            date: date,
+            care_type: careType,
+            description: description,
+          }
+        };
+
+        $.ajax({
+          url: '/api/care_records',
+          type: 'POST',
+          data: JSON.stringify(payload),
+          contentType: 'application/json',
+          success: function(response) {
+            console.log(response);
+            // フラッシュメッセージを設定してからリダイレクト
+            sessionStorage.setItem("flashMessage", "ケア予定を登録しました");
+            window.location.href = '/care_records';
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown);
+          }
+        });
+      });
+    });
+  </script>
+</body>

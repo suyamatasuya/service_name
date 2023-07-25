@@ -1,0 +1,50 @@
+body {
+    font-family: 'Noto Serif JP', serif;
+    background-color: #F5F5F5;
+}
+
+main {
+    width: 90%;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 40px auto;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 700;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 1em;
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #333333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    border-bottom: 1px solid #DDDDDD;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date, .care-type {
+    font-size: 1.2em;
+    color: #333333;
+}

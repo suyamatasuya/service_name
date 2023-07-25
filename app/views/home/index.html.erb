@@ -9,13 +9,14 @@
 
 <body>
   <div class="left-text">
-    <p>一期一会、大切な自分を守る</p>
-    <p>心身一如、健やかな毎日を</p>
-    <p>穏やかな心で美しい姿勢を</p>
+    <p><%= t('home.phrase1') %></p>
+    <p><%= t('home.phrase2') %></p>
+    <p><%= t('home.phrase3') %></p>
   </div>
   <div class="center-line">
-  <div class="title-text">なごみ首腰｜痛みケアナビ</div>
+    <div class="title-text"><%= t('home.title') %></div>
     <%= link_to t('home.start_diagnosis'), symptoms_path, class: 'cta-button' %>
     <%= link_to t('home.discussion_board'), posts_path, class: 'board-link' %>
+    <%= link_to t('home.care_records'), care_records_path, class: 'care-records-link' %>
   </div>
 </body>

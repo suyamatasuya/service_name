@@ -7,10 +7,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update] do
     resources :favourites, only: [:index] 
-    
   end
-  resources :user_sessions, only: [:new, :create, :destroy]
 
+  resources :user_sessions, only: [:new, :create, :destroy]
   resources :posts do
     resources :favourites, only: [:create, :destroy]
   end
@@ -26,8 +25,19 @@ Rails.application.routes.draw do
   resources :care_methods, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :user_care_histories, only: [:index, :create, :destroy]
   resources :terms_of_service, only: [:index]
+  resources :care_records
+
+  namespace :api do
+    resources :care_records, only: [:create, :index, :destroy, :edit] do
+      member do
+        post :complete
+      end
+    end
+  end
 
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
   get 'privacy_policy', to: 'privacy_policies#index'
+  # 以下のルートを追加します
+  get '/care_records/index', to: 'care_records#index'
 end

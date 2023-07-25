@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ケア記録一覧</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <%= javascript_pack_tag 'care_records/index' %>
+  <%= stylesheet_pack_tag 'care_records_index' %>
+</head>
+<body>
+  <div class="container">
+    <div class="text-center">
+      <h1 class="mt-5 mb-4"><%= t('index.title') %></h1> <!-- for example, "ケア記録一覧" -->
+
+      <!-- Button to create a new care record -->
+      <a href="/care_records/new" class="btn btn-primary mb-4" id="new-care-record">新しいケア記録を作成</a>
+
+      <!-- The calendar will be inserted here dynamically using FullCalendar -->
+      <div id="calendar"></div>
+
+      <!-- The list of care records will be inserted here dynamically using jQuery -->
+      <ul id="care-records-list" class="list-group">
+        <!-- The JavaScript function fetchCareRecords will generate the list items only for the dates care was provided -->
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
