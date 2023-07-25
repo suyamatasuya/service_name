@@ -1,0 +1,17 @@
+<p>
+  <strong>Date:</strong>
+  <%= @care_record.date %>
+</p>
+
+<p>
+  <strong>Care Type:</strong>
+  <%= @care_record.care_type %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @care_record.duration %>
+</p>
+
+<%= link_to 'Edit', edit_care_record_path(@care_record) %> |
+<%= link_to 'Back', care_records_path %>

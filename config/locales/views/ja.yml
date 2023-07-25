@@ -43,10 +43,12 @@ ja:
     remove_from_favourites: "お気に入りから削除"
   home:
     start_diagnosis: "問診を始める"
-    overcome_pain_catchphrase: "首と腰の痛み、一緒に克服しましょう"
-    learn_self_care: "自宅でできるセルフケア方法を学び、生活の質を向上させましょう"
     discussion_board: "掲示板"
-    share_pain_catchphrase: "あなたの痛みは一人だけのものではありません、共有しましょう"
+    care_records: "日々のケアを記録する"
+    phrase1: "一期一会、大切な自分を守る"
+    phrase2: "心身一如、健やかな毎日を"
+    phrase3: "穏やかな心で美しい姿勢を"
+    title: "なごみ首腰｜痛みケアナビ"
   posts:
     title: "首と腰の痛み共有掲示板"
     search_placeholder: "投稿を検索"
