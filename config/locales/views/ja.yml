@@ -306,6 +306,16 @@ ja:
     article15:
       title: "第15条（準拠法・裁判管轄）"
       body: "本規約の解釈にあたっては，日本法を準拠法とします。本サービスに関して紛争が生じた場合には，当社の本店所在地を管轄する裁判所を専属的合意管轄とします。"
+  care_records:
+    index:
+      title: "ケア記録一覧"
+      new_care_record_button: "新しいケア記録を作成"
+      edit_button: "編集"
+      delete_button: "削除"
+      complete_button:
+        complete: "完了"
+        completed: "完了済み"
+
 
 
 

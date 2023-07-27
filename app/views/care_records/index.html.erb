@@ -8,25 +8,82 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <%= javascript_pack_tag 'care_records/index' %>
   <%= stylesheet_link_tag 'care_records_index' %>
 </head>
 <body>
   <div class="container">
     <div class="text-center">
-      <h1 class="mt-5 mb-4"><%= t('index.title') %></h1> <!-- for example, "ケア記録一覧" -->
+      <h1 class="mt-5 mb-4"><%= t('.title') %></h1>
 
-      <!-- Button to create a new care record -->
-      <a href="/care_records/new" class="btn btn-primary mb-4" id="new-care-record">新しいケア記録を作成</a>
+      <a href="/care_records/new" class="btn btn-primary mb-4" id="new-care-record"><%= t('.new_care_record_button') %></a>
 
-      <!-- The calendar will be inserted here dynamically using FullCalendar -->
       <div id="calendar"></div>
 
-      <!-- The list of care records will be inserted here dynamically using jQuery -->
       <ul id="care-records-list" class="list-group">
-        <!-- The JavaScript function fetchCareRecords will generate the list items only for the dates care was provided -->
       </ul>
     </div>
   </div>
+
+  <!-- Care Record Modal -->
+  <div class="modal fade" id="careRecordModal" tabindex="-1" role="dialog" aria-labelledby="careRecordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="careRecordModalLabel">ケア記録詳細</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる" id="modal-close-button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- ここにケア記録の詳細を表示します -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-footer-close-button">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completion Modal -->
+  <div class="modal fade" id="completionModal" tabindex="-1" role="dialog" aria-labelledby="completionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="completionModalLabel">ケア記録完了</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる" id="modal-close-button-2">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="face-scale">フェイススケール:</label>
+          <input type="number" id="face-scale" name="face-scale" min="1" max="10">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-footer-close-button-2">キャンセル</button>
+          <button type="button" class="btn btn-primary" id="modal-footer-submit-button">完了</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.translations = {
+      edit_button: "<%= t('.edit_button') %>",
+      delete_button: "<%= t('.delete_button') %>",
+      complete_button: {
+        complete: "<%= t('.complete_button.complete') %>",
+        completed: "<%= t('.complete_button.completed') %>"
+      }
+    };
+    
+    $(document).ready(function() {
+      $('#modal-close-button, #modal-footer-close-button').click(function() {
+        $('#careRecordModal').modal('hide');
+      });
+    });
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

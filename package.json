@@ -11,7 +11,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "bootstrap": "4.5.0",
+    "bootstrap": "^5.3.1",
     "bootstrap-vue": "^2.23.1",
     "firebase": "^9.22.2",
     "fullcalendar": "^6.1.8",

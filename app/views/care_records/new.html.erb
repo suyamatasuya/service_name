@@ -21,6 +21,32 @@
           </select>
         </div>
 
+        <!-- Add time fields here -->
+        <div class="form-group">
+          <label for="hours">時間</label>
+          <select id="hours" name="hours" class="form-control">
+            <option value="">選択してください</option>
+            <option value="00">00時間</option>
+            <option value="01">01時間</option>
+            <option value="02">02時間</option>
+            <!-- Add more options here as needed -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="minutes">分</label>
+          <select id="minutes" name="minutes" class="form-control">
+            <option value="">選択してください</option>
+            <option value="00">00分</option>
+            <option value="10">10分</option>
+            <option value="20">20分</option>
+            <option value="30">30分</option>
+            <option value="40">40分</option>
+            <option value="50">50分</option>
+            <!-- Add more options here as needed -->
+          </select>
+        </div>
+
         <div class="form-group">
           <label for="description">説明</label>
           <textarea id="description" name="description" class="form-control"></textarea>
@@ -39,12 +65,18 @@
 
         var date = $("#date").val();
         var careType = $("#care-type").val();
+        var hours = $("#hours").val();
+        var minutes = $("#minutes").val();
         var description = $("#description").val();
+
+        // Calculate duration in minutes
+        var duration = parseInt(hours) * 60 + parseInt(minutes);
 
         var payload = {
           care_record: {
             date: date,
             care_type: careType,
+            duration: duration,
             description: description,
           }
         };

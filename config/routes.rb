@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :care_records
 
   namespace :api do
-    resources :care_records, only: [:create, :index, :destroy, :edit] do
+    resources :care_records, only: [:create, :index, :destroy, :edit, :show] do
       member do
         post :complete
       end
