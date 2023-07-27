@@ -1,9 +1,10 @@
 module Api
   class CareRecordsController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :set_care_record, only: [:show, :destroy, :complete]
 
     def index
-      @care_records = CareRecord.all
+      @care_records = current_user.care_records
       render json: @care_records, methods: :face_scale
     end
 
@@ -18,26 +19,27 @@ module Api
     end
 
     def show
-      @care_record = CareRecord.find(params[:id])
       render json: @care_record, methods: :face_scale
     end
 
     def destroy
-      care_record = CareRecord.find(params[:id])
-      if care_record.destroy
-        render json: { status: 'SUCCESS', message: 'Deleted the care_record', data: care_record }
+      if @care_record.destroy
+        render json: { status: 'SUCCESS', message: 'Deleted the care_record', data: @care_record }
       else
-        render json: { status: 'ERROR', message: 'Not deleted', data: care_record.errors }
+        render json: { status: 'ERROR', message: 'Not deleted', data: @care_record.errors }
       end
     end
 
     def complete
-      care_record = CareRecord.find(params[:id])
-      care_record.update!(completed: true, face_scale: params[:face_scale])
-      render json: care_record
+      @care_record.update!(completed: true, face_scale: params[:face_scale])
+      render json: @care_record
     end    
 
     private
+
+    def set_care_record
+      @care_record = current_user.care_records.find(params[:id])
+    end
 
     def care_record_params
       params.require(:care_record).permit(:date, :care_type, :description, :completed)
