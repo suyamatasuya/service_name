@@ -7,7 +7,6 @@ class UserSessionsController < ApplicationController
     @user = User.find_by(email: params[:user][:email])
   
     if @user&.valid_password?(params[:user][:password])
-      # User was found and password is correct, log them in and redirect to root path
       session[:user_id] = @user.id
       redirect_to root_path, notice: t('controllers.user_sessions.create.success')
     else

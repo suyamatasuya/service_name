@@ -13,11 +13,6 @@
   <div id="page-container">
     <div id="content-wrap">
       <h1 class="results-title"><%= t('generate_care_methods.results') %></h1>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
-        </div>
-      <% end %>
       <div class="care-methods">
         <% if @care_methods && @care_methods.any? %>
           <%= form_tag user_care_histories_path, method: :post do %>
