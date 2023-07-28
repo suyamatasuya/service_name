@@ -9,9 +9,9 @@ class FavouritesController < ApplicationController
   def create
     @favourite = current_user.favourites.build(post: @post)
     if @favourite.save
-      redirect_back fallback_location: root_path, success: t('.success')
+      redirect_back fallback_location: root_path
     else
-      redirect_back fallback_location: root_path, danger: t('.failure')
+      redirect_back fallback_location: root_path
     end
   end
 

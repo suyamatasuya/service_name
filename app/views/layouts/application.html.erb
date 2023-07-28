@@ -30,8 +30,10 @@
   <% else %>
     <%= render 'shared/before_login_header' %>
   <% end %>
-    
-    <!-- ここに各ページのコンテンツを表示 -->
+
+    <!-- フラッシュメッセージを表示 -->
+    <%= render 'shared/flash_messages' %>
+
     <%= yield %>
   </div>
 
@@ -39,4 +41,4 @@
   <%= render 'shared/footer' %>
 </div>
 </body>
-
+</html>
