@@ -1,24 +1,44 @@
-<body class="favourites-page">
-  <div class="d-flex justify-content-center align-items-center" style="height: 75vh;">
-    <div class="flex-container">
-      <h1 class="text-center"><%= @user.name + t('favourites.page_title') %></h1>
+<head>
+    <meta name="csrf-token" content="<%= form_authenticity_token %>">
+    <title><%= t('favourites.page_title') %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <%= stylesheet_link_tag 'posts' %>
 
-      <div class="row card-container">
-        <% @posts.each do |post| %>
-          <% favourite = current_user.favourites.find_by(post_id: post.id) %>
-          <div class="message-card card" data-post-id="<%= post.id %>">
-            <div class="card-header">
-              <%= post.user.name %>
-            </div>
-            <div class="card-body">
-              <p class="card-text"><%= post.content %></p>
-              <div>
-                <%= link_to t('favourites.remove_from_favourites'), post_favourite_path(post, favourite), method: :delete, data: { remote: true }, class: 'btn btn-danger' %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+    <style>
+    .btn-matcha {
+        background-color: #1f6f3b;
+        color: white;
+    }
+    .btn-matcha:hover {
+        background-color: #104f27;
+        color: white;
+    }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container">
+        <h1 class="text-center mb-4"><%= @user.name + t('favourites.page_title') %></h1>
+
+        <div class="row card-container">
+            <% @posts.each do |post| %>
+                <% favourite = current_user.favourites.find_by(post_id: post.id) %>
+                <div class="message-card card" data-post-id="<%= post.id %>">
+                    <div class="card-header">
+                        <%= post.user.name %>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><%= post.content %></p>
+                        <div>
+                            <%= link_to t('favourites.remove_from_favourites'), post_favourite_path(post, favourite), method: :delete, data: { remote: true }, class: 'btn btn-matcha' %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="text-center mt-4">
+            <%= link_to t('posts.back_to_posts'), posts_path, class: 'btn btn-secondary' %>
+        </div>
     </div>
-  </div>
 </body>
