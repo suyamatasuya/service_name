@@ -8,20 +8,14 @@ class FavouritesController < ApplicationController
   
   def create
     @favourite = current_user.favourites.build(post: @post)
-    if @favourite.save
-      redirect_back fallback_location: root_path
-    else
-      redirect_back fallback_location: root_path
-    end
+    @favourite.save
+    redirect_back fallback_location: root_path
   end
 
   def destroy
     @favourite = current_user.favourites.find_by(post_id: @post.id)
-    if @favourite&.destroy
-      redirect_back fallback_location: root_path, success: t('.success')
-    else
-      redirect_back fallback_location: root_path, danger: t('.failure')
-    end
+    @favourite&.destroy
+    redirect_back fallback_location: root_path
   end
 
   private
