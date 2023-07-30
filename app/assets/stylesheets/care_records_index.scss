@@ -1,15 +1,12 @@
 body {
     font-family: 'Noto Serif JP', serif;
-    background-color: #F5F5F5;
+    background-color: #fdf6e3;
+    color: #333;
 }
 
-main {
-    width: 90%;
-    padding: 20px;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin: 40px auto;
+.container {
+    max-width: 920px;
+    margin: 50px auto;
 }
 
 h1 {
@@ -24,11 +21,16 @@ button {
     font-size: 1em;
     font-weight: 400;
     color: #FFFFFF;
-    background-color: #333333;
+    background-color: #2f4f4f;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #708090;
+    border-color: #708090;
 }
 
 ul {
@@ -37,14 +39,27 @@ ul {
 }
 
 li {
-    border-bottom: 1px solid #DDDDDD;
+    border-bottom: 1px solid #e0e0e0;
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
 }
 
 .date, .care-type {
     font-size: 1.2em;
     color: #333333;
 }
+
+#new-care-record {
+    background-color: #006400; /* ボタンの背景色を濃い抹茶色に設定します */
+    color: #ffffff; /* ボタンのテキスト色を白に設定します */
+}
+
+#new-care-record:hover {
+    background-color: #008000; /* ボタンにマウスカーソルを合わせたときの背景色を少し明るい抹茶色に設定します */
+}
+
+

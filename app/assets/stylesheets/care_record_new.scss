@@ -1,0 +1,37 @@
+body {
+    font-family: 'Noto Serif JP', serif;
+    background-color: #fdf6e3;
+    color: #333;
+}
+
+.main.container {
+    max-width: 800px;
+    margin: 120px auto;
+}
+
+form {
+    background-color: #ffffff;  // changed from #fdf6e3 to #ffffff
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-control {
+    height: auto;
+    resize: none;
+}
+
+button.btn.btn-primary {
+    background-color: #2f4f4f;
+    border-color: #2f4f4f;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+button.btn.btn-primary:hover {
+    background-color: #708090;
+    border-color: #708090;
+}

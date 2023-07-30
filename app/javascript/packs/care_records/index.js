@@ -6,10 +6,22 @@ function careTypeToJapanese(care_type) {
     "strength_training": "筋トレ",
     "stretch": "ストレッチ",
     "other": "その他",
-    "exercises": "エクササイズ",
+    "exercise": "エクササイズ",
   };
 
   return careTypeTranslations[care_type] || care_type;
+}
+
+function faceScaleToEmoji(face_scale) { // <- 新しい関数を追加
+  var faceScaleMap = {
+    1: "😀",
+    2: "🙂",
+    3: "😐",
+    4: "🙁",
+    5: "😭"
+  };
+
+  return faceScaleMap[face_scale] || "";
 }
 
 $(document).ready(function() {
@@ -88,13 +100,8 @@ $(document).ready(function() {
 
           $("#completionModal").modal('show');
 
-          $('#modal-footer-submit-button').click(function() {
-            var faceScale = $('#face-scale').val();
-
-            if (faceScale < 1 || faceScale > 10) {
-              alert("フェイススケールは1から10の間で入力してください。");
-              return;
-            }
+          $(".face-scale-option").off().click(function() { // <- フェイススケールを選択したときの処理
+            var faceScale = $(this).data('face-scale');
 
             $("#completionModal").modal('hide');
 
@@ -120,9 +127,9 @@ $(document).ready(function() {
 
         var title = careTypeToJapanese(care_record.care_type);
         if (care_record.completed && care_record.face_scale !== null) {
-          title += " - " + care_record.face_scale;
+          title += " - " + faceScaleToEmoji(care_record.face_scale); // <- 修正箇所
         }
-        
+
         calendar.addEvent({
           id: care_record.id,
           title: title,
@@ -138,6 +145,10 @@ $(document).ready(function() {
   fetchCareRecords();
 
   $('#completionModal').on('hidden.bs.modal', function (e) {
-    $('#face-scale').val("");
+    $(".face-scale-option").removeClass("selected"); // <- モーダルが閉じたら、選択をリセット
+  });
+
+  $('#completionModal').on('click', '.close, .btn-close', function () {
+    $('#completionModal').modal('hide');
   });
 });

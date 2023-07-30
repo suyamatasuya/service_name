@@ -57,12 +57,14 @@
           </button>
         </div>
         <div class="modal-body">
-          <label for="face-scale">フェイススケール:</label>
-          <input type="number" id="face-scale" name="face-scale" min="1" max="10">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-footer-close-button-2">キャンセル</button>
-          <button type="button" class="btn btn-primary" id="modal-footer-submit-button">完了</button>
+          <label for="face-scale">現在の痛みの強さを教えてください</label>
+          <div class="face-scale-container mt-3">
+            <button class="face-scale-option btn btn-light" data-face-scale="1">😀</button>
+            <button class="face-scale-option btn btn-light" data-face-scale="2">🙂</button>
+            <button class="face-scale-option btn btn-light" data-face-scale="3">😐</button>
+            <button class="face-scale-option btn btn-light" data-face-scale="4">🙁</button>
+            <button class="face-scale-option btn btn-light" data-face-scale="5">😭</button>
+          </div>
         </div>
       </div>
     </div>
@@ -81,6 +83,11 @@
     $(document).ready(function() {
       $('#modal-close-button, #modal-footer-close-button').click(function() {
         $('#careRecordModal').modal('hide');
+      });
+
+      $('.face-scale-option').click(function() {
+        $('.face-scale-option').removeClass('btn-primary').addClass('btn-light');
+        $(this).removeClass('btn-light').addClass('btn-primary');
       });
     });
   </script>
