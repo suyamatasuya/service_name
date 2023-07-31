@@ -1,5 +1,6 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import Highcharts from 'highcharts';
 
 function careTypeToJapanese(care_type) {
   var careTypeTranslations = {
@@ -12,7 +13,7 @@ function careTypeToJapanese(care_type) {
   return careTypeTranslations[care_type] || care_type;
 }
 
-function faceScaleToEmoji(face_scale) { // <- 新しい関数を追加
+function faceScaleToEmoji(face_scale) { 
   var faceScaleMap = {
     1: "😀",
     2: "🙂",
@@ -22,6 +23,42 @@ function faceScaleToEmoji(face_scale) { // <- 新しい関数を追加
   };
 
   return faceScaleMap[face_scale] || "";
+}
+
+function drawGraph() {
+  $.get("/api/care_records", function(data) {
+    var categories = ["筋トレ", "ストレッチ", "その他", "エクササイズ"];
+    var seriesData = [0, 0, 0, 0];
+
+    data.forEach(function(care_record) {
+      var careTypeIndex = categories.indexOf(careTypeToJapanese(care_record.care_type));
+      if (careTypeIndex !== -1) {
+        seriesData[careTypeIndex] += care_record.face_scale || 0;
+      }
+    });
+
+    var chart = Highcharts.chart('graph-container', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'ケアの種類別の平均痛みの強さ'
+      },
+      xAxis: {
+        categories: categories
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: '平均痛みの強さ'
+        }
+      },
+      series: [{
+        name: 'ケアの種類',
+        data: seriesData
+      }]
+    });
+  });
 }
 
 $(document).ready(function() {
@@ -100,7 +137,7 @@ $(document).ready(function() {
 
           $("#completionModal").modal('show');
 
-          $(".face-scale-option").off().click(function() { // <- フェイススケールを選択したときの処理
+          $(".face-scale-option").off().click(function() {
             var faceScale = $(this).data('face-scale');
 
             $("#completionModal").modal('hide');
@@ -127,7 +164,7 @@ $(document).ready(function() {
 
         var title = careTypeToJapanese(care_record.care_type);
         if (care_record.completed && care_record.face_scale !== null) {
-          title += " - " + faceScaleToEmoji(care_record.face_scale); // <- 修正箇所
+          title += " - " + faceScaleToEmoji(care_record.face_scale); 
         }
 
         calendar.addEvent({
@@ -145,10 +182,16 @@ $(document).ready(function() {
   fetchCareRecords();
 
   $('#completionModal').on('hidden.bs.modal', function (e) {
-    $(".face-scale-option").removeClass("selected"); // <- モーダルが閉じたら、選択をリセット
+    $(".face-scale-option").removeClass("selected"); 
   });
 
   $('#completionModal').on('click', '.close, .btn-close', function () {
     $('#completionModal').modal('hide');
+  });
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    if (e.target.id === 'graph-tab') {
+      drawGraph();
+    }
   });
 });
