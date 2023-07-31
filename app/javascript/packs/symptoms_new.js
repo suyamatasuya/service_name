@@ -1,12 +1,10 @@
-document.addEventListener('turbolinks:load', function(){
-    document.querySelectorAll('.custom-label').forEach(function(label){
-        label.addEventListener('click', function(e){
-            // Clear previous selection
-            document.querySelectorAll('.custom-label').forEach(function(otherLabel){
+document.addEventListener('turbolinks:load', () => {
+    Array.from(document.getElementsByClassName('custom-label')).forEach(label => {
+        label.onclick = () => {
+            Array.from(document.getElementsByClassName('custom-label')).forEach(otherLabel => {
                 otherLabel.classList.remove('active');
             })
-            // Set the clicked label as active
-            e.currentTarget.classList.add('active');
-        })
+            label.classList.add('active');
+        }
     })
 })

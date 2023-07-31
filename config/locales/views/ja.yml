@@ -44,7 +44,7 @@ ja:
   home:
     start_diagnosis: "問診を始める"
     discussion_board: "掲示板"
-    care_records: "日々のケアを記録する"
+    care_records: "ケアを記録する"
     phrase1: "一期一会、大切な自分を守る"
     phrase2: "心身一如、健やかな毎日を"
     phrase3: "穏やかな心で美しい姿勢を"
@@ -96,9 +96,11 @@ ja:
     home: "なごみ首腰：痛みケアナビ"
     how_to_use: "使い方"
     logout: "ログアウト"
-    user_settings: "ユーザー設定"
-    notification_settings: "通知設定"
     care_history: "ケア方法の履歴"
+    start_diagnosis: "問診を始める"
+    bulletin_board: "掲示板"
+    record_daily_care: "ケアを記録する"
+
   generate_care_methods:
     results: "問診結果"
     save_care_methods: "ケア方法を保存"
