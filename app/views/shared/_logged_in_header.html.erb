@@ -21,9 +21,10 @@
   <!-- Sidebar -->
   <div id="mySidebar" class="side-bar">
     <p><%= @current_user %></p>
-    <a href="#"><%= t('logged_in_header.user_settings') %></a>
-    <%= link_to t('logged_in_header.notification_settings'), edit_user_path(current_user), class: "nav-link" %>
-    <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link" %> <!-- Added this line -->
+    <%= link_to t('logged_in_header.start_diagnosis'), symptoms_path, class: "nav-link" %>
+    <%= link_to t('logged_in_header.bulletin_board'), posts_path, class: "nav-link" %>
+    <%= link_to t('logged_in_header.record_daily_care'), care_records_path, class: "nav-link" %>
+     <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link" %>
   </div>
   <!-- Content goes here -->
 </body>
