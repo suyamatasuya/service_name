@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= @post.content %></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <%= stylesheet_link_tag 'posts_show' %>
+
+    <!-- Twitter Card metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@your_twitter_username">
+    <meta name="twitter:title" content="<%= @post.content %>">
+    <meta name="twitter:description" content="<%= @post.pain_location %>">
+    <% if @post.pain_location == "首" %>
+        <meta name="twitter:image" content="<%= asset_url('11514_color.png') %>">
+    <% elsif @post.pain_location == "腰" %>
+        <meta name="twitter:image" content="<%= asset_url('11581_color.png') %>">
+    <% end %>
+</head>
+<body class="d-flex flex-column min-vh-100 page-container">
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <div class="title">投稿詳細</div>
+        <div class="card">
+            <div class="header">
+                <%= @post.user.name %>
+            </div>
+            <div class="body">
+                <p class="post-content">
+                    <%= @post.content %> 
+                </p>
+                <p class="pain-location"><strong><%= @post.pain_location %></strong></p>
+            </div>
+        </div>
+        <!-- Twitter share button -->
+        <div>
+            <a href="https://twitter.com/share?url=<%= request.original_url %>" target="_blank">
+                <i class="fab fa-twitter"></i> Twitterでシェア
+            </a>
+        </div>
+    </div>
+</body>
+</html>

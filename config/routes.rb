@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'care_methods/create'
   root 'home#index'
 
-  resources :users, only: [:new, :create, :edit, :update] do
+  resources :users, only: [:new, :create, :edit, :update, :show] do
     resources :favourites, only: [:index] 
   end
 

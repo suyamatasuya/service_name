@@ -31,15 +31,6 @@ body {
     }
 }
 
-.form-group label {
-    font-weight: bold;
-}
-
-.form-control {
-    height: auto;
-    resize: none;
-}
-
 .btn-primary {
     background-color: #2f4f4f;
     border-color: #2f4f4f;
@@ -69,15 +60,16 @@ body {
         padding: 10px 15px;
         font-size: 20px;
         font-weight: bold;
-        color: #ffffff; 
+        color: #ffffff; // 白色に変更
 
         a {
-            color: #ffffff;  
-            text-decoration: underline;  
-            text-decoration-color: #ffffff;  
+            color: #ffffff;  // リンクの色を白に設定
+            text-decoration: none;  // リンクの下線を消去
+            text-decoration: underline;  // リンクに下線を追加
+            text-decoration-color: #ffffff;  // 下線の色を白に設定
 
             &:hover {
-                color: #ffffff;  
+                color: #ffffff;  // マウスオーバー時も色を白に保つ
             }
         }
     }
@@ -89,7 +81,7 @@ body {
         justify-content: space-between;
         align-items: center;
         text-align: center;
-        height: 100%; 
+        height: 100%;
 
         .card-text {
             margin-top: 10px;
@@ -100,12 +92,12 @@ body {
 
 .card-container {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-    overflow-x: auto;
+    flex-direction: column;
+    align-items: center;
 
     .message-card {
-        flex-basis: calc(50% - 20px);
+        flex-basis: 100%;
+        width: 80%;
     }
 }
 
@@ -130,17 +122,10 @@ body {
     right: 15px;
 }
 
-.card-body-content {
+.page-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center; // 位置調整を中央に変更
+    align-items: flex-end; // ここを変更
+    height: 100vh;
 }
 
-.edit-delete-links {
-    margin-left: 10px;
-}
-
-.favourite-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
