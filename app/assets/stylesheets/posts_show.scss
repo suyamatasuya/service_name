@@ -1,0 +1,63 @@
+body {
+    font-family: 'Noto Serif JP', serif;
+    background-color: #fdf6e3;
+    color: #333;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; 
+    height: 100vh;
+    background-color: #fdf6e3;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 300px;
+}
+
+.title {
+    font-size: 32px;
+    margin-bottom: 20px; 
+}
+
+.card {
+    width: 100%; 
+    height: 100%; 
+    border: none;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+.card .header {
+    background-color: #5f9ea0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.card .body {
+    padding: 15px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.card .body .post-content {
+    font-size: 24px; 
+}
+
+.card .body .pain-location {
+    font-size: 20px; 
+}
+
+.twitter-share-button {
+    margin-top: 20px;
+}

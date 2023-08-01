@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
     <title><%= t('posts.title') %></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
@@ -7,7 +9,7 @@
     <div class="container" style="margin-top: 200px;">
         <h1 class="text-center mb-4"><%= t('posts.title') %></h1>
 
-        <!-- 検索フォーム -->
+        <!-- Search form -->
         <div class="mb-4">
             <%= form_with url: posts_path, method: :get, local: true, class: 'input-group' do |f| %>
                 <%= f.text_field :search, placeholder: t('posts.search_placeholder'), class: 'form-control form-control-lg' %>
@@ -51,10 +53,12 @@
                 <% @posts.each do |post| %>
                     <div class="message-card card" data-post-id="<%= post.id %>">
                         <div class="card-header">
-                            <%= post.user.name %>
+                            <%= link_to post.user.name, user_path(post.user) %>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"><%= post.content %></p>
+                            <p class="card-text">
+                                <%= link_to post.content, post_path(post) %> <!-- 投稿の詳細ページへのリンクを追加 -->
+                            </p>
                             <% if current_user %>
                                 <div>
                                     <% if current_user.id == post.user.id %>
@@ -85,3 +89,4 @@
         </div>
     </div>
 </body>
+</html>
