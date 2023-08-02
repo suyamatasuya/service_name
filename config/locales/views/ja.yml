@@ -44,7 +44,7 @@ ja:
   home:
     start_diagnosis: "問診を始める"
     discussion_board: "掲示板"
-    care_records: "ケアを記録する"
+    care_records: "ケアを記録する（作業中）"
     phrase1: "一期一会、大切な自分を守る"
     phrase2: "心身一如、健やかな毎日を"
     phrase3: "穏やかな心で美しい姿勢を"
@@ -99,7 +99,7 @@ ja:
     care_history: "問診履歴"
     start_diagnosis: "問診を始める"
     bulletin_board: "掲示板"
-    record_daily_care: "ケアを記録する"
+    record_daily_care: "ケアを記録する（申し訳ありませんが、現在メンテナンス中です)"
 
   generate_care_methods:
     results: "問診結果"

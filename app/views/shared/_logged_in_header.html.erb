@@ -23,8 +23,8 @@
     <p><%= @current_user %></p>
     <%= link_to t('logged_in_header.start_diagnosis'), symptoms_path, class: "nav-link" %>
     <%= link_to t('logged_in_header.bulletin_board'), posts_path, class: "nav-link" %>
-    <%= link_to t('logged_in_header.record_daily_care'), care_records_path, class: "nav-link" %>
-     <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link" %>
+    <p class="nav-link"><%= t('logged_in_header.record_daily_care') %></p>
+    <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link" %>
   </div>
   <!-- Content goes here -->
 </body>
