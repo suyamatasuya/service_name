@@ -96,7 +96,7 @@ ja:
     home: "なごみ首腰：痛みケアナビ"
     how_to_use: "使い方"
     logout: "ログアウト"
-    care_history: "ケア方法の履歴"
+    care_history: "問診履歴"
     start_diagnosis: "問診を始める"
     bulletin_board: "掲示板"
     record_daily_care: "ケアを記録する"
@@ -151,7 +151,7 @@ ja:
     waist: "腰"
     next: "次へ"
   user_care_histories:
-    title: "あなたのケア履歴"
+    title: "あなたの問診履歴"
     table:
       diagnosis: "診断結果"
       care_content: "ケア内容"

@@ -5,6 +5,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <%= stylesheet_link_tag 'posts_show' %>
 
+    <style>
+        .fa-twitter:before {
+            content: '𝕏';
+            font-family: unset;
+            font-weight: bold;
+        }
+    </style>
+
     <!-- Twitter Card metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@your_twitter_username">
@@ -32,8 +40,8 @@
         </div>
         <!-- Twitter share button -->
         <div>
-            <a href="https://twitter.com/share?url=<%= request.original_url %>" target="_blank">
-                <i class="fab fa-twitter"></i> Twitterでシェア
+            <a href="https://twitter.com/share?text=<%= URI.encode_www_form_component(@post.user.name + "さんが" + @post.pain_location + "の痛みに関する体験を共有しました。") %>&url=<%= request.original_url %>" target="_blank">
+                <i class="fab fa-twitter"></i> Xでシェア
             </a>
         </div>
     </div>
