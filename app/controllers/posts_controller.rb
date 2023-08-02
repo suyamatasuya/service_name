@@ -9,7 +9,7 @@ class PostsController < ApplicationController
                Post.left_joins(:favourites).group(:id).order('COUNT(favourites.id) DESC')
              else
                Post.order(created_at: :desc)
-             end.page(params[:page]).per(12)
+             end.page(params[:page]).per(10)
   end
 
   def show
