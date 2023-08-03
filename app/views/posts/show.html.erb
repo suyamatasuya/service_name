@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <title><%= @post.content %></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
@@ -16,8 +14,8 @@
     <!-- Twitter Card metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@your_twitter_username">
-    <meta name="twitter:title" content="<%= @post.content %>">
-    <meta name="twitter:description" content="<%= @post.pain_location %>">
+    <meta name="twitter:title" content="投稿詳細">
+    <meta name="twitter:description" content="詳細を見るにはリンクをクリックしてください。">
     <% if @post.pain_location == "首" %>
         <meta name="twitter:image" content="<%= asset_url('11514_color (2).png') %>">
     <% elsif @post.pain_location == "腰" %>
@@ -40,10 +38,9 @@
         </div>
         <!-- Twitter share button -->
         <div>
-            <a href="https://twitter.com/share?text=<%= URI.encode_www_form_component(@post.user.name + "さんが" + @post.pain_location + "の痛みに関する体験を共有しました。") %>&url=<%= request.original_url %>" target="_blank">
+            <a href="https://twitter.com/share?text=<%= URI.encode_www_form_component(@post.user.name + "さんが" + @post.pain_location + "の痛みに関する体験を共有しました：" + @post.content) %>&url=<%= request.original_url %>" target="_blank">
                 <i class="fab fa-twitter"></i> Xでシェア
             </a>
         </div>
     </div>
 </body>
-</html>
