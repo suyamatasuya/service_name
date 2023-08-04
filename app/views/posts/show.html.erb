@@ -3,19 +3,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <%= stylesheet_link_tag 'posts_show' %>
 
-    <style>
-        .fa-twitter:before {
-            content: '𝕏';
-            font-family: unset;
-            font-weight: bold;
-        }
-    </style>
-
     <!-- Twitter Card metadata -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@your_twitter_username">
-    <meta name="twitter:title" content="投稿詳細">
-    <meta name="twitter:description" content="詳細を見るにはリンクをクリックしてください。">
+    <meta name="twitter:title" content="<%= t('posts.show.details') %>">
+    <meta name="twitter:description" content="<%= t('posts.show.click_link') %>">
     <% if @post.pain_location == "首" %>
         <meta name="twitter:image" content="<%= asset_url('11514_color (2).png') %>">
     <% elsif @post.pain_location == "腰" %>
@@ -24,7 +16,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100 page-container">
     <div class="container d-flex flex-column align-items-center justify-content-center">
-        <div class="title">投稿詳細</div>
+        <div class="title"><%= t('posts.show.details') %></div>
         <div class="card">
             <div class="header">
                 <%= @post.user.name %>
@@ -35,12 +27,14 @@
                 </p>
                 <p class="pain-location"><strong><%= @post.pain_location %></strong></p>
             </div>
-        </div>
-        <!-- Twitter share button -->
-        <div>
-            <a href="https://twitter.com/share?text=<%= URI.encode_www_form_component(@post.user.name + "さんが" + @post.pain_location + "の痛みに関する体験を共有しました：" + @post.content) %>&url=<%= request.original_url %>" target="_blank">
-                <i class="fab fa-twitter"></i> Xでシェア
-            </a>
+            <!-- Twitter share button -->
+            <div class="d-flex justify-content-center">
+                <a href="https://twitter.com/share?text=<%= URI.encode_www_form_component(@post.user.name + t('posts.show.post_details') + @post.pain_location + "：" + @post.content) %>&url=<%= request.original_url %>" target="_blank">
+                    <span class="twitter-share-button">
+                      <i class="fab fa-twitter"></i> <%= t('posts.show.share_with') %>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 </body>

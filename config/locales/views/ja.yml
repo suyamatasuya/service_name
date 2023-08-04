@@ -81,6 +81,11 @@ ja:
       lower_back: "腰"
     update_button: "投稿を更新"
     back_to_posts: "投稿に戻る"
+    show:
+      details: 投稿詳細
+      share_with: でシェア
+      post_details: さんが の痛みに関する体験を共有しました：
+      click_link: 詳細を見るにはリンクをクリックしてください。
   shared_header:
     title: "なごみ首腰：痛みケアナビ"
     help_support: "ヘルプ・サポート"

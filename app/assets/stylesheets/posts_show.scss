@@ -61,3 +61,15 @@ body {
 .twitter-share-button {
     margin-top: 20px;
 }
+
+.fa-twitter:before {
+    content: '𝕏';
+    font-family: unset;
+    font-weight: bold;
+}
+
+.twitter-share-button {
+    margin-top: 20px;
+    text-decoration: underline !important;
+}
+
