@@ -1,24 +1,24 @@
 document.addEventListener("turbolinks:load", (event) => {
   const hamburger = document.querySelector(".hamburger");
   const sideBar = document.querySelector(".side-bar");
-  const navbarLinks = document.querySelectorAll(".navbar-links");
+  const navbarLinks = document.querySelectorAll(".nav-link");
 
   hamburger.addEventListener("click", () => {
-    sideBar.classList.toggle("open");
+    sideBar.style.width = sideBar.style.width === '250px' ? '0' : '250px';
     for (let link of navbarLinks) {
-      link.style.display = 'none';
+      link.style.display = sideBar.style.width === '250px' ? 'block' : 'none';
     }
   });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
+      sideBar.style.width = '0';
       for (let link of navbarLinks) {
         link.style.display = 'block';
         link.classList.remove("nav-link");
       }
-      sideBar.classList.remove("open");
     } else {
-      if (!sideBar.classList.contains("open")) {
+      if (sideBar.style.width === '250px') {
         for (let link of navbarLinks) {
           link.style.display = 'none';
           link.classList.add("nav-link");
