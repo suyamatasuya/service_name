@@ -16,7 +16,6 @@
 
   <!-- Sidebar -->
   <div id="mySidebar" class="side-bar">
-    <p><%= @current_user %></p>
     <a href="#" class="nav-link"><%= t('logged_in_header.how_to_use') %></a>
     <%= link_to t('logged_in_header.logout'), logout_path, method: :delete, class: "nav-link" %>
     <%= link_to t('logged_in_header.start_diagnosis'), symptoms_path, class: "nav-link" %>
