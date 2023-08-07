@@ -1,9 +1,9 @@
 body {
-  background-color: #B2D8B2; /* 薄い抹茶色 */
+  background-color: #B2D8B2;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 110vh; /* Body height */
+  align-items: center; // flex-startからcenterに変更
+  height: 100vh; // 110vhから100vhに変更
   margin: 0;
   padding: 0;
 }
@@ -11,13 +11,13 @@ body {
 .left-text {
   writing-mode: vertical-rl;
   font-family: 'Noto Serif JP', serif;
-  color: #594A42; /* テキストの色をちょっと暗めに */
+  color: #594A42;
   font-size: 1.6em;
   position: absolute;
-  left: 150px; /* 左からの位置を調整 */
-  top: 50%; /* 上からの位置を調整 */
-  transform: translateY(-50%); /* 上下中央寄せ */
-  line-height: 1.8; /* 文字間隔（行間）を広げる */
+  left: 150px;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 1.8;
 }
 
 .center-line {
@@ -25,18 +25,18 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 2px solid #1b4036; /* 濃い抹茶色 */
-  border-right: 2px solid #1b4036; /* 濃い抹茶色 */
-  background-color: #1b4036; /* 縦ライン内の色を濃い抹茶色に */
+  border-left: 2px solid #1b4036;
+  border-right: 2px solid #1b4036;
+  background-color: #1b4036;
   padding: 1em 2em;
-  height: 110vh; /* Center-line height */
+  height: 100vh; // 110vhから100vhに変更
 }
 
 .title-text {
   writing-mode: vertical-rl;
   text-align: center;
   font-family: 'Noto Serif JP', serif;
-  color: #F3EAD7; /* タイトルの色を和紙の色に */
+  color: #F3EAD7;
   font-size: 2.2em;
   margin: 1em 0;
 }
@@ -46,10 +46,35 @@ body {
 .care-records-link {
   border-radius: 24px;
   font-family: 'Noto Serif JP', serif;
-  color: #F3EAD7; /* リンクの色を和紙の色に */
+  color: #F3EAD7;
   background-color: transparent;
-  margin: 0.25em 0; /* リンクとリンクの幅を近づける */
+  margin: 0.25em 0;
   padding: 0.5em;
   text-decoration: none;
   font-size: 1em;
+}
+
+// レスポンシブデザインのためのメディアクエリ
+@media screen and (max-width: 768px) {
+  .left-text {
+    position: static;
+    transform: none;
+    writing-mode: horizontal-tb;
+    text-align: center;
+    margin-bottom: 1em;
+    top: 0; 
+    left: 0; 
+  }
+
+  .center-line {
+    border-left: none;
+    border-right: none;
+    padding: 4em;
+  }
+
+  .title-text {
+    writing-mode: horizontal-tb;
+    white-space: nowrap; // Add this
+    font-size: 1.6em; // Decrease font-size for mobile viewport
+  }
 }
