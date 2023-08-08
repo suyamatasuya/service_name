@@ -1,47 +1,87 @@
 body {
-    background-color: #e9e7e0;
-  }
-  
-  h1, h2, label {
-    color: #709775;
-  }
-  
-  label {
-    margin: 0 20px;
-  }
-  
-  .btn-primary {
-    background-color: #c5a35a;
-    color: #fff;
-  }
-  
-  .active {
-    border-color: #FF0000;
-    background-color: #FF0000;
-    color: white;
-    box-shadow: 0 0 10px #FF0000;
-  }
-  
-  .custom-button {
-    width: 200px;
-    height: 60px;
-  }
-  
-  .custom-label {
-    margin: 10px !important;
-    min-width: 150px;
-    text-align: center;
-  }
-  
+  background-color: #e9e7e0;
+}
+
+h1, h2, label {
+  color: #709775;
+}
+
+label {
+  margin: 0 20px;
+}
+
+.btn-primary {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+.active {
+  border-color: #FF0000;
+  background-color: #FF0000;
+  color: white;
+  box-shadow: 0 0 10px #FF0000;
+}
+
+.custom-button {
+  width: 200px;
+  height: 60px;
+}
+
+.custom-label {
+  margin: 10px;
+  min-width: 150px;
+  text-align: center;
+  box-sizing: border-box; // 枠のサイズを調整するために追加
+}
+
+.title {
+  font-size: 3em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 0.5em;
+}
+
+.instruction {
+  font-size: 1.5em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 1em;
+}
+
+.img-thumbnail {
+  width: 200px;
+  height: 200px;
+  display: block; // 画像をブロック要素として扱う
+  margin: 0 auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
   .title {
-    font-size: 3em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 0.5em;
+      font-size: 2em;
   }
-  
+
   .instruction {
-    font-size: 1.5em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 1em;
+      font-size: 1.2em;
   }
-  
+
+  .custom-label {
+    margin: 10px 0 10px 10px; // 下と左のマージンを10pxに設定
+      display: block;
+      width: 90px;  // ラベルのサイズを画像と同じに
+      height: 90px; // ラベルのサイズを画像と同じに
+      padding: 0;   // 余分なパディングを削除
+  }
+
+  .img-thumbnail {
+      width: 90px;
+      height: 90px;
+  }
+
+  .custom-button {
+    width: auto;       /* 幅を自動に設定 */
+    min-width: 100px;  /* 最小幅を100pxに設定 */
+    height: 40px;      /* 縦幅を40pxに設定 */
+    font-size: 0.8em;
+    padding: 5px 10px;
+    line-height: 30px; /* ボタン内のテキストの位置を調整 */
+  }
+}

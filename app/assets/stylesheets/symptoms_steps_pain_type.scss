@@ -1,73 +1,109 @@
-  body {
-    background-color: #e9e7e0;  /* A light brown color */
-  }
-  
-  h1 {
-    color: #709775;  /* A matcha color */
-  }
-  
-  h2 {
-    color: #709775;  /* A matcha color */
-  }
-  
-  label {
-    color: #709775;  /* A matcha color */
-    margin: 0 20px;  /* Increase the distance between images */
-  }
-  
-  .btn-primary {
-    background-color: #c5a35a;
-    color: #fff;
-  }
-  
-  .btn-primary:focus,
-  .btn-primary:active {
-    background-color: #c5a35a !important;
-    box-shadow: none !important;
-    outline: none !important;
-  }
-  
-  .btn-outline-primary {
-    color: #c5a35a;  /* Changes the text color of the unselected labels to match the "Next" button */
-    border-color: #c5a35a;  /* Changes the border color of the unselected labels to match the "Next" button */
-  }
-  
-  .btn-outline-primary:hover {
-    background-color: #c5a35a;  /* Changes the background color of the labels when the mouse is hovering over them */
-    color: #fff;  /* Changes the text color of the labels when the mouse is hovering over them */
-  }
-  
-  /* Style for active label */
-  .active {
-    border-color: #FF0000; /* This will make the border red */
-    background-color: #FF0000; /* This will make the background red */
-    color: white;
-    box-shadow: 0 0 10px #FF0000; /* This will add a red shadow around the item */
-  }
-  
-  /* Custom button size */
-  .custom-button {
-    width: 200px;
-    height: 60px;
-  }
-  
-  /* Custom label with margin and width */
-  .custom-label {
-    margin: 10px !important;
-    min-width: 150px; /* Adjust this value to ensure the text fits */
-    text-align: center; /* Center the text within the label */
-  }
-  
-  /* Custom title */
+body {
+  background-color: #e9e7e0;
+}
+
+h1, h2, label {
+  color: #709775;
+}
+
+label {
+  margin: 0 20px;
+}
+
+.btn-primary {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #c5a35a !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-outline-primary {
+  color: #c5a35a;
+  border-color: #c5a35a;
+}
+
+.btn-outline-primary:hover {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+.active {
+  border-color: #FF0000;
+  background-color: #FF0000;
+  color: white;
+  box-shadow: 0 0 10px #FF0000;
+}
+
+.custom-button {
+  width: 200px;
+  height: 60px;
+}
+
+.custom-label {
+  margin: 10px;
+  min-width: 150px;
+  text-align: center;
+}
+
+.title {
+  font-size: 3em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 0.5em;
+}
+
+.instruction {
+  font-size: 1.5em;
+  font-family: 'Yu Gothic', sans-serif;
+  margin-bottom: 1em;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
   .title {
-    font-size: 3em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 0.5em;
+      font-size: 2em;
+  }
+
+  .instruction {
+      font-size: 1.2em;
+  }
+
+  .custom-label {
+    margin: 5px 5px;  
+    display: block;
+    width: auto;       /* 幅を自動に設定 */
+    min-width: 100px;  /* 最小幅を100pxに設定 */
+    height: 40px;      /* 縦幅を40pxに設定 */
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5px 10px;
+    line-height: 30px; /* ラベル内のテキストの位置を調整 */
+}
+
+.custom-button {
+    width: auto;       /* 幅を自動に設定 */
+    min-width: 100px;  /* 最小幅を100pxに設定 */
+    height: 40px;      /* 縦幅を40pxに設定 */
+    font-size: 0.8em;
+    padding: 5px 10px;
+    line-height: 30px; /* ボタン内のテキストの位置を調整 */
+}
+
+  .btn-lg {
+      padding: 5px 10px; /* 大きなボタンのパディングを調整 */
+      font-size: 0.8em;  /* 大きなボタンのテキストサイズを小さくする */
+  }
+
+  .two-lines-label {
+    white-space: normal;  /* テキストを折り返す */
+    height: auto;         /* 高さを自動に設定 */
+    line-height: 1.2;     /* ラベル内のテキストの行間を調整 */
+    padding-top: 5px;     /* 上部のパディングを追加 */
+    padding-bottom: 5px;  /* 下部のパディングを追加 */
   }
   
-  /* Custom instruction */
-  .instruction {
-    font-size: 1.5em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 1em;
-  }
+}

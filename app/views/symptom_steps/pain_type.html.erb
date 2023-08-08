@@ -1,4 +1,6 @@
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- この行を追加 -->
   <%= stylesheet_link_tag 'symptoms_steps_pain_type' %>
   <%= javascript_pack_tag 'symptoms_steps_pain_type' %>
 </head>
@@ -20,7 +22,7 @@
         <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.throbbing_pain'), style: 'display:none', id: 'throbbing_pain', class: 'form-check-input' %>
         <%= t('symptoms_steps_pain_type.throbbing_pain') %>
       </label>
-      <label for="electric_pain" class="btn btn-outline-primary btn-lg custom-label">
+      <label for="electric_pain" class="btn btn-outline-primary btn-lg custom-label two-lines-label">
         <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.electric_pain'), style: 'display:none', id: 'electric_pain', class: 'form-check-input' %>
         <%= t('symptoms_steps_pain_type.electric_pain') %>
       </label>

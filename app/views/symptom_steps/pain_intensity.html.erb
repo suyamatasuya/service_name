@@ -2,6 +2,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'symptoms_steps_pain_intensity' %>
   <%= javascript_pack_tag 'symptoms_steps_pain_intensity' %>
 </head>
@@ -29,7 +30,7 @@
           <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
 
           <div class="text-center mt-5">
-            <%= f.submit t('symptoms_steps_pain_intensity.next'), class: 'btn btn-primary btn-lg custom-button' %>
+            <%= f.submit t('symptoms_steps_pain_intensity.next'), class: 'btn btn-primary btn-lg custom-button-responsive' %>
           </div>
         <% end %>
       </div>

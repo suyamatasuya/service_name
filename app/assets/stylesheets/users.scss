@@ -1,33 +1,85 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
 body {
-    background-color: #f8f4e8; /* A light bamboo color */
-    color: #8B4513; /* A dark brown color */
-    font-family: 'Hiragino Mincho Pro', serif; /* 日本調のフォント */
-  }
+  background-color: #f8f4e8;
+  color: #8B4513;
+  font-family: 'Hiragino Mincho Pro', serif;
+}
 
-  .card {
-    border: none;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
+.container {
+  margin-top: 30px;
+}
 
-  .card-body {
-    background-color: #709775; /* A matcha color */
-    color: #8B4513; /* A dark brown color */
-  }
+.row.justify-content-center {
+  margin-top: -70px;
+}
 
-  .form-control, .btn {
-    border-radius: 0; /* フォームとボタンの角を四角にする */
-  }
+.card {
+  border: 1px solid #8B4513;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background-color: #f3e9d2;
+}
 
-  .btn-tea {
-    background-color:  #a5d6a7; /* matcha color */
-    color: #004d40; /* dark green color */
-    border: none;
-  }
+.card-body {
+  background-color: #709775;
+  color: #8B4513;
+  border: 1px solid #8B4513;
+  padding: 40px; /* ここを変更 */
+  border-radius: 10px;
+}
 
-  .btn-tea:hover {
-    background-color:  #66bb6a; /* dark matcha color */
-    color: #004d40; /* dark green color */
+.form {
+    h2 {
+        font-size: 2rem; /* タイトルのフォントサイズを増やす */
+    }
+
+    label {
+        font-size: 1.2rem; /* ラベルのフォントサイズを増やす */
+    }
+
+    .form-control {
+        font-size: 1.1rem; /* 入力フィールドのフォントサイズを増やす */
+        padding: 15px 25px; /* 入力フィールドのパディングを増やす */
+    }
+
+    .btn {
+        font-size: 1.3rem; /* ボタンのフォントサイズを増やす */
+        padding: 12px 25px; /* ボタンのパディングを増やす */
+    }
+}
+
+.form-control, .btn {
+  border-radius: 0;
+  border: 1px solid #8B4513;
+}
+
+.btn-tea {
+  background-color: #a5d6a7;
+  color: #004d40;
+  border: none;
+}
+
+.btn-tea:hover {
+  background-color: #66bb6a;
+  color: #004d40;
+}
+
+@media (max-width: 768px) { /* Bootstrapのxsブレークポイント */
+  .form {
+      h2 {
+          font-size: 1.1rem; /* タイトルのフォントサイズを小さくする */
+      }
+
+      label {
+          font-size: 0.9rem; /* ラベルのフォントサイズを小さくする */
+      }
+
+      .form-control {
+          font-size: 1rem; /* 入力フィールドのフォントサイズを小さくする */
+          padding: 6px 12px; /* 入力フィールドのパディングを小さくする */
+      }
+
+      .btn {
+          font-size: 1rem; /* ボタンのフォントサイズを小さくする */
+          padding: 6px 12px; /* ボタンのパディングを小さくする */
+      }
   }
+}

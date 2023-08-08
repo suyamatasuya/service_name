@@ -1,33 +1,63 @@
-// Place all the styles related to the UserSessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
 body {
-    background-color: #f8f4e8; /* A light bamboo color */
-    color: #8B4513; /* A dark brown color */
-    font-family: 'Hiragino Mincho Pro', serif; /* 日本調のフォント */
+  background-color: #f8f4e8;
+  color: #8B4513;
+  font-family: 'Hiragino Mincho Pro', serif;
+}
+
+.container {
+  margin-top: 70px;
+}
+
+.row.justify-content-center {
+  margin-top: 100px;
+}
+
+.card {
+  border: 1px solid #8B4513;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background-color: #f3e9d2;
+}
+
+.card-body {
+  background-color: #709775;
+  color: #8B4513;
+  border: 1px solid #8B4513;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.form-control, .btn {
+  border-radius: 0;
+  border: 1px solid #8B4513;
+}
+
+.btn-tea {
+  background-color: #a5d6a7;
+  color: #004d40;
+  border: none;
+}
+
+.btn-tea:hover {
+  background-color: #66bb6a;
+  color: #004d40;
+}
+
+.form {
+  h2 {
+      font-size: 2.5rem; /* タイトルのフォントサイズ */
   }
 
-  .card {
-    border: none;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  label {
+      font-size: 1.2rem; /* ラベルのフォントサイズ */
   }
 
-  .card-body {
-    background-color: #709775; /* A matcha color */
-    color: #8B4513; /* A dark brown color */
+  .form-control {
+      font-size: 1.1rem; /* 入力フィールドのフォントサイズ */
+      padding: 12px 20px; /* 入力フィールドのパディング */
   }
 
-  .form-control, .btn {
-    border-radius: 0; /* フォームとボタンの角を四角にする */
+  .btn {
+      font-size: 1.1rem; /* ボタンのフォントサイズ */
+      padding: 10px 20px; /* ボタンのパディング */
   }
-
-  .btn-tea {
-    background-color:  #a5d6a7; /* matcha color */
-    color: #004d40; /* dark green color */
-    border: none;
-  }
-
-  .btn-tea:hover {
-    background-color:  #66bb6a; /* dark matcha color */
-    color: #004d40; /* dark green color */
-  }
+}

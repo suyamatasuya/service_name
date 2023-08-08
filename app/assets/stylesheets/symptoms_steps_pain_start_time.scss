@@ -57,3 +57,40 @@
     box-shadow: none !important;
     outline: none !important;
   }
+
+  @media (max-width: 768px) {
+    .title {
+        font-size: 2em;
+    }
+  
+    .instruction {
+        font-size: 1.2em;
+    }
+  
+    .custom-label {
+      margin: 5px 5px;  
+      display: block;
+      width: auto;       /* 幅を自動に設定 */
+      min-width: 120px;  /* 最小幅を100pxに設定 */
+      height: 40px;      /* 縦幅を40pxに設定 */
+      text-align: center;
+      font-size: 0.8em;
+      padding: 5px 10px;
+      line-height: 30px; /* ラベル内のテキストの位置を調整 */
+    }
+  
+    .custom-button {
+      width: auto;       /* 幅を自動に設定 */
+      min-width: 100px;  /* 最小幅を100pxに設定 */
+      height: 40px;      /* 縦幅を40pxに設定 */
+      font-size: 0.8em;
+      padding: 5px 10px;
+      line-height: 30px; /* ボタン内のテキストの位置を調整 */
+    }
+  }
+  
+  
+  
+  
+  
+  
