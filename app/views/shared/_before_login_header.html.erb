@@ -4,7 +4,7 @@
 </head>
 <body>
   <nav class="navbar">
-    <%= link_to t('logged_in_header.home'), root_path, class: 'navbar-title' %>
+    <%= link_to t('logged_in_header.home'), root_path, class: 'navbar-title', data: { turbolinks: false } %>
     <!-- Hamburger menu -->
     <div class="hamburger">
       <div></div>
@@ -13,8 +13,8 @@
     </div>
   </nav>
   <!-- Sidebar -->
-  <div id="mySidebar" class="side-bar">
-    <%= link_to t('shared_header.login'), new_user_session_path, class: 'nav-link', style: 'color: #000;' %>
-    <%= link_to t('shared_header.signup'), new_user_path, class: 'nav-link', style: 'color: #000;' %>
+  <div id="mySidebar" class='side-bar'>
+    <%= link_to t('shared_header.login'), new_user_session_path, class: 'nav-link', style: 'color: #000;', data: { turbolinks: false } %>
+    <%= link_to t('shared_header.signup'), new_user_path, class: 'nav-link', style: 'color: #000;', data: { turbolinks: false } %>
   </div>
 </body>

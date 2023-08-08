@@ -7,9 +7,12 @@ window.initMap = function() {
         lng: position.coords.longitude
       };
 
+      // レスポンシブデザインに応じてズームレベルを設定
+      var zoomLevel = window.innerWidth <= 768 ? 12 : 15;
+
       var map = new google.maps.Map(document.getElementById('map'), {
         center: currentLocation,
-        zoom: 15
+        zoom: zoomLevel
       });
 
       var request = {

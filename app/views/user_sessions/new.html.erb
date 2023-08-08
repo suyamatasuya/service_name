@@ -6,12 +6,12 @@
 </head>
 <body>
   <%= stylesheet_link_tag 'user_sessions' %>
-  <div class="container">
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-10">
+  <div class="container mt-5">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-10 col-md-10 col-sm-12">
               <div class="card border-0 shadow mt-5">
                   <div class="card-body p-5">
-                      <h2 class="mb-4"><%= t('user_sessions.title') %></h2>
+                      <h2 class="mb-4 text-center"><%= t('user_sessions.title') %></h2>
                       <%= form_for @user, url: user_sessions_path, html: { class: 'form mt-4' } do |f| %>
                           <% if @user.errors.any? %>
                               <div id="error_explanation" class="alert alert-danger">
