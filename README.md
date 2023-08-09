@@ -75,3 +75,14 @@ https://www.figma.com/file/oFH5T0vL7lNzS2zSr5f4hc/%E7%94%BB%E9%9D%A2%E9%81%B7%E7
 ER図URL
 https://app.diagrams.net/?src=about#G1DBP8WEaXP9rZuJT5x8NLiOIfyaKWNmUi
 >>>>>>> heroku
+
+MVPリリースする際にREADMEとの変更点
+掲示板機能以外を登録ユーザーのみ使用できるようにしている
+
+未実装機能
+・プッシュ通知機能
+・掲示板のコメント機能
+
+実装機能
+・Googlemap APIを使用した近くの整形外科を含む病院を探す機能の実装
+・掲示板機能にTwitter共有機能の実装

@@ -5,10 +5,10 @@
 
 /* Style for active label */
 .active {
-  border-color: #FF0000; /* This will make the border red */
-  background-color: #FF0000; /* This will make the background red */
+  border-color: #FF0000; // This will make the border red
+  background-color: #FF0000; // This will make the background red
   color: white;
-  box-shadow: 0px 0px 20px 3px rgba(255, 0, 0, 0.6); /* This will add a bigger and more visible red shadow around the item */
+  box-shadow: 0px 0px 20px 3px rgba(255, 0, 0, 0.6); // This will add a bigger and more visible red shadow around the item
 }
 
 /* Custom button size */
@@ -20,8 +20,11 @@
 /* Custom label with margin and width */
 .custom-label {
   margin: 10px !important;
-  min-width: 200px; /* Adjust this value to ensure the text fits */
-  text-align: center; /* Center the text within the label */
+  min-width: 200px; // Adjust this value to ensure the text fits
+  text-align: center; // Center the text within the label
+  white-space: nowrap; // Prevent the text from wrapping to the next line
+  overflow: hidden; // Hide overflow content
+  text-overflow: ellipsis; // Add ellipsis if the text overflows
 }
 
 /* Custom title */
@@ -29,7 +32,7 @@
   font-size: 3em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 0.5em;
-  color: #709775; /* A matcha color */
+  color: #709775; // A matcha color
 }
 
 /* Custom instruction */
@@ -37,12 +40,12 @@
   font-size: 1.5em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 1em;
-  color: #709775; /* A matcha color */
+  color: #709775; // A matcha color
 }
 
 /* Background color */
 body {
-  background-color: #e9e7e0; /* A light brown color */
+  background-color: #e9e7e0; // A light brown color
 }
 
 /* Button color */
@@ -59,12 +62,12 @@ body {
 }
 
 .btn-outline-primary {
-  color: #007BFF; /* Default Bootstrap blue */
-  border-color: #007BFF; /* Default Bootstrap blue */
+  color: #007BFF; // Default Bootstrap blue
+  border-color: #007BFF; // Default Bootstrap blue
 }
 
 .btn-outline-primary:hover {
-  background-color: #007BFF; /* Default Bootstrap blue */
+  background-color: #007BFF; // Default Bootstrap blue
   color: #fff;
 }
 
@@ -80,21 +83,22 @@ body {
   .custom-label {
       margin: 5px 5px;  
       display: block;
-      width: auto;       /* 幅を自動に設定 */
-      min-width: 120px;  /* 最小幅を100pxに設定 */
-      height: 40px;      /* 縦幅を40pxに設定 */
+      width: auto;       // Width set to auto
+      min-width: 120px;  // Minimum width set to 100px
+      height: auto;      // Height set to auto
       text-align: center;
-      font-size: 0.8em;
-      padding: 5px 10px;
-      line-height: 30px; /* ラベル内のテキストの位置を調整 */
+      font-size: 0.6em; // Decrease font size to fit text in one line
+      white-space: nowrap; // Prevent the text from wrapping to the next line
+      overflow: hidden; // Hide overflow content
+      text-overflow: ellipsis; // Add ellipsis if the text overflows
   }
 
   .custom-button {
-      width: auto;       /* 幅を自動に設定 */
-      min-width: 100px;  /* 最小幅を100pxに設定 */
-      height: 40px;      /* 縦幅を40pxに設定 */
+      width: auto;       // Width set to auto
+      min-width: 100px;  // Minimum width set to 100px
+      height: 40px;      // Height set to 40px
       font-size: 0.8em;
       padding: 5px 10px;
-      line-height: 30px; /* ボタン内のテキストの位置を調整 */
+      line-height: 1.2;  // Adjust line height for better readability
   }
 }
