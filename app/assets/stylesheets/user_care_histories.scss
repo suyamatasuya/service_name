@@ -1,36 +1,57 @@
-// Place all the styles related to the UserCareHistories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
 body {
-    height: 0px;
-    background-color: #f5f1e8;
-    font-family: Arial, sans-serif; /* Use Arial or a similar sans-serif font */
-    font-size: 16px; /* Font size */
-    line-height: 1.5; /* Line height */
+  height: 0px;
+  background-color: #f5f1e8;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.modal-lg {
+  max-width: 80%;
+}
+
+.modal-content {
+  overflow: auto;
+  height: 80vh;
+}
+
+.table td, .table th {
+  padding: 10px;
+  vertical-align: top;
+}
+
+.modal-body {
+  font-size: 18px;
+  white-space: pre-wrap;
+  text-align: justify;
+}
+
+.embed-responsive-smaller {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  .embed-responsive-item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 70%;
+    height: 70%;
+    border: 0;
   }
-  .container {
-    max-width: 90%; /* Make the container 80% of full-width */
-    margin: 0 auto; /* Center the container */
-    padding: 10px; /* Add padding to the container */
-  }
-  h1 {
-    font-size: 28px; /* Larger heading font size */
-    text-align: center; /* Center the heading */
-    margin-bottom: 30px; /* Add space below the heading */
-  }
-  .modal-lg {
-    max-width: 80%; /* Large modal */
-  }
-  .modal-content {
-    overflow: auto; /* Add scrollbar if necessary */
-    height: 80vh; /* 80% of the viewport height */
-  }
-  .table td, .table th {
-    padding: 10px; /* Add padding to table cells */
-    vertical-align: top; /* Align cell contents to the top */
-  }
-  .modal-body {
-    font-size: 18px; /* Larger modal body font size */
-    white-space: pre-wrap; /* Respect newline characters in text */
-    text-align: justify; /* Justify text for better readability */
-  }
+}
