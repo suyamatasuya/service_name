@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :favourited_posts, through: :favourites, source: :post
   has_many :care_records
+  has_many :authentications, dependent: :destroy
   
   authenticates_with_sorcery!
   
