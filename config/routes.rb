@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
   get 'privacy_policy', to: 'privacy_policies#index'
-  # 以下のルートを追加します
   get '/care_records/index', to: 'care_records#index'
+  get 'oauth/callback', to: 'oauths#callback'
+  get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
 end
