@@ -160,7 +160,12 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.google.key = ENV["GOOGLE_CLIENT_ID"]
   config.google.secret = ENV["GOOGLE_CLIENT_SECRET"]
-  config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  if Rails.env.development?
+    config.google.callback_url = "http://localhost:3000/oauth/callback?provider=google"
+  elsif Rails.env.production?
+    # ここにHerokuのURLを入れてください
+    config.google.callback_url = "https://nagomi-neckback-care-f61a27e8212b.herokuapp.com//oauth/callback?provider=google"
+  end
   config.google.user_info_mapping = {:email => "email", :username => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
