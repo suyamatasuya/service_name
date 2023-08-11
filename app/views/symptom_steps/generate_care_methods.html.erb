@@ -34,7 +34,9 @@
                 <% end %>
               </div>
             <% end %>
-            <%= submit_tag t('generate_care_methods.save_care_methods'), class: 'btn btn-primary save-button' %>
+            <% if logged_in? %>
+              <%= submit_tag t('generate_care_methods.save_care_methods'), class: 'btn btn-primary save-button' %>
+            <% end %>
           <% end %>
         <% else %>
           <p class="card-text"><%= t('generate_care_methods.no_care_methods') %></p>
@@ -48,3 +50,4 @@
       </div>
     </div>
   </div>
+</body>

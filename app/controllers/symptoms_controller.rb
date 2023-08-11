@@ -1,5 +1,4 @@
 class SymptomsController < ApplicationController
-  before_action :require_login
 
   def require_login
     unless logged_in? # Sorceryによって提供されるメソッド
@@ -17,7 +16,11 @@ class SymptomsController < ApplicationController
   end
 
   def create
-    @symptom = current_user.symptoms.new(symptom_params.merge(current_step: 'pain_location'))
+    if current_user
+      @symptom = current_user.symptoms.new(symptom_params.merge(current_step: 'pain_location'))
+    else
+      @symptom = Symptom.new(symptom_params.merge(current_step: 'pain_location'))
+    end
     if @symptom.save
       session[:symptom_id] = @symptom.id # セッションにsymptom_idを格納
       puts "Debug: Stored symptom_id in session = #{session[:symptom_id]}" # デバッグ出力
