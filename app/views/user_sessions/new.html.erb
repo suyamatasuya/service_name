@@ -35,6 +35,11 @@
                               <%= f.submit t('user_sessions.form.login'), class: 'btn btn-tea btn-block' %>
                           </div>
                       <% end %>
+
+                      <!-- Googleでログインボタンを追加 -->
+                      <div class="mt-3 text-center">
+                          <%= link_to "Googleでログイン", auth_at_provider_path(provider: :google), class: 'btn btn-primary' %>
+                      </div>
                   </div>
               </div>
           </div>
