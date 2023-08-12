@@ -8,7 +8,9 @@ class User < ApplicationRecord
   has_many :care_records
   has_many :authentications, dependent: :destroy
   
-  authenticates_with_sorcery!
+  authenticates_with_sorcery! do |config|
+    config.authentications_class = Authentication
+  end
   
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -25,5 +27,21 @@ class User < ApplicationRecord
 
   def unfavourite(post)
     favourites.find_by(post: post)&.destroy
+  end
+
+  def self.create_with_auth_and_hash(authentication, auth_hash)
+    user = self.create!(
+      name: auth_hash["info"]["name"],
+      email: auth_hash["info"]["email"],
+      password: SecureRandom.hex(3)
+    )
+    user.authentications << authentication
+    return user
+  end
+
+  def self.find_by_auth_hash(provider, uid)
+    authentication = Authentication.find_by(provider: provider, uid: uid)
+    return nil unless authentication
+    authentication.user
   end
 end

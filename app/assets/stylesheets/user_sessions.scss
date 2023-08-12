@@ -61,3 +61,25 @@ body {
       padding: 10px 20px; /* ボタンのパディング */
   }
 }
+
+.btn-google {
+  color: #545454;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  margin-top: 10px;
+  width: 200px;  // ここでボタンの横幅を指定
+  margin: 20px auto;  
+
+  img {
+      margin-right: 10px;
+  }
+
+  &:hover {
+      background-color: #f7f7f7;
+  }
+}
