@@ -166,7 +166,7 @@ Rails.application.config.sorcery.configure do |config|
     # ここにHerokuのURLを入れてください
     config.google.callback_url = "https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=google"
   end
-  config.google.user_info_mapping = {:email => "email", :username => "name"}
+  config.google.user_info_mapping = {:email => "email", :name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
@@ -248,6 +248,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.battlenet.scope = "openid"
   # --- user config ---
   config.user_config do |user|
+    user.authentications_class = Authentication
     # -- core --
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -549,7 +550,6 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `nil`
     #
     # user.authentications_class =
-
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
     #

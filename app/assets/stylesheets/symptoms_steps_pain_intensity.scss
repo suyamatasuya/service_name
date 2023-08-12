@@ -18,9 +18,9 @@ h1, h2 {
   outline: none !important;
 }
 
-.custom-button {
-  width: 200px;
-  height: 60px;
+body .btn-primary.btn-lg.custom-button {
+  width: 200px !important;
+  height: 60px !important;
 }
 
 .title {
@@ -64,6 +64,15 @@ h1, h2 {
   color: #709775;
 }
 
+body .btn-primary.btn-lg.custom-button-responsive {
+  width: auto;       /* 幅を自動に設定 */
+  min-width: 200px;  /* 最小幅を100pxに設定 */
+  height: 60px;      /* 縦幅を40pxに設定 */
+  font-size: 1.3em;
+  padding: 5px 10px;
+  line-height: 30px; /* ボタン内のテキストの位置を調整 */
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .title {
@@ -91,14 +100,4 @@ h1, h2 {
   #slider-value {
     font-size: 20px;
   }
-
-  .custom-button-responsive {
-    width: auto;       /* 幅を自動に設定 */
-    min-width: 100px;  /* 最小幅を100pxに設定 */
-    height: 40px;      /* 縦幅を40pxに設定 */
-    font-size: 0.8em;
-    padding: 5px 10px;
-    line-height: 30px; /* ボタン内のテキストの位置を調整 */
-  }
 }
-

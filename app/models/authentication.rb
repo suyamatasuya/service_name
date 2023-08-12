@@ -1,3 +1,6 @@
 class Authentication < ApplicationRecord
     belongs_to :user
-end  
+  
+    validates :provider, :uid, presence: true
+  end
+  
