@@ -14,17 +14,20 @@ body {
   z-index: 999;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* No change */
-  padding: 0 20px; /* No change */
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
-.navbar-title {
-  font-size: 28px;
-  font-weight: bold;
+.logo {
+  font-family: 'Noto Serif JP', serif;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-main, .logo-sub {
+  font-size: 24px;
   color: #fff;
-  cursor: pointer;
-  font-family: 'Pacifico', cursive;
-  margin-right: auto; /* Re-arrange title to left */
+  margin-right: 5px;
 }
 
 .navbar-links {
@@ -50,18 +53,14 @@ body {
 
 .side-bar a {
   text-decoration: none;
-  color: #000; /* Change color here */
+  color: #000;
   display: flex;
   align-items: center;
   padding: 15px;
   height: 80px;
   line-height: 70px;
   transition: color 0.3s;
-}
-
-
-.side-bar a:hover {
-  color: #007f5f;
+  font-family: 'Noto Serif JP', serif; // この行を追加
 }
 
 .side-bar a:hover {
@@ -80,7 +79,7 @@ body {
 
 .hamburger div {
   height: 4px;
-  background: #fff;
+  background: #fff; /* 白に変更 */
 }
 
 @media screen and (max-width: 768px) {
@@ -90,6 +89,6 @@ body {
 
   .navbar-title {
     font-size: 20px;
-    margin-right: 20px; /* Increase margin when on small screens */
+    margin-right: 20px;
   }
 }

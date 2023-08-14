@@ -17,6 +17,8 @@ require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
+require_relative "../app/middlewares/cookie_same_site_middleware"
+
 Bundler.require(*Rails.groups)
 
 module ServiceName
@@ -39,5 +41,6 @@ module ServiceName
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.active_job.queue_adapter = :sidekiq
+    config.middleware.insert_before ActionDispatch::Cookies, CookieSameSiteMiddleware
   end
 end

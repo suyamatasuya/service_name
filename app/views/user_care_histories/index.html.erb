@@ -15,7 +15,7 @@
             <th><%= t('user_care_histories.table.date_proposed') %></th>
             <th><%= t('user_care_histories.table.symptoms') %></th>
             <th><%= t('user_care_histories.table.related_videos') %></th>
-            <th><%= t('user_care_histories.table.actions') %></th> <!-- 追加 -->
+            <th><%= t('user_care_histories.table.actions') %></th>
           </tr>
         </thead>
         <tbody>
@@ -49,14 +49,14 @@
                 <!-- Only show the Details button if there are video links -->
                 <% if history.care_method.video_links.present? %>
                   <!-- Trigger modal with a button -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal<%= history.id %>"><%= t('user_care_histories.modal.video_list') %></button>
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoModal<%= history.id %>"><%= t('user_care_histories.modal.video_list') %></button>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="detailModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <!-- Video Modal -->
+                  <div class="modal fade" id="videoModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"><%= history.care_method.name %></h5>
+                          <h5 class="modal-title" id="videoModalLabel"><%= history.care_method.name %></h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="<%= t('user_care_histories.modal.close') %>">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -64,9 +64,9 @@
                         <div class="modal-body">
                           <!-- Video links -->
                           <% history.care_method.video_links.each_with_index do |video, index| %>
-                            <div>
+                            <div class="mb-4">
                               <strong><%= history.care_method.video_titles[index] %></strong><br>
-                              <a href="<%= video %>" target="_blank" rel="noopener noreferrer"><%= t('user_care_histories.modal.watch_video') %></a>
+                              <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/<%= extract_video_id(video) %>" frameborder="0" allowfullscreen></iframe>
                             </div>
                           <% end %>
                         </div>
@@ -75,7 +75,7 @@
                   </div>
                 <% end %>
               </td>
-              <!-- 削除ボタンの追加（動画の存在に関わらず常に表示） -->
+              <!-- Delete button -->
               <td>
                 <%= link_to t('user_care_histories.table.delete'), user_care_history_path(history), method: :delete, data: { confirm: t('user_care_histories.table.confirm_delete') } %>
               </td>
