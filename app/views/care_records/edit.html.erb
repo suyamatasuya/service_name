@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Care Record</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag 'care_record_edit' %>
+  <title>ケア記録を編集</title>
+  <%= stylesheet_link_tag 'care_record_new' %>
 </head>
 <body class="body">
   <main class="main container">
     <div class="text-center">
-      <h1 class="h1 mt-5 mb-4">記録内容を編集</h1>
+      <h1 class="h1 mt-5 mb-4"><%= t('ケア記録を編集') %></h1>
 
       <!-- Form to edit a care record -->
-      <form id="edit-care-record-form" action="/api/care_records/<%= @care_record.id %>" method="put">
+      <form id="edit-care-record-form" action="/api/care_records/<%= @care_record.id %>" method="post">
         <div class="form-group">
           <label for="date">日付</label>
           <input type="date" id="date" name="date" class="form-control" value="<%= @care_record.date %>">
+        </div>
+
+        <!-- 症状の選択 -->
+        <div class="form-group">
+          <label for="symptom">症状</label>
+          <select id="symptom" name="symptom" class="form-control">
+            <option value="">選択してください</option>
+            <option value="neck" <%= 'selected' if @care_record.symptom == 'neck' %>>首</option>
+            <option value="back" <%= 'selected' if @care_record.symptom == 'back' %>>腰</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -39,13 +45,8 @@
         </div>
 
         <!-- Submit button -->
-        <button type="submit" class="button btn btn-primary mb-2">更新</button>
-
-        <div class="mt-2">
-          <%= link_to '戻る', care_records_path, class: 'btn btn-secondary' %>
-        </div>
+        <button type="submit" class="button btn btn-primary">更新</button>
       </form>
-
     </div>
   </main>
 
@@ -57,23 +58,24 @@
         var date = $("#date").val();
         var careType = $("#care-type").val();
         var description = $("#description").val();
+        var symptom = $("#symptom").val();
 
         var payload = {
           care_record: {
             date: date,
             care_type: careType,
             description: description,
+            symptom: symptom
           }
         };
 
         $.ajax({
           url: '/api/care_records/' + <%= @care_record.id %>,
-          type: 'PUT',
+          type: 'PATCH',  // ここをPATCHに変更
           data: JSON.stringify(payload),
           contentType: 'application/json',
           success: function(response) {
             console.log(response);
-            // フラッシュメッセージを設定してからリダイレクト
             sessionStorage.setItem("flashMessage", "ケア記録を更新しました");
             window.location.href = '/care_records';
           },

@@ -17,7 +17,17 @@ h1 {
     margin-bottom: 20px;
 }
 
-button {
+#edit-button, #delete-button, #complete-button {
+    background-color: #2f4f4f; // この色は指定されたグレーです
+    border: none; // 枠線を削除
+
+    &:hover {
+        background-color: #708090; // ホバー時の色も指定されたものに変更
+    }
+}
+
+
+button, .btn {
     font-size: 1em;
     font-weight: 400;
     color: #FFFFFF;
@@ -28,9 +38,18 @@ button {
     margin-bottom: 10px;
 }
 
-button:hover {
+button:hover, .btn:hover {
     background-color: #708090;
     border-color: #708090;
+}
+
+#new-care-record, #delete-neck-records, #delete-back-records {
+    background-color: #006400;
+    color: #FFFFFF;
+}
+
+#new-care-record:hover, #delete-neck-records:hover, #delete-back-records:hover {
+    background-color: #008000;
 }
 
 ul {

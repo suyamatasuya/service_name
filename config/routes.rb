@@ -28,12 +28,16 @@ Rails.application.routes.draw do
   resources :care_records
 
   namespace :api do
-    resources :care_records, only: [:create, :index, :destroy, :edit, :show] do
-      member do
-        post :complete
-      end
+  resources :care_records do
+    collection do
+      delete :delete_by_symptom
+    end
+
+    member do
+      post :complete
     end
   end
+end
 
   get 'login', to: 'user_sessions#new', as: :login
   delete 'logout', to: 'user_sessions#destroy', as: :logout
