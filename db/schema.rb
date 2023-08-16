@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_11_081957) do
+ActiveRecord::Schema.define(version: 2023_08_15_125424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2023_08_11_081957) do
     t.text "description"
     t.boolean "completed"
     t.integer "face_scale"
+    t.string "symptom"
     t.index ["user_id"], name: "index_care_records_on_user_id"
   end
 

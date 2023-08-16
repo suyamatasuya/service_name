@@ -46,6 +46,6 @@ class CareRecordsController < ApplicationController
     end
 
     def care_record_params
-      params.require(:care_record).permit(:date, :care_type, :duration, :notes)
+      params.require(:care_record).permit(:date, :care_type, :duration, :notes, :symptom)
     end
 end
