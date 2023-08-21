@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ケア記録一覧</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    
     <%= stylesheet_link_tag 'care_records_index' %>
 </head>
 <body>
@@ -20,12 +21,37 @@
                 メニュー
             </button>
 
+            <button class="btn menu-btn mb-4 ml-3" type="button" id="graphToggle">
+              グラフ表示
+            </button>
+
             <!-- サイドバーの内容 -->
             <div class="d-none mb-4" id="sidebarMenu">
                 <div class="card card-body">
                     <a href="/care_records/new" class="btn menu-btn" id="new-care-record"><%= t('.new_care_record_button') %></a>
                     <a href="#" class="btn menu-btn" id="delete-neck-records">首の記録を削除</a>
                     <a href="#" class="btn menu-btn" id="delete-back-records">腰の記録を削除</a>
+                </div>
+            </div>
+
+            <div class="d-none mb-4" id="graphContent">
+                <ul class="nav nav-tabs mb-4" id="careRecordsTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="neck-tab" data-toggle="tab" href="#neck" role="tab" aria-controls="neck" aria-selected="true">首</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">腰</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="careRecordsTabContent">
+                    <div class="tab-pane fade show active" id="neck" role="tabpanel" aria-labelledby="neck-tab">
+                        <!-- 首のグラフ -->
+                        <canvas id="neckCareRecordsChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
+                        <!-- 腰のグラフ -->
+                        <canvas id="backCareRecordsChart" width="400" height="200"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -210,10 +236,20 @@
                 }
 
                 fetchCareRecords();
+
+                document.getElementById('graphToggle').addEventListener('click', function() {
+                var graph = document.getElementById('graphContent');
+                if (graph.classList.contains('d-none')) {
+                    graph.classList.remove('d-none');
+                } else {
+                    graph.classList.add('d-none');
+                }
+            });
             });
         </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <%= javascript_pack_tag 'care_records/index' %>
+        <%= javascript_pack_tag 'care_records/graph' %>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </div>
 </body>
 </html>

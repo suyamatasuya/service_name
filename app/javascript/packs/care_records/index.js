@@ -28,6 +28,10 @@ function faceScaleToEmoji(face_scale) {
 
 $(document).ready(function() {
   var calendarEl = document.getElementById('calendar');
+
+  var myModal = new bootstrap.Modal(document.getElementById('careRecordModal'));
+  var completionModal = new bootstrap.Modal(document.getElementById('completionModal'));
+
   var calendar = new Calendar(calendarEl, {
     plugins: [ dayGridPlugin ],
     initialView: 'dayGridMonth',
@@ -59,7 +63,9 @@ $(document).ready(function() {
         }
         $("#careRecordModal .modal-body").text(details);
         $("#careRecordModal").data('record-id', info.event.id);
-        $("#careRecordModal").modal('show');
+        var myModal = new bootstrap.Modal(document.getElementById('careRecordModal'));
+        myModal.show();
+
       });
     }
   });
@@ -79,7 +85,7 @@ $(document).ready(function() {
       url: '/api/care_records/' + recordId,
       type: 'DELETE',
       success: function(result) {
-        $("#careRecordModal").modal('hide');
+        myModal.hide();
         fetchCareRecords();
       }
     });
@@ -87,10 +93,10 @@ $(document).ready(function() {
 
   $("#complete-button").click(function() {
     var recordId = $("#careRecordModal").data('record-id');
-    $("#completionModal").modal('show');
+    completionModal.show();
     $(".face-scale-option").off().click(function() {
       var faceScale = $(this).data('face-scale');
-      $("#completionModal").modal('hide');
+      completionModal.hide();
       $.ajax({
         url: '/api/care_records/' + recordId + '/complete',
         type: 'POST',
