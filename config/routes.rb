@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'weather/index'
   get 'terms_of_service/index'
   get 'privacy_policies/index'
   get 'care_methods/new'
@@ -45,4 +46,5 @@ end
   get '/care_records/index', to: 'care_records#index'
   get 'oauth/callback', to: 'oauths#callback'
   get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
+  get 'weather', to: 'weather#index'
 end
