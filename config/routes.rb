@@ -47,4 +47,5 @@ end
   get 'oauth/callback', to: 'oauths#callback'
   get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
   get 'weather', to: 'weather#index'
+  get 'weather/google_api_key', to: 'weather#google_api_key' 
 end
