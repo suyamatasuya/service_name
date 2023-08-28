@@ -1,24 +1,9 @@
+let warningMessage = "";
+
 function getGoogleAPIKey() {
     return fetch("/weather/google_api_key")
         .then(response => response.json())
         .then(data => data.google_api_key);
-}
-
-function getWeatherIcon(weatherCondition) {
-    switch (weatherCondition) {
-        case 'clear':
-            return 'fas fa-sun';
-        case 'clouds':
-            return 'fas fa-cloud';
-        case 'rain':
-            return 'fas fa-cloud-rain';
-        case 'snow':
-            return 'fas fa-snowflake';
-        case 'thunderstorm':
-            return 'fas fa-bolt';
-        default:
-            return 'fas fa-question';
-    }
 }
 
 function getCityName(lat, lon) {
@@ -63,7 +48,7 @@ function fetchWeatherData(lat, lon) {
     const timezone = "Asia/Tokyo";
     let previousPressure = null;
 
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timezone=${timezone}&daily=temperature_2m_min,temperature_2m_max&hourly=pressure_msl`)
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timezone=${timezone}&daily=temperature_2m_min,temperature_2m_max,weathercode&hourly=pressure_msl`)
         .then(response => response.json())
         .then(data => {
             if (data && data.daily && data.daily.time) {
@@ -81,11 +66,7 @@ function fetchWeatherData(lat, lon) {
                     dateCell.textContent = date.toLocaleDateString();
                     tr.appendChild(dateCell);
 
-                    const weatherIconCell = document.createElement('td');
-                    const weatherIcon = document.createElement('i');
-                    weatherIcon.className = getWeatherIcon('clear');
-                    weatherIconCell.appendChild(weatherIcon);
-                    tr.appendChild(weatherIconCell);
+                    // 天気のマークを表示する部分は削除
 
                     const tempMinCell = document.createElement('td');
                     tempMinCell.textContent = tempMinData[i] + '℃';
@@ -100,26 +81,27 @@ function fetchWeatherData(lat, lon) {
                     tr.appendChild(pressureCell);
 
                     if ((previousPressure !== null && (previousPressure - pressureData[i]) >= 5) || pressureData[i] <= 1000) {
-                        const warningCell = document.createElement('td');
-                        warningCell.colSpan = 5;
-                        warningCell.style.color = "red";
-                        warningCell.textContent = "注意: ";
+                        warningMessage = "注意: ";
                         if (previousPressure !== null && (previousPressure - pressureData[i]) >= 5) {
-                            warningCell.textContent += "昨日と比べて気圧が5hPa以上下がっています。";
+                            warningMessage += "昨日と比べて気圧が5hPa以上下がっています。";
                         }
                         if (pressureData[i] <= 1000) {
-                            warningCell.textContent += "気圧が1000hPaを切っています。";
+                            warningMessage += "気圧が1000hPaを切っています。";
                         }
-                        warningCell.textContent += "首や腰の痛みを感じる可能性があります。";
-                        tr.insertAdjacentElement('afterend', warningCell);
+                        warningMessage += "首や腰の痛みを感じる可能性があります。";
                     }
 
                     previousPressure = pressureData[i];
                     weatherDataElement.appendChild(tr);
                 }
 
-                // アドバイスを表示
                 const adviceElement = document.querySelector('.advice-box p');
+                if (warningMessage) {
+                    const warningElement = document.createElement('p');
+                    warningElement.style.color = "red";
+                    warningElement.textContent = warningMessage;
+                    adviceElement.insertAdjacentElement('beforebegin', warningElement);
+                }
                 adviceElement.textContent = getDailyAdvice();
             }
         })
@@ -142,7 +124,7 @@ function showPosition(position) {
 
     getCityName(lat, lon).then(cityName => {
         if(cityName) {
-            document.getElementById("locationTitle").textContent = `${cityName}の1週間の天気予報`;
+            document.getElementById("locationTitle").textContent = `${cityName}の1週間の予報`;
             fetchWeatherData(lat, lon);
         }
     });

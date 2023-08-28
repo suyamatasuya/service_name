@@ -322,6 +322,18 @@ ja:
       complete_button:
         complete: "完了"
         completed: "完了済み"
+  weather:
+    titles:
+      main: "気圧痛み予報"
+      location: "現在地の1週間の予報"
+      advice: "本日の一言"
+    description:
+      short: "気圧の変動は体調に影響を与えることがあります。特に急な気圧の下降は関節や筋肉に痛みを引き起こす可能性があります。この情報を用いて、痛みの発生を未然に防いでください。"
+    table_headers:
+      date: "日付"
+      min_temp: "最低気温"
+      max_temp: "最高気温"
+      pressure: "気圧"
 
 
 
