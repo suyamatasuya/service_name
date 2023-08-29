@@ -1,23 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-  <%= javascript_pack_tag 'home' %>
   <%= stylesheet_link_tag 'home' %>
 </head>
 
 <body>
-  <div class="left-text">
-    <p><%= t('home.phrase1') %></p>
-    <p><%= t('home.phrase2') %></p>
-    <p><%= t('home.phrase3') %></p>
-  </div>
-  <div class="center-line">
-    <div class="title-text"><%= t('home.title') %></div>
-    <%= link_to t('home.start_diagnosis'), symptoms_path, class: 'cta-button' %>
-    <%= link_to t('home.discussion_board'), posts_path, class: 'board-link' %>
-    <p class="care-records-link"><%= t('home.care_records') %></p>
-    <%= link_to '東京の1週間天気予報', weather_path %>
-  </div>
+    <div class="container">
+        <div class="left-image">
+            <%= image_tag '26101164_m.jpg', alt: t('home.image_description') %>
+        </div>
+        <div class="right-content">
+            <div class="main-title"><%= t('home.main_title') %></div>
+        </div>
+    </div>
+    <div class="about-container">
+        <div class="about-title"><%= t('home.about_title') %></div>
+        <div class="about-content">
+            <div class="app-description-section">
+                <div class="app-description-title"><%= t('home.app_description_title') %></div>
+                <div class="app-description-text">
+                    <%= t('home.app_description_text.intro') %>
+                    <ul>
+                        <li><%= t('home.app_description_text.feature1') %></li>
+                        <li><%= t('home.app_description_text.feature2') %></li>
+                        <li><%= t('home.app_description_text.feature3') %></li>
+                        <li><%= t('home.app_description_text.feature4') %></li>
+                    </ul>
+                    <%= t('home.app_description_text.outro') %>
+                </div>
+            </div>
+            <div class="app-image-section">
+                <%= image_tag '4667358_s.jpg', alt: t('home.app_image_description') %>
+            </div>
+        </div>
+    </div>
+    <div class="scrolling-links">
+      <div class="services-title"><%= t('home.services_title') %></div>
+      <a href="<%= symptoms_path %>"><%= t('home.services.symptom') %></a>
+      <a href="<%= care_records_path %>"><%= t('home.services.care_records') %></a>
+      <a href="<%= weather_index_path %>"><%= t('home.services.weather') %></a>
+      <a href="<%= posts_path %>"><%= t('home.services.posts') %></a>
+    </div>
 </body>
+
+</html>
