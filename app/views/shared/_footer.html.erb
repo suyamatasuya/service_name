@@ -4,9 +4,12 @@
 <body>
     <footer id="footer">
         <div class="myOwnClass">
-            <div class="d-flex justify-content-center">
-                <%= link_to t('shared_footer.terms_of_service'), terms_of_service_index_path, style: "text-decoration: none; color: #333;" %>
-                <%= link_to t('shared_footer.privacy_policy'), privacy_policy_path, style: "text-decoration: none; color: #333;" %>
+            <div class="d-flex justify-content-center link-section">
+                <%= link_to t('shared_footer.terms_of_service'), terms_of_service_index_path %>
+                <%= link_to t('shared_footer.privacy_policy'), privacy_policy_path %>
+            </div>
+            <div class="d-flex justify-content-center copyright-section">
+                <p>&copy; <%= Time.now.year %> なごみ首腰：痛みケアナビ All rights reserved.</p>
             </div>
         </div>
     </footer>
