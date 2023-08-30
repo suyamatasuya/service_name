@@ -21,14 +21,20 @@ function createChartConfig(dates, data, label, color) {
         options: {
             scales: {
                 x: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(128, 128, 128, 0.1)'  // グリッドラインの色
+                    }
                 },
                 y: {
                     beginAtZero: true,
                     suggestedMax: 5,
+                    grid: {
+                        color: 'rgba(128, 128, 128, 0.1)'  // グリッドラインの色
+                    },
                     ticks: {
                         callback: function(value, index, values) {
-                            return faceScaleToEmoji(value); // この部分で縦軸のラベルを顔文字に変更
+                            return faceScaleToEmoji(value);
                         }
                     }
                 }
@@ -62,15 +68,14 @@ $(document).ready(function() {
         new Chart(neckCtx, createChartConfig(neckDates, neckAverages, '首のケア記録', 'rgb(255, 99, 132)'));
         new Chart(backCtx, createChartConfig(backDates, backAverages, '腰のケア記録', 'rgb(54, 162, 235)'));
 
-        // タブの切り替え処理
-        $('#neckTab').on('click', function() {
-            $('.tab, .chart').removeClass('active');
-            $('#neckTab, #neckCareRecordsChart').addClass('active');
+        $('#neck-tab').on('click', function() {
+            $('.tab-pane, .chart').removeClass('active');
+            $('#neck, #neckCareRecordsChart').addClass('active');
         });
 
-        $('#backTab').on('click', function() {
-            $('.tab, .chart').removeClass('active');
-            $('#backTab, #backCareRecordsChart').addClass('active');
+        $('#back-tab').on('click', function() {
+            $('.tab-pane, .chart').removeClass('active');
+            $('#back, #backCareRecordsChart').addClass('active');
         });
     });
 });

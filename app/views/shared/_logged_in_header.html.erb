@@ -1,8 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag 'shared_logged_in_header' %>
   <%= javascript_pack_tag 'logged_in_header' %>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"> <!-- 和風のフォントを追加 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <nav class="navbar">
     <%= link_to root_path, class: 'navbar-title' do %>
@@ -11,7 +17,6 @@
         <span class="logo-sub">痛みケアナビ</span>
       </div>
     <% end %>
-    <!-- Hamburger menu -->
     <div class="hamburger">
       <div></div>
       <div></div>
@@ -21,12 +26,13 @@
 
   <!-- Sidebar -->
   <div id="mySidebar" class="side-bar">
-    <a href="#" class="nav-link"><%= t('logged_in_header.how_to_use') %></a>
     <%= link_to t('logged_in_header.logout'), logout_path, method: :delete, class: "nav-link" %>
-    <%= link_to t('logged_in_header.start_diagnosis'), symptoms_path, class: "nav-link" %>
-    <%= link_to t('logged_in_header.bulletin_board'), posts_path, class: "nav-link" %>
-    <p class="nav-link"><%= t('logged_in_header.record_daily_care') %></p>
+    <%= link_to t('home.services.symptom'), symptoms_path, class: "nav-link" %>
     <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link" %>
+    <%= link_to t('home.services.care_records'), care_records_path, class: "nav-link" %>
+    <%= link_to t('home.services.weather'), weather_index_path, class: "nav-link" %>
+    <%= link_to t('home.services.posts'), posts_path, class: "nav-link" %>
   </div>
-  <!-- Content goes here -->
 </body>
+
+</html>
