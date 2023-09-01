@@ -4,7 +4,6 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 window.Calendar = Calendar;
 window.dayGridPlugin = dayGridPlugin;
 
-
 function careTypeToJapanese(care_type) {
   var careTypeTranslations = {
     "strength_training": "筋トレ",
@@ -28,9 +27,29 @@ function faceScaleToEmoji(face_scale) {
 
 $(document).ready(function() {
   var calendarEl = document.getElementById('calendar');
-
   var myModal = new bootstrap.Modal(document.getElementById('careRecordModal'));
   var completionModal = new bootstrap.Modal(document.getElementById('completionModal'));
+
+  var fetchCareRecords = function(calendar) {
+    calendar.removeAllEvents();
+    $.get("/api/care_records", function(data) {
+      data.forEach(function(care_record) {
+        var title = careTypeToJapanese(care_record.care_type);
+        if (care_record.symptom) {
+          title = care_record.symptom === 'neck' ? '首: ' + title : '腰: ' + title;
+        }
+        if (care_record.completed && care_record.face_scale !== null) {
+          title += " - " + faceScaleToEmoji(care_record.face_scale); 
+        }
+        calendar.addEvent({
+          id: care_record.id,
+          title: title,
+          start: care_record.date,
+          color: care_record.completed ? 'green' : 'lightblue'
+        });
+      });
+    });
+  };
 
   var calendar = new Calendar(calendarEl, {
     plugins: [ dayGridPlugin ],
@@ -63,16 +82,13 @@ $(document).ready(function() {
         }
         $("#careRecordModal .modal-body").text(details);
         $("#careRecordModal").data('record-id', info.event.id);
-        var myModal = new bootstrap.Modal(document.getElementById('careRecordModal'));
         myModal.show();
-
       });
     }
   });
 
   calendar.render();
-
-  // 以下のコードは変更なしで継続します
+  fetchCareRecords(calendar);
 
   $("#edit-button").click(function() {
     var recordId = $("#careRecordModal").data('record-id');
@@ -86,7 +102,7 @@ $(document).ready(function() {
       type: 'DELETE',
       success: function(result) {
         myModal.hide();
-        fetchCareRecords();
+        fetchCareRecords(calendar);
       }
     });
   });
@@ -102,32 +118,9 @@ $(document).ready(function() {
         type: 'POST',
         data: { face_scale: faceScale },
         success: function(result) {
-          fetchCareRecords();
+          fetchCareRecords(calendar);
         }
       });
     });
   });
-
-  var fetchCareRecords = function() {
-    calendar.removeAllEvents();
-    $.get("/api/care_records", function(data) {
-      data.forEach(function(care_record) {
-        var title = careTypeToJapanese(care_record.care_type);
-        if (care_record.symptom) {
-            title = care_record.symptom === 'neck' ? '首: ' + title : '腰: ' + title;
-        }
-        if (care_record.completed && care_record.face_scale !== null) {
-          title += " - " + faceScaleToEmoji(care_record.face_scale); 
-        }
-        calendar.addEvent({
-          id: care_record.id,
-          title: title,
-          start: care_record.date,
-          color: care_record.completed ? 'green' : 'lightblue'
-        });
-      });
-    });
-  };
-
-  fetchCareRecords();
 });

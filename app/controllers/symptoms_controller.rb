@@ -1,70 +1,82 @@
-class SymptomsController < ApplicationController
+# frozen_string_literal: true
 
+# SymptomsController handles the CRUD operations for Symptoms.
+class SymptomsController < ApplicationController
+  # Ensures the user is logged in.
   def require_login
-    unless logged_in? # Sorceryによって提供されるメソッド
-      flash[:alert] = t('controllers.symptoms.require_login.alert')
-      redirect_to request.referrer || root_url # リファラー（直前のページ）にリダイレクト。リファラーがない場合はroot_urlにリダイレクト。
-    end
-  end  
-  
+    return if logged_in?
+
+    flash[:alert] = t('controllers.symptoms.require_login.alert')
+    redirect_to request.referrer || root_url
+  end
+
+  # Displays a list of all symptoms.
   def index
     @symptoms = Symptom.all
   end
 
+  # Initializes a new symptom.
   def new
     @symptom = Symptom.new
   end
 
+  # Creates a new symptom.
   def create
-    if current_user
-      @symptom = current_user.symptoms.new(symptom_params.merge(current_step: 'pain_location'))
-    else
-      @symptom = Symptom.new(symptom_params.merge(current_step: 'pain_location'))
-    end
-    if @symptom.save
-      session[:symptom_id] = @symptom.id # セッションにsymptom_idを格納
-      puts "Debug: Stored symptom_id in session = #{session[:symptom_id]}" # デバッグ出力
-      redirect_to symptom_step_path(@symptom, :pain_location)
-    else
-      puts "Error: Symptom not saved"
-      puts "Params: #{params.inspect}"
-      puts @symptom.errors.full_messages
-      render :new
-    end
-  end  
+    initialize_symptom
+    process_create
+  end
 
+  # Updates an existing symptom.
   def update
     @symptom = Symptom.find(params[:symptom_id])
-    @symptom.update(symptom_params)
-    
-    if @symptom.valid?
-      # バリデーションが成功した場合の処理
-      if step == steps.last
-        # 最後のステップの場合、結果を生成して表示するなどの処理を行う
-        redirect_to finish_wizard_path
-      else
-        # 次のステップに進む
-        render_wizard @symptom
-      end
+    process_update
+  end
+
+  # Generates care methods based on the symptom's attributes.
+  def generate_care_methods
+    @symptom = Symptom.find(params[:id])
+    @care_methods = @symptom.generate_care_methods
+    @show_map = @symptom.pain_intensity.between?(8, 10)
+  end
+
+  private
+
+  # Initializes a new symptom.
+  def initialize_symptom
+    @symptom = if current_user
+                 current_user.symptoms.new(symptom_params.merge(current_step: 'pain_location'))
+               else
+                 Symptom.new(symptom_params.merge(current_step: 'pain_location'))
+               end
+  end
+
+  # Processes the creation of a new symptom.
+  def process_create
+    if @symptom.save
+      handle_successful_create
     else
-      # バリデーションが失敗した場合の処理
-      render_wizard @symptom
+      handle_failed_create
     end
   end
 
-  def generate_care_methods
-    @symptom = Symptom.find(params[:id])
-    puts "Found symptom: #{@symptom.inspect}"
-    puts "Pain start time: #{@symptom.pain_start_time}"
-    puts @symptom.generate_care_methods.inspect
-    @care_methods = @symptom.generate_care_methods
-
-    # 追加：地図の表示制御のためのインスタンス変数を設定
-    @show_map = @symptom.pain_intensity >= 8 && @symptom.pain_intensity <= 10
+  # Handles a successful creation of a new symptom.
+  def handle_successful_create
+    session[:symptom_id] = @symptom.id
+    redirect_to symptom_step_path(@symptom, :pain_location)
   end
-  
-  private
 
+  # Handles a failed creation of a new symptom.
+  def handle_failed_create
+    render :new
+  end
+
+  # Processes the update of an existing symptom.
+  def process_update
+    @symptom.update(symptom_params)
+    render_wizard @symptom
+  end
+
+  # Strong parameters for symptom.
   def symptom_params
     params.require(:symptom).permit(:pain_location, :pain_type, :pain_intensity, :pain_start_time, :injury_related)
   end

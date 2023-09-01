@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
+# CareRecordsController handles the CRUD operations for CareRecords.
 class CareRecordsController < ApplicationController
   before_action :require_login
-  before_action :set_care_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_care_record, only: %i[show edit update destroy]
 
   def index
     @care_records = current_user.care_records
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @care_record = current_user.care_records.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @care_record = current_user.care_records.build(care_record_params)
@@ -40,12 +41,12 @@ class CareRecordsController < ApplicationController
   end
 
   private
-    
-    def set_care_record
-      @care_record = current_user.care_records.find(params[:id])
-    end
 
-    def care_record_params
-      params.require(:care_record).permit(:date, :care_type, :duration, :notes, :symptom)
-    end
+  def set_care_record
+    @care_record = current_user.care_records.find(params[:id])
+  end
+
+  def care_record_params
+    params.require(:care_record).permit(:date, :care_type, :duration, :notes, :symptom)
+  end
 end

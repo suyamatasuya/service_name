@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserCareHistory < ApplicationRecord
   belongs_to :user
   belongs_to :care_method

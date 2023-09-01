@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
+# CareMethodsController handles the CRUD operations for CareMethods.
 class CareMethodsController < ApplicationController
-  before_action :set_care_method, only: [:show, :edit, :update, :destroy]
+  before_action :set_care_method, only: %i[show edit update destroy]
 
   def new
     @care_method = CareMethod.new
     @symptoms = Symptom.all
   end
-  
+
   def create
     @care_method = CareMethod.new(care_method_params)
     @symptoms = Symptom.all
@@ -16,14 +19,13 @@ class CareMethodsController < ApplicationController
       flash.now[:alert] = t('controllers.care_methods.create.failure')
       render :new
     end
-  end  
+  end
 
   def show
     @care_methods = CareMethod.all
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @care_method.update(care_method_params)
@@ -36,12 +38,12 @@ class CareMethodsController < ApplicationController
   def index
     @care_methods = CareMethod.all
   end
-  
+
   def destroy
     @care_method.destroy
     redirect_to care_methods_path, notice: t('controllers.care_methods.destroy.success')
   end
-  
+
   private
 
   def set_care_method

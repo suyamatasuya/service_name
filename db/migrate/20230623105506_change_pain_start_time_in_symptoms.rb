@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangePainStartTimeInSymptoms < ActiveRecord::Migration[6.1]
   def up
     change_column :symptoms, :pain_start_time, :string
