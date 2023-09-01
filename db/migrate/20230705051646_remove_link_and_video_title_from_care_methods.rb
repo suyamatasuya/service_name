@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveLinkAndVideoTitleFromCareMethods < ActiveRecord::Migration[6.1]
   def change
     remove_column :care_methods, :link, :string

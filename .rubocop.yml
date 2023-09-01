@@ -1,0 +1,27 @@
+Style/Documentation:
+  Enabled: false
+  Exclude:
+    - "db/migrate/*.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "db/schema.rb"
+    - 'config/routes.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/models/symptom.rb'
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/models/symptom.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/symptom.rb'
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'app/models/symptom.rb'
+
+AllCops:
+  Exclude:
+    - 'bin/bundle'
+    - 'vendor/**/*'

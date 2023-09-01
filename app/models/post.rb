@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   belongs_to :user
   has_many :favourites, dependent: :destroy
@@ -5,5 +7,4 @@ class Post < ApplicationRecord
 
   validates :content, presence: true
   validates :content, length: { minimum: 5, maximum: 500 }
-
 end

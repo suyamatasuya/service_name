@@ -1,20 +1,16 @@
-class PostsController < ApplicationController
-  before_action :require_login, only: [:new, :create, :edit, :update, :favourite, :unfavourite]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :favourite, :unfavourite]
+# frozen_string_literal: true
 
+# PostsController handles CRUD operations for Posts.
+class PostsController < ApplicationController
+  before_action :require_login, only: %i[new create edit update favourite unfavourite]
+  before_action :set_post, only: %i[show edit update destroy favourite unfavourite]
+
+  # Displays a list of posts based on search and sorting parameters.
   def index
-    @posts = if params[:search].present?
-               Post.where('content LIKE ?', "%#{params[:search]}%")
-             elsif params[:sort_by_favourites].present?
-               Post.left_joins(:favourites).group(:id).order('COUNT(favourites.id) DESC')
-             else
-               Post.order(created_at: :desc)
-             end.page(params[:page]).per(10)
+    @posts = fetch_posts.page(params[:page]).per(10)
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end  
+  def show; end
 
   def new
     @post = Post.new
@@ -22,24 +18,13 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save
-      redirect_to posts_path, notice: t('controllers.posts.create.success')
-    else
-      flash.now[:error] = t('controllers.posts.create.failure')
-      render :index
-    end
+    process_create
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @post.update(post_params)
-      redirect_to posts_path, notice: t('controllers.posts.update.success')
-    else
-      flash.now[:error] = t('controllers.posts.update.failure')
-      render :edit
-    end
+    process_update
   end
 
   def destroy
@@ -51,14 +36,42 @@ class PostsController < ApplicationController
     @post.favourites.create(user_id: current_user.id)
     render json: { favourites_count: @post.favourites.count }
   end
-  
+
   def unfavourite
     favourite = @post.favourites.find_by(user_id: current_user.id)
-    favourite.destroy if favourite
+    favourite&.destroy
     render json: { favourites_count: @post.favourites.count }
   end
-  
+
   private
+
+  def fetch_posts
+    if params[:search].present?
+      Post.where('content LIKE ?', "%#{params[:search]}%")
+    elsif params[:sort_by_favourites].present?
+      Post.left_joins(:favourites).group(:id).order('COUNT(favourites.id) DESC')
+    else
+      Post.order(created_at: :desc)
+    end
+  end
+
+  def process_create
+    if @post.save
+      redirect_to posts_path, notice: t('controllers.posts.create.success')
+    else
+      flash.now[:error] = t('controllers.posts.create.failure')
+      render :index
+    end
+  end
+
+  def process_update
+    if @post.update(post_params)
+      redirect_to posts_path, notice: t('controllers.posts.update.success')
+    else
+      flash.now[:error] = t('controllers.posts.update.failure')
+      render :edit
+    end
+  end
 
   def set_post
     @post = Post.find(params[:id])

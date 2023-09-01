@@ -1,5 +1,9 @@
 let warningMessage = "";
 
+document.addEventListener("turbolinks:load", function() {
+    getLocation();
+});
+
 function getGoogleAPIKey() {
     return fetch("/weather/google_api_key")
         .then(response => response.json())
@@ -146,5 +150,3 @@ function showError(error) {
             break;
     }
 }
-
-window.onload = getLocation;

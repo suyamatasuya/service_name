@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCareRecords < ActiveRecord::Migration[6.1]
   def change
     create_table :care_records do |t|

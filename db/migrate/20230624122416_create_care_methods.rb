@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCareMethods < ActiveRecord::Migration[6.1]
   def change
     create_table :care_methods do |t|
