@@ -135,18 +135,26 @@ function showPosition(position) {
 }
 
 function showError(error) {
+    let defaultLat = 35.6895; // 東京の緯度
+    let defaultLon = 139.6917; // 東京の経度
+    let defaultCityName = "東京";
+
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
+            console.warn("User denied the request for Geolocation. Displaying weather data for the default location.");
             break;
         case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
+            console.warn("Location information is unavailable. Displaying weather data for the default location.");
             break;
         case error.TIMEOUT:
-            alert("The request to get user location timed out.");
+            console.warn("The request to get user location timed out. Displaying weather data for the default location.");
             break;
         case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
+            console.warn("An unknown error occurred. Displaying weather data for the default location.");
             break;
     }
+
+    // エラーが発生した場合、デフォルトの地域（東京）の天気情報を表示
+    document.getElementById("locationTitle").textContent = `${defaultCityName}の1週間の予報`;
+    fetchWeatherData(defaultLat, defaultLon);
 }
