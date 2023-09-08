@@ -10,28 +10,29 @@ body {
   right: 0;
   height: 100px;
   width: 100%;
-  background-color: #B2D8B2; // 薄い抹茶色
+  background-color: #B2D8B2; /* 薄い抹茶色 */
   z-index: 999;
   display: flex;
   align-items: center;
-  justify-content: space-between; // flex-endから変更
+  justify-content: space-between; /* flex-endから変更 */
 }
 
 .logo {
-  font-family: 'Noto Serif JP', serif; // 和風のフォントに変更
+  font-family: 'Noto Serif JP', serif; /* 和風のフォントに変更 */
   display: inline-flex;
   align-items: center;
 }
 
 .logo-main, .logo-sub {
-  font-size: 24px; // 両方の文字サイズを同じに設定
-  color: #fff; // 伝統的な和風の色に変更
+  font-size: 24px; /* 両方の文字サイズを同じに設定 */
+  color: #fff; /* 伝統的な和風の色に変更 */
   margin-right: 5px;
 }
 
 .navbar-links {
   color: #fff;
   margin-right: 15px;
+  display: none; /* 追加 */
 }
 
 .side-bar {
@@ -42,7 +43,6 @@ body {
   width: 0;
   background-color: #f8f9fa;
   overflow: auto;
-  transition: width 0.5s;
   z-index: 1000;
 }
 
@@ -58,8 +58,7 @@ body {
   padding: 15px;
   height: 80px;
   line-height: 70px;
-  transition: color 0.3s;
-  font-family: 'Noto Serif JP', serif; // この行を追加
+  font-family: 'Noto Serif JP', serif; /* この行を追加 */
 }
 
 .side-bar a:hover {
@@ -69,7 +68,7 @@ body {
 .hamburger {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around; /* ここをspace-aroundに変更 */
   width: 30px;
   height: 20px;
   margin-right: 15px;
@@ -78,7 +77,20 @@ body {
 
 .hamburger div {
   height: 4px;
-  background: #fff; // タイトルの色に合わせる
+  background: #fff; /* タイトルの色に合わせる */
+  transition: transform 0.3s, opacity 0.3s; /* ここを追加 */
+}
+
+.hamburger.open div:nth-child(1) {
+  transform: translateY(8px) rotate(45deg); /* ここを追加 */
+}
+
+.hamburger.open div:nth-child(2) {
+  opacity: 0; /* ここを追加 */
+}
+
+.hamburger.open div:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg); /* ここを追加 */
 }
 
 @media screen and (max-width: 768px) {

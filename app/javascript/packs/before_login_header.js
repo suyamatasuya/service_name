@@ -5,6 +5,7 @@ document.addEventListener("turbolinks:load", (event) => {
 
   if (hamburger && sideBar && navbarLinks.length > 0) {
     hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("open");
       sideBar.style.width = sideBar.style.width === '250px' ? '0' : '250px';
       for (let link of navbarLinks) {
         link.style.display = sideBar.style.width === '250px' ? 'block' : 'none';
