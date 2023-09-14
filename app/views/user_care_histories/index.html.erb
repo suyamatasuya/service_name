@@ -1,87 +1,119 @@
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <%= stylesheet_link_tag 'user_care_histories' %>
-    <%= javascript_pack_tag 'user_care_histories' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <%= stylesheet_link_tag 'user_care_histories' %>
+  <%= javascript_pack_tag 'user_care_histories' %>
 </head>
 <body>
-    <div class="container py-5">
-      <h1 class="mb-5 text-center"><%= t('user_care_histories.title') %></h1>
+  <div class="container py-5">
+    <h1 class="mb-5 text-center"><%= t('user_care_histories.title') %></h1>
 
-      <table class="table table-striped">
-        <thead>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t('user_care_histories.table.diagnosis') %></th>
+          <th><%= t('user_care_histories.table.care_content') %></th>
+          <th><%= t('user_care_histories.table.date_proposed') %></th>
+          <th><%= t('user_care_histories.table.symptoms') %></th>
+          <th><%= t('user_care_histories.table.related_videos') %></th>
+          <th><%= t('user_care_histories.table.actions') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_care_histories.each do |history| %>
           <tr>
-            <th><%= t('user_care_histories.table.diagnosis') %></th>
-            <th><%= t('user_care_histories.table.care_content') %></th>
-            <th><%= t('user_care_histories.table.date_proposed') %></th>
-            <th><%= t('user_care_histories.table.symptoms') %></th>
-            <th><%= t('user_care_histories.table.related_videos') %></th>
-            <th><%= t('user_care_histories.table.actions') %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user_care_histories.each do |history| %>
-            <tr>
-              <td><%= history.care_method.name %></td>
-              <td>
+            <td><%= history.care_method.name %></td>
+            <td>
+              <!-- Trigger modal with a button -->
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#descModal<%= history.id %>"><%= t('user_care_histories.modal.details') %></button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="descModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><strong><%= history.care_method.name %></strong></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="<%= t('user_care_histories.modal.close') %>">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <% history.care_method.description.split(' ').each do |sentence| %>
+                        <% if sentence.present? %>
+                          <p><%= sentence %></p>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td><%= l(history.care_received_date, format: "%Y年%m月%d日") %></td>
+            <td><%= history.symptom.pain_type %>,<%= history.symptom.pain_location %></td>
+            <td>
+              <!-- Only show the Details button if there are video links -->
+              <% if history.care_method.video_links.present? %>
                 <!-- Trigger modal with a button -->
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#descModal<%= history.id %>"><%= t('user_care_histories.modal.details') %></button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="descModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoModal<%= history.id %>"><%= t('user_care_histories.modal.video_list') %></button>
+                
+                <!-- Video Modal -->
+                <div class="modal fade" data-video-modal id="videoModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><%= history.care_method.name %> </h5>
+                        <h5 class="modal-title" id="videoModalLabel"><%= history.care_method.name %></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="<%= t('user_care_histories.modal.close') %>">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body">
-                        <%= history.care_method.description.split(' ').map { |s| "<p>#{s.strip}</p>" }.join.html_safe %>
+                      <div class="modal-body text-center">
+                        <!-- Video links -->
+                        <% history.care_method.video_links.each_with_index do |video, index| %>
+                          <div class="mb-4 text-center">
+                            <strong><%= history.care_method.video_titles[index] %></strong><br>
+                            <iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/<%= extract_video_id(video) %>" data-src="https://www.youtube-nocookie.com/embed/<%= extract_video_id(video) %>" frameborder="0" allowfullscreen class="mx-auto d-block"></iframe>
+                          </div>
+                        <% end %>
                       </div>
                     </div>
                   </div>
                 </div>
-              </td>
-              <td><%= history.care_received_date %></td>
-              <td><%= history.symptom.pain_type %> pain in <%= history.symptom.pain_location %></td>
-              <td>
-                <!-- Only show the Details button if there are video links -->
-                <% if history.care_method.video_links.present? %>
-                  <!-- Trigger modal with a button -->
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#videoModal<%= history.id %>"><%= t('user_care_histories.modal.video_list') %></button>
-
-                  <!-- Video Modal -->
-                  <div class="modal fade" id="videoModal<%= history.id %>" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="videoModalLabel"><%= history.care_method.name %></h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="<%= t('user_care_histories.modal.close') %>">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <!-- Video links -->
-                          <% history.care_method.video_links.each_with_index do |video, index| %>
-                            <div class="mb-4">
-                              <strong><%= history.care_method.video_titles[index] %></strong><br>
-                              <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/<%= extract_video_id(video) %>" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              </td>
-              <!-- Delete button -->
-              <td>
-                <%= link_to t('user_care_histories.table.delete'), user_care_history_path(history), method: :delete, data: { confirm: t('user_care_histories.table.confirm_delete') } %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+              <% end %>
+            </td>
+            <!-- Delete button -->
+            <td>
+              <%= link_to t('user_care_histories.table.delete'), user_care_history_path(history), method: :delete, data: { confirm: t('user_care_histories.table.confirm_delete') } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var videoModals = document.querySelectorAll('.modal[data-video-modal]');
+      
+      videoModals.forEach(function(modal) {
+        var videoFrames = modal.querySelectorAll('iframe');
+        
+        $(modal).on('shown.bs.modal', function () {
+          videoFrames.forEach(function(frame) {
+            frame.src = frame.dataset.src;
+          });
+        });
+        
+        $(modal).on('hidden.bs.modal', function () {
+          videoFrames.forEach(function(frame) {
+            frame.dataset.src = frame.src;
+            frame.src = '';
+          });
+        });
+      });
+    });
+  </script>
 </body>
