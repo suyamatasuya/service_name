@@ -1,19 +1,14 @@
-<head>
-    <title><%= @post.content %></title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-    <%= stylesheet_link_tag 'posts_show' %>
-
-    <!-- Twitter Card metadata -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@your_twitter_username">
-    <meta name="twitter:title" content="<%= t('posts.show.details') %>">
-    <meta name="twitter:description" content="<%= t('posts.show.click_link') %>">
-    <% if @post.pain_location == "首" %>
-        <meta name="twitter:image" content="<%= asset_url('11514_color (2).png') %>">
-    <% elsif @post.pain_location == "腰" %>
-        <meta name="twitter:image" content="<%= asset_url('11581_color (1) (1).png') %>">
-    <% end %>
-</head>
+<%= stylesheet_link_tag 'posts_show' %>
+<!-- Twitter Card metadata -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@your_twitter_username">
+<meta name="twitter:title" content="<%= t('posts.show.details') %>">
+<meta name="twitter:description" content="<%= t('posts.show.click_link') %>">
+<% if @post.pain_location == "首" %>
+  <meta name="twitter:image" content="<%= asset_url('11514_color (2).png') %>">
+<% elsif @post.pain_location == "腰" %>
+  <meta name="twitter:image" content="<%= asset_url('11581_color (1) (1).png') %>">
+<% end %>
 <body class="d-flex flex-column min-vh-100 page-container">
     <div class="container d-flex flex-column align-items-center justify-content-center">
         <div class="title"><%= t('posts.show.details') %></div>

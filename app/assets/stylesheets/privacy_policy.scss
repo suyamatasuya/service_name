@@ -7,6 +7,8 @@ body {
   
   h2, .start-button {
     color: #c5a35a;
+    margin-top: 0;
+    padding-top: 70px;
   }
   
   .start-button.clicked {
@@ -26,4 +28,6 @@ body {
     height: 150vh;
     overflow: auto;
   }
+
+
 

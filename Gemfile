@@ -54,8 +54,6 @@ end
 gem 'bootstrap', '~> 4.3.1'
 gem 'dockerfile-rails', '>= 1.4', group: :development
 gem 'dotenv-rails', groups: %i[development test]
-gem 'google-apis-fcm_v1'
-gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'rails-i18n', '~> 6.0.0'

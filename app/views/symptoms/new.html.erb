@@ -1,30 +1,24 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'symptoms_new' %>
-  <%= javascript_pack_tag 'symptoms_new' %>
-</head>
-<body>
-  <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-    <h1 class="text-center title"><%= t('symptoms_new.title') %></h1>
-    <h2 class="text-center instruction"><%= t('symptoms_new.instruction') %></h2>
-    <%= form_with model: @symptom, url: symptoms_path, method: :post, local: true do |f| %>
-    <%= f.hidden_field :pain_location %>
-    <div class="d-flex justify-content-around flex-wrap" style="width: 100%; max-width: 600px;">
-      <label for="neck" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == t('symptoms_new.neck') %>">
-        <%= f.radio_button :pain_location, t('symptoms_new.neck'), style: 'display:none', id: 'neck', class: 'form-check-input' %>
-        <%= image_tag('11514_color.png', alt: t('symptoms_new.neck'), class: 'img-thumbnail') %>
-        <%= t('symptoms_new.neck') %>
-      </label>
-      <label for="waist" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == t('symptoms_new.waist') %>">
-        <%= f.radio_button :pain_location, t('symptoms_new.waist'), style: 'display:none', id: 'waist', class: 'form-check-input' %>
-        <%= image_tag('11581_color.png', alt: t('symptoms_new.waist'), class: 'img-thumbnail') %>
-        <%= t('symptoms_new.waist') %>
-      </label>
-    </div>
-    <div class="text-center mt-3">
-      <%= f.submit t('symptoms_new.next'), class: 'btn btn-primary btn-lg custom-button' %>
-    </div>
-    <% end %>
+<%= stylesheet_link_tag 'symptoms_new' %>
+<%= javascript_pack_tag 'symptoms_new' %>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+  <h1 class="text-center title"><%= t('symptoms_new.title') %></h1>
+  <h2 class="text-center instruction"><%= t('symptoms_new.instruction') %></h2>
+  <%= form_with model: @symptom, url: symptoms_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :pain_location %>
+  <div class="d-flex justify-content-around flex-wrap" style="width: 100%; max-width: 600px;">
+    <label for="neck" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == t('symptoms_new.neck') %>">
+      <%= f.radio_button :pain_location, t('symptoms_new.neck'), style: 'display:none', id: 'neck', class: 'form-check-input' %>
+      <%= image_tag('11514_color.png', alt: t('symptoms_new.neck'), class: 'img-thumbnail') %>
+      <%= t('symptoms_new.neck') %>
+    </label>
+    <label for="waist" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == t('symptoms_new.waist') %>">
+      <%= f.radio_button :pain_location, t('symptoms_new.waist'), style: 'display:none', id: 'waist', class: 'form-check-input' %>
+      <%= image_tag('11581_color.png', alt: t('symptoms_new.waist'), class: 'img-thumbnail') %>
+      <%= t('symptoms_new.waist') %>
+    </label>
   </div>
-</body>
+  <div class="text-center mt-3">
+    <%= f.submit t('symptoms_new.next'), class: 'btn btn-primary btn-lg custom-button' %>
+  </div>
+  <% end %>
+</div>

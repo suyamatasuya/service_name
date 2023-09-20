@@ -1,16 +1,12 @@
-<head>
-  <%= stylesheet_link_tag 'footer' %>
-</head>
-<body>
-    <footer id="footer">
-        <div class="myOwnClass">
-            <div class="d-flex justify-content-center link-section">
-                <%= link_to t('shared_footer.terms_of_service'), terms_of_service_index_path %>
-                <%= link_to t('shared_footer.privacy_policy'), privacy_policy_path %>
-            </div>
-            <div class="d-flex justify-content-center copyright-section">
-                <p>&copy; <%= Time.now.year %> なごみ首腰：痛みケアナビ All rights reserved.</p>
-            </div>
+<%= stylesheet_link_tag 'footer' %>
+<footer id="footer">
+    <div class="myOwnClass">
+        <div class="d-flex justify-content-center link-section">
+            <%= link_to t('shared_footer.terms_of_service'), terms_of_service_index_path %>
+            <%= link_to t('shared_footer.privacy_policy'), privacy_policy_path %>
         </div>
-    </footer>
-</body>
+        <div class="d-flex justify-content-center copyright-section">
+            <p>&copy; <%= Time.now.year %> なごみ首腰：痛みケアナビ All rights reserved.</p>
+        </div>
+    </div>
+</footer>
