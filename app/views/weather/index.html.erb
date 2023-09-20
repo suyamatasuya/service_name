@@ -1,36 +1,29 @@
 <%= stylesheet_link_tag 'weather' %>
 <%= javascript_pack_tag 'weather' %>
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <h1 id="fixedTitle"><%= t('weather.titles.main') %></h1>
+<h1 id="fixedTitle"><%= t('weather.titles.main') %></h1>
   
-  <h2 id="locationTitle"><%= t('weather.titles.location') %></h2>
+<h2 id="locationTitle"><%= t('weather.titles.location') %></h2>
   
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th><%= t('weather.table_headers.date') %></th>
-          <th><%= t('weather.table_headers.min_temp') %></th>
-          <th><%= t('weather.table_headers.max_temp') %></th>
-          <th><%= t('weather.table_headers.pressure') %></th>
-        </tr>
-      </thead>
-      <tbody id="weatherData">
-      </tbody>
-    </table>
-  </div>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('weather.table_headers.date') %></th>
+        <th><%= t('weather.table_headers.min_temp') %></th>
+        <th><%= t('weather.table_headers.max_temp') %></th>
+        <th><%= t('weather.table_headers.pressure') %></th>
+      </tr>
+    </thead>
+    <tbody id="weatherData">
+    </tbody>
+  </table>
+</div>
   
-  <div class="advice-box">
-    <h2><%= t('weather.titles.advice') %></h2>
-    <p></p>
-  </div>
+<div class="advice-box">
+  <h2><%= t('weather.titles.advice') %></h2>
+  <p></p>
+</div>
 
-  <div class="short-description">
-    <p><%= t('weather.description.short') %></p>
-  </div>
-</body>
+<div class="short-description">
+  <p><%= t('weather.description.short') %></p>
+</div>

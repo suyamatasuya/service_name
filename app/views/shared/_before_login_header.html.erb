@@ -1,26 +1,21 @@
-<head>
-  <%= stylesheet_link_tag 'shared_before_login_header' %>
-  <%= javascript_pack_tag 'before_login_header' %>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet"> <!-- 和風のフォントを追加 -->
-</head>
-<body>
-  <nav class="navbar">
-    <%= link_to root_path, class: 'navbar-title' do %>
-      <div class="logo">
-        <span class="logo-main">なごみ首腰：</span>
-        <span class="logo-sub">痛みケアナビ</span>
-      </div>
-    <% end %>
-    <!-- Hamburger menu -->
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+<%= stylesheet_link_tag 'shared_before_login_header' %>
+<%= javascript_pack_tag 'before_login_header' %>
+<nav class="navbar">
+  <%= link_to root_path, class: 'navbar-title' do %>
+    <div class="logo">
+      <span class="logo-main">なごみ首腰：</span>
+      <span class="logo-sub">痛みケアナビ</span>
     </div>
-  </nav>
-  <!-- Sidebar -->
-  <div id="mySidebar" class="side-bar">
-    <%= link_to t('shared_header.login'), new_user_session_path, class: 'nav-link', data: { turbolinks: false } %>
-    <%= link_to t('shared_header.signup'), new_user_path, class: 'nav-link', data: { turbolinks: false } %>
+  <% end %>
+  <!-- Hamburger menu -->
+  <div class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
-</body>
+</nav>
+<!-- Sidebar -->
+<div id="mySidebar" class="side-bar">
+  <%= link_to t('shared_header.login'), new_user_session_path, class: 'nav-link', data: { turbolinks: false } %>
+  <%= link_to t('shared_header.signup'), new_user_path, class: 'nav-link', data: { turbolinks: false } %>
+</div>

@@ -1,53 +1,45 @@
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <%= stylesheet_link_tag 'generate_care_methods' %>
-  <%= javascript_pack_tag 'generate_care_methods' %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <div id="page-container">
-    <div id="content-wrap">
-      <h1 class="results-title"><%= t('generate_care_methods.results') %></h1>
-      <div class="care-methods">
-        <% if @care_methods && @care_methods.any? %>
-          <%= form_tag user_care_histories_path, method: :post do %>
-            <% @care_methods.each do |method| %>
-              <%= hidden_field_tag 'care_method_ids[]', method.id %>
-              <div class="card">
-                <h5 class="card-title text-center"><%= method.name %></h5>
-                <% method.description.split(' ').each do |sentence| %>
-                  <p class="card-text"><%= sentence %></p>
-                <% end %>
-                <% if method.video_links.present? %>
-                  <div class="card-body">
-                    <% method.video_links.zip(method.video_titles).each do |link, title| %>
-                      <% if link.present? %>
-                        <% video_id = extract_video_id(link) %>
-                        <div class="embed-responsive embed-responsive-16by9">
-                          <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  </div>
+<%= stylesheet_link_tag 'generate_care_methods' %>
+<%= javascript_pack_tag 'generate_care_methods' %>
+<div id="page-container">
+  <div id="content-wrap">
+    <h1 class="results-title"><%= t('generate_care_methods.results') %></h1>
+    <div class="care-methods">
+      <% if @care_methods && @care_methods.any? %>
+        <%= form_tag user_care_histories_path, method: :post do %>
+          <% @care_methods.each do |method| %>
+            <%= hidden_field_tag 'care_method_ids[]', method.id %>
+          <div class="card">
+              <h5 class="card-title text-center"><%= method.name %></h5>
+            <% method.description.split(' ').each do |sentence| %>
+              <p class="card-text"><%= sentence %></p>
+            <% end %>
+            <% if method.video_links.present? %>
+              <div class="card-body">
+                  <% method.video_links.zip(method.video_titles).each do |link, title| %>
+                  <% if link.present? %>
+                      <% video_id = extract_video_id(link) %>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
-            <% if logged_in? %>
-              <%= submit_tag t('generate_care_methods.save_care_methods'), class: 'btn btn-primary save-button' %>
-            <% end %>
-          <% end %>
-        <% else %>
-          <p class="card-text"><%= t('generate_care_methods.no_care_methods') %></p>
+          </div>
         <% end %>
+        <% if logged_in? %>
+          <%= submit_tag t('generate_care_methods.save_care_methods'), class: 'btn btn-primary save-button' %>
+        <% end %>
+        <% end %>
+      <% else %>
+        <p class="card-text"><%= t('generate_care_methods.no_care_methods') %></p>
+      <% end %>
 
-        <% if @show_map %>
-          <p id="map-text"><%= t('generate_care_methods.search_hospital') %></p>
-          <div id="map"></div> <!-- 地図を表示する要素 -->
-          <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
-        <% end %>
-      </div>
+      <% if @show_map %>
+        <p id="map-text"><%= t('generate_care_methods.search_hospital') %></p>
+        <div id="map"></div> <!-- 地図を表示する要素 -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
+      <% end %>
     </div>
   </div>
-</body>
+</div>

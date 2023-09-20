@@ -22,8 +22,9 @@ body {
   background-color: #709775;
   color: #8B4513;
   border: 1px solid #8B4513;
-  padding: 40px; /* ここを変更 */
+  padding: 40px; 
   border-radius: 10px;
+  margin-top: 120px; /* ここを追加 - 値はあなたの好みによって調整できます */
 }
 
 .form {
@@ -60,6 +61,10 @@ body {
 .btn-tea:hover {
   background-color: #66bb6a;
   color: #004d40;
+}
+
+.mb-4 {
+  text-align: center;
 }
 
 @media (max-width: 768px) { /* Bootstrapのxsブレークポイント */

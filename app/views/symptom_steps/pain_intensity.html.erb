@@ -1,39 +1,31 @@
-<head>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'symptoms_steps_pain_intensity' %>
-  <%= javascript_pack_tag 'symptoms_steps_pain_intensity' %>
-</head>
-<body>
-  <div id="page-container">
-    <% if current_user %>
-      <%= render 'shared/logged_in_header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
+<%= stylesheet_link_tag 'symptoms_steps_pain_intensity' %>
+<%= javascript_pack_tag 'symptoms_steps_pain_intensity' %>
+<div id="page-container">
+  <% if current_user %>
+    <%= render 'shared/logged_in_header' %>
+  <% else %>
+    <%= render 'shared/before_login_header' %>
+  <% end %>
 
-    <div id="content-wrap">
-      <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
-        <h1 class="text-center title"><%= t('symptoms_steps_pain_intensity.title') %></h1>
-        <h2 class="text-center instruction"><%= t('symptoms_steps_pain_intensity.instruction') %></h2>
-        <div id="slider"></div> <!-- スライダーのコンテナ要素 -->
-        <div id="slider-value" class="text-center mt-2"></div> <!-- スライダーの値表示領域 -->
-        <div id="slider-comments" class="text-center mt-2">
-          <span class="comment"><%= t('symptoms_steps_pain_intensity.comment_no_pain') %></span>
-          <span class="comment ml-2 comment"><%= t('symptoms_steps_pain_intensity.comment_pain') %></span>
-          <span class="comment ml-2"><%= t('symptoms_steps_pain_intensity.comment_unbearable_pain') %></span>
-        </div>
-
-        <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
-          <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
-
-          <div class="text-center mt-5">
-            <%= f.submit t('symptoms_steps_pain_intensity.next'), class: 'btn btn-primary btn-lg custom-button-responsive' %>
-          </div>
-        <% end %>
+  <div id="content-wrap">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+      <h1 class="text-center title"><%= t('symptoms_steps_pain_intensity.title') %></h1>
+      <h2 class="text-center instruction"><%= t('symptoms_steps_pain_intensity.instruction') %></h2>
+      <div id="slider"></div> <!-- スライダーのコンテナ要素 -->
+      <div id="slider-value" class="text-center mt-2"></div> <!-- スライダーの値表示領域 -->
+      <div id="slider-comments" class="text-center mt-2">
+        <span class="comment"><%= t('symptoms_steps_pain_intensity.comment_no_pain') %></span>
+        <span class="comment ml-2 comment"><%= t('symptoms_steps_pain_intensity.comment_pain') %></span>
+        <span class="comment ml-2"><%= t('symptoms_steps_pain_intensity.comment_unbearable_pain') %></span>
       </div>
+
+      <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
+        <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
+
+        <div class="text-center mt-5">
+          <%= f.submit t('symptoms_steps_pain_intensity.next'), class: 'btn btn-primary btn-lg custom-button-responsive' %>
+        </div>
+      <% end %>
     </div>
   </div>
-</body>
+</div>

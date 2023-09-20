@@ -1,82 +1,78 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag 'terms_of_service' %>
-    <h1><%= t('terms_of_service.title') %></h1>
+<%= stylesheet_link_tag 'terms_of_service' %>
+<h1><%= t('terms_of_service.title') %></h1>
 
-    <p><p><%= t('terms_of_service.intro') %></p>
+<p><p><%= t('terms_of_service.intro') %></p>
 
-    <h2><%= t('terms_of_service.article1.title') %></h2>
-    <p> <%= t('terms_of_service.article1.content') %></p>
+<h2><%= t('terms_of_service.article1.title') %></h2>
+<p> <%= t('terms_of_service.article1.content') %></p>
 
-    <h2><%= t('terms_of_service.article2.title') %></h2>
-    <p><%= t('terms_of_service.article2.content') %></p>
+<h2><%= t('terms_of_service.article2.title') %></h2>
+<p><%= t('terms_of_service.article2.content') %></p>
 
+<ul>
+  <li><%= t('terms_of_service.registration_false_info') %></li>
+  <li><%= t('terms_of_service.registration_violation') %></li>
+  <li><%= t('terms_of_service.registration_discretion') %></li>
+</ul>
+
+<h2><%= t('terms_of_service.article3.title') %></h2>
+  <p><%= t('terms_of_service.article3.content') %></p>
+
+<h2><%= t('terms_of_service.article4.title') %></h2>
+  <p><%= t('terms_of_service.article4.content') %></p>
+
+<h2><%= t('terms_of_service.article5.title') %></h2>
+  <p><%= t('terms_of_service.article5.intro') %></p>
+  <ol>
+    <% 15.times do |i| %>
+      <li><%= t("terms_of_service.prohibited_acts.#{i + 1}") %></li>
+    <% end %>
+  </ol>
+
+<h2><%= t('terms_of_service.article6.title') %></h2>
+  <p><%= t('terms_of_service.article6.intro') %></p>
     <ul>
-      <li><%= t('terms_of_service.registration_false_info') %></li>
-      <li><%= t('terms_of_service.registration_violation') %></li>
-      <li><%= t('terms_of_service.registration_discretion') %></li>
+      <li><%= t('terms_of_service.article6.stop_causes.1') %></li>
+      <li><%= t('terms_of_service.article6.stop_causes.2') %></li>
+      <li><%= t('terms_of_service.article6.stop_causes.3') %></li>
+      <li><%= t('terms_of_service.article6.stop_causes.4') %></li>
     </ul>
+<p><%= t('terms_of_service.article6.no_liability_notice') %></p>
 
-    <h2><%= t('terms_of_service.article3.title') %></h2>
-      <p><%= t('terms_of_service.article3.content') %></p>
+<h2><%= t('terms_of_service.article7.title') %></h2>
+  <p><%= t('terms_of_service.article7.intro') %></p>
+  <ul>
+    <li><%= t('terms_of_service.article7.restriction_causes.1') %></li>
+    <li><%= t('terms_of_service.article7.restriction_causes.2') %></li>
+    <li><%= t('terms_of_service.article7.restriction_causes.3') %></li>
+    <li><%= t('terms_of_service.article7.restriction_causes.4') %></li>
+    <li><%= t('terms_of_service.article7.restriction_causes.5') %></li>
+    <li><%= t('terms_of_service.article7.restriction_causes.6') %></li>
+  </ul>
+<p><%= t('terms_of_service.article7.no_liability_notice') %></p>
 
-    <h2><%= t('terms_of_service.article4.title') %></h2>
-      <p><%= t('terms_of_service.article4.content') %></p>
+<h2><%= t('terms_of_service.article8.title') %></h2>
+<p><%= t('terms_of_service.article8.body') %></p>
 
-    <h2><%= t('terms_of_service.article5.title') %></h2>
-      <p><%= t('terms_of_service.article5.intro') %></p>
-      <ol>
-        <% 15.times do |i| %>
-          <li><%= t("terms_of_service.prohibited_acts.#{i + 1}") %></li>
-        <% end %>
-      </ol>
+<h2><%= t('terms_of_service.article9.title') %></h2>
+<p><%= t('terms_of_service.article9.intro') %></p>
+<p><%= t('terms_of_service.article9.no_liability_notice') %></p>
 
-    <h2><%= t('terms_of_service.article6.title') %></h2>
-      <p><%= t('terms_of_service.article6.intro') %></p>
-      <ul>
-        <li><%= t('terms_of_service.article6.stop_causes.1') %></li>
-        <li><%= t('terms_of_service.article6.stop_causes.2') %></li>
-        <li><%= t('terms_of_service.article6.stop_causes.3') %></li>
-        <li><%= t('terms_of_service.article6.stop_causes.4') %></li>
-      </ul>
-      <p><%= t('terms_of_service.article6.no_liability_notice') %></p>
+<h2><%= t('terms_of_service.article10.title') %></h2>
+<p><%= t('terms_of_service.article10.body') %></p>
 
-    <h2><%= t('terms_of_service.article7.title') %></h2>
-      <p><%= t('terms_of_service.article7.intro') %></p>
-      <ul>
-        <li><%= t('terms_of_service.article7.restriction_causes.1') %></li>
-        <li><%= t('terms_of_service.article7.restriction_causes.2') %></li>
-        <li><%= t('terms_of_service.article7.restriction_causes.3') %></li>
-        <li><%= t('terms_of_service.article7.restriction_causes.4') %></li>
-        <li><%= t('terms_of_service.article7.restriction_causes.5') %></li>
-        <li><%= t('terms_of_service.article7.restriction_causes.6') %></li>
-      </ul>
-      <p><%= t('terms_of_service.article7.no_liability_notice') %></p>
+<h2><%= t('terms_of_service.article11.title') %></h2>
+<p><%= t('terms_of_service.article11.intro') %></p>
+<p><%= t('terms_of_service.article11.continue_usage_notice') %></p>
 
-    <h2><%= t('terms_of_service.article8.title') %></h2>
-    <p><%= t('terms_of_service.article8.body') %></p>
+<h2><%= t('terms_of_service.article12.title') %></h2>
+<p><%= t('terms_of_service.article12.body') %></p>
 
-    <h2><%= t('terms_of_service.article9.title') %></h2>
-    <p><%= t('terms_of_service.article9.intro') %></p>
-    <p><%= t('terms_of_service.article9.no_liability_notice') %></p>
+<h2><%= t('terms_of_service.article13.title') %></h2>
+<p><%= t('terms_of_service.article13.body') %></p>
 
-    <h2><%= t('terms_of_service.article10.title') %></h2>
-    <p><%= t('terms_of_service.article10.body') %></p>
+<h2><%= t('terms_of_service.article14.title') %></h2>
+<p><%= t('terms_of_service.article14.body') %></p>
 
-    <h2><%= t('terms_of_service.article11.title') %></h2>
-    <p><%= t('terms_of_service.article11.intro') %></p>
-    <p><%= t('terms_of_service.article11.continue_usage_notice') %></p>
-
-    <h2><%= t('terms_of_service.article12.title') %></h2>
-    <p><%= t('terms_of_service.article12.body') %></p>
-
-    <h2><%= t('terms_of_service.article13.title') %></h2>
-    <p><%= t('terms_of_service.article13.body') %></p>
-
-    <h2><%= t('terms_of_service.article14.title') %></h2>
-    <p><%= t('terms_of_service.article14.body') %></p>
-
-    <h2><%= t('terms_of_service.article15.title') %></h2>
-    <p><%= t('terms_of_service.article15.body') %></p>
-</head>
+<h2><%= t('terms_of_service.article15.title') %></h2>
+<p><%= t('terms_of_service.article15.body') %></p>

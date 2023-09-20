@@ -1,35 +1,25 @@
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= t('symptoms_index.title') %></title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-   <%= stylesheet_link_tag 'symptoms_index' %>
-   <%= javascript_pack_tag 'symptoms_index' %>
- <div class="container py-5">
+<%= stylesheet_link_tag 'symptoms_index' %>
+<%= javascript_pack_tag 'symptoms_index' %>
+<div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="text-center mb-4">
-        <h2><%= t('symptoms_index.title') %></h2>
-      </div>
+  <div class="col-lg-8">
+    <div class="text-center mb-4">
+      <h2><%= t('symptoms_index.title') %></h2>
+    </div>
 
-      <p class="lead caution-text">
-        <%= raw(t('symptoms_index.note_lead')) %>
-      </p>
-      <ol>
-        <li><%= raw(t('symptoms_index.professional_opinion')) %></li>
-        <li><%= raw(t('symptoms_index.pay_attention')) %></li>
-        <li><%= raw(t('symptoms_index.correct_way')) %></li>
-        <li><%= raw(t('symptoms_index.existing_conditions')) %></li>
-        <li><%= raw(t('symptoms_index.no_overdoing')) %></li>
-      </ol>
+    <p class="lead caution-text">
+      <%= raw(t('symptoms_index.note_lead')) %>
+    </p>
+    <ol>
+      <li><%= raw(t('symptoms_index.professional_opinion')) %></li>
+      <li><%= raw(t('symptoms_index.pay_attention')) %></li>
+      <li><%= raw(t('symptoms_index.correct_way')) %></li>
+      <li><%= raw(t('symptoms_index.existing_conditions')) %></li>
+      <li><%= raw(t('symptoms_index.no_overdoing')) %></li>
+    </ol>
 
-      <div class="text-center mt-5">
-        <%= link_to t('symptoms_index.start_symptoms'), new_symptom_path, class: 'btn btn-lg start-button', data: {"turbolinks" => false} %>
-      </div>
+    <div class="text-center mt-5">
+      <%= link_to t('symptoms_index.start_symptoms'), new_symptom_path, class: 'btn btn-lg start-button', data: {"turbolinks" => false} %>
     </div>
   </div>
- </div>
-</body>
+</div>

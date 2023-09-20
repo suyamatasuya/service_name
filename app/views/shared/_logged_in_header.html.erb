@@ -1,38 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag 'shared_logged_in_header' %>
-  <%= javascript_pack_tag 'logged_in_header' %>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <nav class="navbar">
-    <%= link_to root_path, class: 'navbar-title', data: { turbolinks: false } do %>
-      <div class="logo">
-        <span class="logo-main">なごみ首腰：</span>
-        <span class="logo-sub">痛みケアナビ</span>
-      </div>
-    <% end %>
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+<%= stylesheet_link_tag 'shared_logged_in_header' %>
+<%= javascript_pack_tag 'logged_in_header' %>
+<nav class="navbar">
+  <%= link_to root_path, class: 'navbar-title', data: { turbolinks: false } do %>
+    <div class="logo">
+      <span class="logo-main">なごみ首腰：</span>
+      <span class="logo-sub">痛みケアナビ</span>
     </div>
-  </nav>
-
-  <!-- Sidebar -->
-  <div id="mySidebar" class="side-bar">
-    <%= link_to t('home.services.symptom'), symptoms_path, class: "nav-link", data: { turbolinks: false } %>
-    <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link", data: { turbolinks: false } %>
-    <%= link_to t('home.services.care_records'), care_records_path, class: "nav-link", data: { turbolinks: false } %>
-    <%= link_to t('home.services.weather'), weather_index_path, class: "nav-link", data: { turbolinks: false } %>
-    <%= link_to t('home.services.posts'), posts_path, class: "nav-link", data: { turbolinks: false } %>
-    <%= link_to t('logged_in_header.logout'), logout_path, method: :delete, class: "nav-link", data: { turbolinks: false } %>
+  <% end %>
+  <div class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
-</body>
-
-</html>
+</nav>
+<!-- Sidebar -->
+<div id="mySidebar" class="side-bar">
+  <%= link_to t('home.services.symptom'), symptoms_path, class: "nav-link", data: { turbolinks: false } %>
+  <%= link_to t('logged_in_header.care_history'), user_care_histories_path, class: "nav-link", data: { turbolinks: false } %>
+  <%= link_to t('home.services.care_records'), care_records_path, class: "nav-link", data: { turbolinks: false } %>
+  <%= link_to t('home.services.weather'), weather_index_path, class: "nav-link", data: { turbolinks: false } %>
+  <%= link_to t('home.services.posts'), posts_path, class: "nav-link", data: { turbolinks: false } %>
+  <%= link_to t('logged_in_header.logout'), logout_path, method: :delete, class: "nav-link", data: { turbolinks: false } %>
+</div>

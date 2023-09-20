@@ -8,6 +8,10 @@ h2, .start-button {
   color: #c5a35a;  /* A gold color */
 }
 
+#page-container {
+  margin-top: 80px; /* あるいは必要な値に調整します */
+}
+
 .start-button.clicked {
   transform: scale(0.95);
 }
