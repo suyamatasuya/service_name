@@ -31,5 +31,52 @@
                 </a>
             </div>
         </div>
+
+        <!-- New Comment Form -->
+        <div class="card card-centered">
+            <div class="header">
+                コメントを投稿する
+            </div>
+            <div class="body">
+                <% if @comment.errors.any? %>
+                  <div class="alert alert-danger">
+                    <% @comment.errors.full_messages.each do |message| %>
+                      <p><%= message %></p>
+                    <% end %>
+                  </div>
+                <% end %>
+
+                <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+                    <div class="form-group">
+                        <%= form.label :content, "こちらに記入してください" %><br>
+                        <%= form.text_area :content, class: "form-control" %>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                      <%= form.submit "コメントを送信", class: "btn btn-submit-comment" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <!-- Existing Comments -->
+        <h3>コメント一覧</h3>
+        <% @post.comments.select { |c| c.user.present? }.each do |comment| %>
+          <div class="card">
+            <div class="header">
+              <%= comment.user ? comment.user.name : "Unknown User" %>
+            </div>
+            <div class="body">
+              <p class="post-content">
+                <%= comment.content %>
+              </p>
+              
+              <% if current_user == comment.user %>
+                <div class="d-flex justify-content-end">
+                  <%= link_to '削除', post_comment_path(@post, comment), method: :delete, data: { confirm: 'コメントを削除してもよろしいですか？' }, class: 'btn btn-bright-green' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
     </div>
 </body>

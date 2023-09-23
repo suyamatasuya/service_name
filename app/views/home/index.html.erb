@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag 'home' %>
-<body>
-    <div class="container">
+<div class="container">
         <div class="left-image">
             <%= image_tag '26101164_m.jpg', alt: t('home.image_description') %>
         </div>
@@ -36,4 +35,3 @@
       <a href="<%= weather_index_path %>" data-turbolinks="false"><%= t('home.services.weather') %></a>
       <a href="<%= posts_path %>" data-turbolinks="false"><%= t('home.services.posts') %></a>
     </div>
-</body>

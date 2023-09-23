@@ -4,9 +4,13 @@ body {
     color: #566246; /* 落ち着いた緑色のテキスト */
 }
 
+h1.text-center {
+    margin-top: 150px;  /* 例: 200pxに増やす */
+}
+
 .container {
     max-width: 800px;
-    margin: 50px auto;
+    margin: 20px auto;
     border: 1px solid #a8bfa5;
     padding: 60px;
     background-color: #A4B494 /* 和風の背景色 */
@@ -185,3 +189,16 @@ body {
   .page-item:hover {
     background-color: #5f755f;
   }
+
+  .comment-info {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.comment-info i {
+    margin-right: 5px;
+    color: #333;
+}

@@ -1,86 +1,90 @@
 <%= stylesheet_link_tag 'posts' %>
-<body class="d-flex flex-column min-vh-100">
-    <div class="container" style="margin-top: 200px;">
-        <h1 class="text-center mb-4"><%= t('posts.title') %></h1>
+<h1 class="text-center"><%= t('posts.title') %></h1>
 
-        <!-- Search form -->
-        <div class="mb-4">
-            <%= form_with url: posts_path, method: :get, local: true, class: 'input-group' do |f| %>
-                <%= f.text_field :search, placeholder: t('posts.search_placeholder'), class: 'form-control form-control-lg' %>
-                <%= f.select :filter_by_location, [t('posts.search_location_options.all'), t('posts.search_location_options.neck'), t('posts.search_location_options.lower_back')], {}, class: 'form-control' %>
-                <% if current_user %>
-                    <%= f.select :sort_by_favourites, [t('posts.search_favourite_options.most_favourite'), t('posts.search_favourite_options.regular')], {}, class: 'form-control' %>
-                <% end %>
-                <span class="input-group-btn">
-                    <%= f.submit t('posts.search_button'), class: 'btn btn-primary btn-lg' %>
-                </span>
+<div class="container" style="margin-top: opx;">
+    <!-- Search form -->
+    <div class="mb-4">
+        <%= form_with url: posts_path, method: :get, local: true, class: 'input-group' do |f| %>
+            <%= f.text_field :search, placeholder: t('posts.search_placeholder'), class: 'form-control form-control-lg' %>
+            <%= f.select :filter_by_location, [t('posts.search_location_options.all'), t('posts.search_location_options.neck'), t('posts.search_location_options.lower_back')], {}, class: 'form-control' %>
+            <% if current_user %>
+                <%= f.select :sort_by_favourites, [t('posts.search_favourite_options.most_favourite'), t('posts.search_favourite_options.regular')], {}, class: 'form-control' %>
+            <% end %>
+            <span class="input-group-btn">
+                <%= f.submit t('posts.search_button'), class: 'btn btn-primary btn-lg' %>
+            </span>
+        <% end %>
+    </div>
+
+    <% if current_user %>
+    <div class="card">
+        <div class="card-header">
+            <%= t('posts.new_post_header') %>
+        </div>
+        <div class="card-body">
+            <%= form_with model: Post.new, url: posts_path, id: 'postForm', local: true do |f| %>
+                <div class="form-group">
+                    <%= f.label :content, t('posts.message_label') %>
+                    <%= f.text_area :content, class: 'form-control', rows: 3, placeholder: t('posts.message_placeholder') %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :pain_location, t('posts.location_label') %>
+                    <%= f.select :pain_location, [t('posts.location_options.neck'), t('posts.location_options.lower_back')], {}, class: 'form-control' %>
+                </div>
+                <button type="submit" class="btn btn-primary"><%= t('posts.post_button') %></button>
             <% end %>
         </div>
+    </div>
+    <div class="text-center mt-4">
+        <%= link_to t('posts.favourite_posts'), user_favourites_path(current_user), class: 'btn btn-primary' %>
+    </div>
+    <% end %>
 
-        <% if current_user %>
-        <div class="card">
-            <div class="card-header">
-                <%= t('posts.new_post_header') %>
-            </div>
-            <div class="card-body">
-                <%= form_with model: Post.new, url: posts_path, id: 'postForm', local: true do |f| %>
-                    <div class="form-group">
-                        <%= f.label :content, t('posts.message_label') %>
-                        <%= f.text_area :content, class: 'form-control', rows: 3, placeholder: t('posts.message_placeholder') %>
+    <div id="messages" class="mt-4">
+        <h2><%= t('posts.post_list_header') %></h2>
+        <div class="row card-container">
+            <% @posts.each do |post| %>
+                <div class="message-card card" data-post-id="<%= post.id %>">
+                    <div class="card-header">
+                        <%= link_to post.user.name, user_path(post.user) %>
                     </div>
-                    <div class="form-group">
-                        <%= f.label :pain_location, t('posts.location_label') %>
-                        <%= f.select :pain_location, [t('posts.location_options.neck'), t('posts.location_options.lower_back')], {}, class: 'form-control' %>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><%= t('posts.post_button') %></button>
-                <% end %>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <%= link_to t('posts.favourite_posts'), user_favourites_path(current_user), class: 'btn btn-primary' %>
-        </div>
-        <% end %>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= link_to post.content, post_path(post) %>
+                        </p>
+                        <% if current_user %>
+                            <div>
+                                <% if current_user.id == post.user.id %>
+                                    <%= link_to t('posts.delete_button'), post, method: :delete, data: { confirm: t('posts.delete_confirmation') }, class: 'delete-link' %>
+                                    <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
+                                <% end %>
+                            </div>
+                            <div class="favourite-link" data-post-id="<%= post.id %>" data-user-id="<%= current_user.id %>">
+                                <% favourite = post.favourites.find_by(user_id: current_user.id) %>
+                                <% if favourite %>
+                                    <%= link_to post_favourite_path(post, favourite), remote: true, method: :delete, class: 'favourite-icon' do %>
+                                        <i class="fas fa-thumbs-up"></i>
+                                    <% end %>
+                                <% else %>
+                                    <%= link_to post_favourites_path(post), remote: true, method: :post, class: 'favourite-icon' do %>
+                                        <i class="far fa-thumbs-up"></i>
+                                    <% end %>
+                                <% end %>
+                                <span class="favourite-count" data-post-id="<%= post.id %>"><%= post.favourites.count %></span>
+                            </div>
+                        <% end %>
+                        <p class="pain-location"><strong><%= post.pain_location %></strong></p>
 
-        <div id="messages" class="mt-4">
-            <h2><%= t('posts.post_list_header') %></h2>
-            <div class="row card-container">
-                <% @posts.each do |post| %>
-                    <div class="message-card card" data-post-id="<%= post.id %>">
-                        <div class="card-header">
-                            <%= link_to post.user.name, user_path(post.user) %>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <%= link_to post.content, post_path(post) %> <!-- 投稿の詳細ページへのリンクを追加 -->
-                            </p>
-                            <% if current_user %>
-                                <div>
-                                    <% if current_user.id == post.user.id %>
-                                        <%= link_to t('posts.delete_button'), post, method: :delete, data: { confirm: t('posts.delete_confirmation') }, class: 'delete-link' %>
-                                        <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
-                                    <% end %>
-                                </div>
-                                <div class="favourite-link" data-post-id="<%= post.id %>" data-user-id="<%= current_user.id %>">
-                                    <% favourite = post.favourites.find_by(user_id: current_user.id) %>
-                                    <% if favourite %>
-                                        <%= link_to post_favourite_path(post, favourite), remote: true, method: :delete, class: 'favourite-icon' do %>
-                                            <i class="fas fa-thumbs-up"></i>
-                                        <% end %>
-                                    <% else %>
-                                        <%= link_to post_favourites_path(post), remote: true, method: :post, class: 'favourite-icon' do %>
-                                            <i class="far fa-thumbs-up"></i>
-                                        <% end %>
-                                    <% end %>
-                                    <span class="favourite-count" data-post-id="<%= post.id %>"><%= post.favourites.count %></span>
-                                </div>
-                            <% end %>
-                            <p class="pain-location"><strong><%= post.pain_location %></strong></p>
-                        </div>
+                        <!-- Add comment count here -->
+                        <% if post.comments.count > 0 %>
+                            <div class="comment-info">
+                                <i class="fas fa-comments"></i> <%= post.comments.count %>
+                            </div>
+                        <% end %>
                     </div>
-                <% end %>
-                <%= paginate @posts %>
-            </div>
+                </div>
+            <% end %>
+            <%= paginate @posts %>
         </div>
     </div>
-</body>
-</html>
+</div>

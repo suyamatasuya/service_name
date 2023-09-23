@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   resources :posts do
     resources :favourites, only: %i[create destroy]
+    resources :comments, only: %i[create destroy]
   end
 
   resources :symptoms do
