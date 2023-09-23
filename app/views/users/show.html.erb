@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag 'users_show', media: 'all', 'data-turbolinks-track': 'reload' %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <div class="container" style="margin-top: 200px;">
     <h1 class="text-center mb-4"><%= @user.name %>さんの投稿一覧</h1>
 
@@ -10,20 +12,22 @@
                         <%= link_to post.user.name, user_path(post.user) %>
                     </div>
                     <div class="card-body">
-                        <p class="card-text"><%= post.content %></p>
+                        <p class="card-text">
+                            <%= link_to post.content, post_path(post) %>
+                        </p>
                         <% if current_user %>
                             <div>
                                 <% if current_user.id == post.user.id %>
                                     <%= link_to t('posts.delete_button'), post, method: :delete, data: { confirm: t('posts.delete_confirmation') }, class: 'delete-link' %>
-                                <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
+                                    <%= link_to '編集', edit_post_path(post), class: 'edit-link' %>
                                 <% end %>
                             </div>
                             <div class="favourite-link" data-post-id="<%= post.id %>" data-user-id="<%= current_user.id %>">
                                 <% favourite = post.favourites.find_by(user_id: current_user.id) %>
                                 <% if favourite %>
                                     <%= link_to post_favourite_path(post, favourite), remote: true, method: :delete, class: 'favourite-icon' do %>
-                                    <i class="fas fa-thumbs-up"></i>
-                                <% end %>
+                                        <i class="fas fa-thumbs-up"></i>
+                                    <% end %>
                                 <% else %>
                                     <%= link_to post_favourites_path(post), remote: true, method: :post, class: 'favourite-icon' do %>
                                         <i class="far fa-thumbs-up"></i>
@@ -33,6 +37,13 @@
                             </div>
                         <% end %>
                         <p class="pain-location"><strong><%= post.pain_location %></strong></p>
+                        
+                        <!-- Comment count display -->
+                        <% if post.comments.count > 0 %>
+                            <div class="comment-info">
+                                <i class="fas fa-comments"></i> <%= post.comments.count %>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
             <% end %>

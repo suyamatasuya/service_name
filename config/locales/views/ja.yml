@@ -95,6 +95,12 @@ ja:
       share_with: でシェア
       post_details: さんが の痛みに関する体験を共有しました：
       click_link: 詳細を見るにはリンクをクリックしてください。
+      comments:
+        new: "新しいコメント"
+        your_comment: "あなたのコメント"
+        post_comment: "コメントを投稿"
+        comments_header: "コメント"
+        unknown_user: "不明なユーザー"
   shared_header:
     title: "なごみ首腰：痛みケアナビ"
     help_support: "ヘルプ・サポート"

@@ -45,6 +45,12 @@ class PostsController < ApplicationController
 
   private
 
+  def set_post
+    @post = Post.includes(comments: :user).find(params[:id])
+    # Initialize a new comment for the form in the show action
+    @comment = @post.comments.build
+  end
+
   def fetch_posts
     if params[:search].present?
       Post.where('content LIKE ?', "%#{params[:search]}%")
@@ -71,10 +77,6 @@ class PostsController < ApplicationController
       flash.now[:error] = t('controllers.posts.update.failure')
       render :edit
     end
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
   end
 
   def post_params

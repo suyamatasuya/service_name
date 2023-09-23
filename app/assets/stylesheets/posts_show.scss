@@ -2,15 +2,32 @@ body {
     font-family: 'Noto Serif JP', serif;
     background-color: #fdf6e3;
     color: #333;
+    line-height: 1.5;
+    margin-top: 20px;
 }
 
 .page-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
     align-items: center;
-    width: 100vw; 
-    height: 100vh;
+    width: 100%; 
+    height: auto;
     background-color: #fdf6e3;
+    padding: 20px;
+    margin-top: 100px; 
+}
+
+.card {
+    width: 95%; // cardの幅を95%に設定
+    margin: 20px 0;
+    border: none;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+.title {
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
 .container {
@@ -18,30 +35,27 @@ body {
     flex-direction: column; 
     align-items: center;
     justify-content: center;
-    width: 500px;
-    height: 300px;
-}
-
-.title {
-    font-size: 32px;
-    margin-bottom: 20px; 
-}
-
-.card {
-    width: 100%; 
-    height: 100%; 
-    border: none;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    background-color: #ffffff;
+    width: 100%; // 幅を100%に設定
+    max-width: none;
+    margin: 0 auto; 
+    margin-right: 250px;
+    margin-bottom: 50px;
 }
 
 .card .header {
-    background-color: #5f9ea0;
+    display: flex;
+    align-items: center;
+    background-color: #748c74;
     border-bottom: 1px solid #e0e0e0;
     padding: 15px;
     font-size: 24px;
     font-weight: bold;
     color: #ffffff;
+}
+
+.card .header i.fas {
+    margin-right: 10px;
+    font-size: 1.2em;
 }
 
 .card .body {
@@ -51,25 +65,54 @@ body {
 }
 
 .card .body .post-content {
-    font-size: 24px; 
+    font-size: 20px;
 }
 
 .card .body .pain-location {
     font-size: 20px; 
+    margin-top: 15px;
 }
 
 .twitter-share-button {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block; 
+    padding: 10px 20px; 
+    background-color: black;
+    color: white; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    text-decoration: none; 
+
 }
 
 .fa-twitter:before {
     content: '𝕏';
     font-family: unset;
     font-weight: bold;
+    
 }
 
-.twitter-share-button {
-    margin-top: 20px;
-    text-decoration: underline !important;
+.btn-bright-green {
+    background-color: #4CAF50; /* 明るい緑色の背景 */
+    border-color: #388E3C; /* 少し暗めの緑色のボーダー */
+    color: #ffffff; /* テキスト色は白 */
 }
+
+.btn-submit-comment {
+    background-color: #748c74;
+    color: #ffffff; /* この行は、ボタンのテキストの色を白に設定します。必要に応じて変更してください */
+}
+
+.btn-submit-comment, 
+.btn-submit-comment:active, 
+.btn-submit-comment:focus, 
+.btn-submit-comment:hover {
+    background-color: #748c74;
+    border-color: #748c74;
+    color: #ffffff; 
+    outline: none; /* フォーカス時のアウトラインを削除 */
+    box-shadow: none; /* Bootstrap などが適用するフォーカス時の影を削除 */
+}
+
 
