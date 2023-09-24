@@ -185,7 +185,7 @@ Rails.application.config.sorcery.configure do |config|
   elsif Rails.env.production?
     config.line.callback_url = 'https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=line'
   end
-  config.line.user_info_mapping = {name: 'name' }
+  config.line.user_info_mapping = { email: 'email', name: 'name' }
 
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
