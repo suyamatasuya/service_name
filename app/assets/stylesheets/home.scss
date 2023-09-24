@@ -138,3 +138,7 @@ body .container .right-content {
   background-color: #D8EFED !important;
   z-index: 10;
 }
+
+.alert.alert-notice {
+  margin-top: -50px; /* 30px のマージンを上部に追加 */
+}

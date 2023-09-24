@@ -82,7 +82,7 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  config.external_providers = [:google]
+  config.external_providers = [:google, :line]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -177,6 +177,16 @@ Rails.application.config.sorcery.configure do |config|
   end
   config.google.user_info_mapping = { email: 'email', name: 'name' }
   config.google.scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+  
+  config.line.key = ENV['LINE_CLIENT_ID']
+  config.line.secret = ENV['LINE_CLIENT_SECRET']
+  if Rails.env.development?
+    config.line.callback_url = 'http://localhost:3000/oauth/callback?provider=line'
+  elsif Rails.env.production?
+    config.line.callback_url = 'https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=line'
+  end
+  config.line.user_info_mapping = { email: 'email', name: 'name' }
+
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
   # The callback URL "can't contain a query string or invalid special characters"

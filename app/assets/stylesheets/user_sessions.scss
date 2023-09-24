@@ -44,21 +44,21 @@ body {
 
 .form {
   h2 {
-      font-size: 2.5rem; /* タイトルのフォントサイズ */
+      font-size: 2.5rem; 
   }
 
   label {
-      font-size: 1.2rem; /* ラベルのフォントサイズ */
+      font-size: 1.2rem; 
   }
 
   .form-control {
-      font-size: 1.1rem; /* 入力フィールドのフォントサイズ */
-      padding: 12px 20px; /* 入力フィールドのパディング */
+      font-size: 1.1rem; 
+      padding: 12px 20px; 
   }
 
   .btn {
-      font-size: 1.1rem; /* ボタンのフォントサイズ */
-      padding: 10px 20px; /* ボタンのパディング */
+      font-size: 1.1rem; 
+      padding: 10px 20px; 
   }
 }
 
@@ -72,7 +72,7 @@ body {
   justify-content: center;
   padding: 10px 15px;
   margin-top: 10px;
-  width: 200px;  // ここでボタンの横幅を指定
+  width: 200px; 
   margin: 20px auto;  
 
   img {
@@ -82,4 +82,27 @@ body {
   &:hover {
       background-color: #f7f7f7;
   }
+}
+
+.line-login-btn {
+  background-color: #06C755;
+  color: #FFFFFF;
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 4px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  width: 200px;  
+  margin: 20px auto;  
+  display: flex;
+  align-items: center;
+}
+
+.btn-icon {
+  margin-right: 8px;  
+}
+
+.line-login-btn:hover {
+  background-color: #06C755; /* ホバー時の背景色を元の色と同じに */
+  color: #FFFFFF; /* ホバー時の文字色を元の色と同じに */
 }

@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'user_sessions' %>
 <div class="container mt-5">
     <div class="row justify-content-center mt-7">
-    <div class="col-lg-10 col-md-10 col-sm-12">
+        <div class="col-lg-10 col-md-10 col-sm-12">
             <div class="card border-0 shadow mt-5">
                 <div class="card-body p-5">
                     <h2 class="mb-4 text-center"><%= t('user_sessions.title') %></h2>
@@ -28,11 +28,20 @@
                             <%= f.submit t('user_sessions.form.login'), class: 'btn btn-tea btn-block' %>
                         </div>
                     <% end %>
+
                     <!-- Googleでログインボタンを追加 -->
                     <div class="mt-3 text-center">
                         <%= link_to auth_at_provider_path(provider: :google), class: 'btn btn-google' do %>
                             <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
                             Googleでログイン
+                        <% end %>
+                    </div>
+
+                    <!-- LINEでログインボタンを追加 -->
+                    <div class="mt-3 text-center">
+                        <%= link_to auth_at_provider_path(provider: :line), class: 'line-login-btn' do %>
+                            <%= image_tag "btn_base.png", alt: "Button Base", class: "btn-icon" %>
+                            LINEでログイン
                         <% end %>
                     </div>
                 </div>
