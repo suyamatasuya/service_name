@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_23_142840) do
+ActiveRecord::Schema.define(version: 2023_09_28_051100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 2023_09_23_142840) do
     t.integer "face_scale"
     t.string "symptom"
     t.index ["user_id"], name: "index_care_records_on_user_id"
+  end
+
+  create_table "care_settings", force: :cascade do |t|
+    t.datetime "care_time"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "care_type"
+    t.datetime "morning_care_time"
+    t.datetime "evening_care_time"
+    t.index ["user_id"], name: "index_care_settings_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -116,10 +127,13 @@ ActiveRecord::Schema.define(version: 2023_09_23_142840) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "device_token"
+    t.string "line_uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["line_uid"], name: "index_users_on_line_uid", unique: true
   end
 
   add_foreign_key "care_records", "users"
+  add_foreign_key "care_settings", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "favourites", "posts"

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :favourited_posts, through: :favourites, source: :post
   has_many :care_records
   has_many :authentications, dependent: :destroy
+  has_one :care_setting, dependent: :destroy
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -18,15 +19,15 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  validates :email, presence: true, unless: -> { provider == 'line' }
+  validates :email, presence: true, unless: :from_line_oauth?
   validates :name, presence: true, length: { maximum: 255 }
 
   def favourite(post)
-    favourites.create(post:)
+    favourites.create(post: post)
   end
 
   def unfavourite(post)
-    favourites.find_by(post:)&.destroy
+    favourites.find_by(post: post)&.destroy
   end
 
   def from_line_oauth?
@@ -47,7 +48,7 @@ class User < ApplicationRecord
   end  
 
   def self.find_by_auth_hash(provider, uid)
-    authentication = Authentication.find_by(provider:, uid:)
+    authentication = Authentication.find_by(provider: provider, uid: uid)
     return nil unless authentication
 
     authentication.user
