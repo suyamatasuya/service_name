@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'care_settings/new'
+  get 'care_settings/create'
   root 'home#index'
 
   resources :users, only: %i[new create edit update show] do
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   resources :user_care_histories, only: %i[index create destroy]
   resources :terms_of_service, only: [:index]
   resources :care_records
+  resources :care_settings, only: [:new, :create]
 
   resources :weather, only: [:index] do
     collection do
