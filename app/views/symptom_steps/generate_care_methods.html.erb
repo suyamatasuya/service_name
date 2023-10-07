@@ -4,32 +4,42 @@
   <div id="content-wrap">
     <h1 class="results-title"><%= t('generate_care_methods.results') %></h1>
     <div class="care-methods">
+
       <% if @care_methods && @care_methods.any? %>
-        <%= form_tag user_care_histories_path, method: :post do %>
+        <%= form_tag new_care_record_path, method: :get do %>
           <% @care_methods.each do |method| %>
-            <%= hidden_field_tag 'care_method_ids[]', method.id %>
-          <div class="card">
+            <%= hidden_field_tag 'selected_care_methods[]', method.id %>
+            <div class="card">
               <h5 class="card-title text-center"><%= method.name %></h5>
-            <% method.description.split(' ').each do |sentence| %>
-              <p class="card-text"><%= sentence %></p>
-            <% end %>
-            <% if method.video_links.present? %>
-              <div class="card-body">
+              <% method.description.split(' ').each do |sentence| %>
+                <p class="card-text"><%= sentence %></p>
+              <% end %>
+              <% if method.video_links.present? %>
+                <div class="card-body">
                   <% method.video_links.zip(method.video_titles).each do |link, title| %>
-                  <% if link.present? %>
+                    <% if link.present? %>
                       <% video_id = extract_video_id(link) %>
-                    <div class="embed-responsive embed-responsive-16by9">
+                      <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/<%= video_id %>" frameborder="0" allowfullscreen></iframe>
-                    </div>
+                      </div>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <% if logged_in? %>
+            <%= submit_tag '問診結果をもとにケア記録を作成', class: 'btn btn-primary save-button mt-3' %>
+          <% end %>
         <% end %>
+        
         <% if logged_in? %>
-          <%= submit_tag t('generate_care_methods.save_care_methods'), class: 'btn btn-primary save-button' %>
-        <% end %>
+          <%= form_tag user_care_histories_path, method: :post do %>
+            <% @care_methods.each do |method| %>
+              <%= hidden_field_tag 'care_method_ids[]', method.id %>
+            <% end %>
+            <%= submit_tag t('generate_care_methods.save_care_methods'), class: 'btn btn-primary save-button mt-3' %>
+          <% end %>
         <% end %>
       <% else %>
         <p class="card-text"><%= t('generate_care_methods.no_care_methods') %></p>

@@ -26,6 +26,10 @@
         <%= f.select :evening_care_time, (12..23).to_a.map { |hour| [hour.to_s.rjust(2, '0') + ":00", "#{hour}:00:00"] }, {}, class: "form-control" %>
       </div>
 
+      <% if current_user.care_setting&.id.present? %>
+        <%= link_to "ケア設定を削除", care_setting_path(current_user.care_setting.id), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
+      <% end %>
+
       <%= f.submit "設定を保存", class: "btn btn-primary mt-3" %>
     <% end %>
   </div>

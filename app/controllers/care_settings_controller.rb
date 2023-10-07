@@ -12,7 +12,21 @@ class CareSettingsController < ApplicationController
   end
 
   def new
-    @care_setting = current_user.build_care_setting  # build_care_setting を使用
+    if current_user.care_setting
+      @care_setting = current_user.care_setting
+    else
+      @care_setting = CareSetting.new(user: current_user)
+    end
+  end  
+
+  def destroy
+    care_setting = current_user.care_setting
+    if care_setting&.destroy
+      flash[:success] = "ケア設定が正常に削除されました。"
+    else
+      flash[:error] = "ケア設定の削除に失敗しました。"
+    end
+    redirect_to care_records_path
   end
   
   private

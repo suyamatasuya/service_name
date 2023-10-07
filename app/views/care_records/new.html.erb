@@ -5,79 +5,49 @@
       <h1 class="h1 mt-5 mb-4"><%= t('ケア記録を作成') %></h1>
 
       <!-- Form to create a new care record -->
-      <form id="new-care-record-form" action="/api/care_records" method="post">
+      <%= form_with(url: "/api/care_records", method: "post", id: "new-care-record-form") do %>
         <div class="form-group">
           <label for="date">日付</label>
-          <input type="date" id="date" name="date" class="form-control">
+          <%= date_field_tag 'care_record[date]', nil, class: 'form-control' %>
         </div>
+
+        <!-- 問診結果に基づいたケアタイプの選択 -->
+        <% if @selected_care_methods.present? %>
+          <div class="form-group">
+            <label for="diagnosed-care-type">問診結果に基づいたケアタイプ</label>
+            <%= select_tag 'care_record[care_type]', options_for_select(@selected_care_methods.map do |care_method|
+              care_method.description.scan(/(?<!・|（\d）)([^:\s（）]+)(?=\s*[:])/).map(&:first).map { |title| title.gsub(/\d+\./, '').gsub('・', '') }
+            end.flatten), class: 'form-control' %>
+          </div>
+        <% else %>
+          <!-- ケアタイプの選択 -->
+          <div class="form-group">
+            <label for="care-type">ケアタイプ</label>
+            <%= select_tag 'care_record[care_type]', options_for_select([
+              ['ストレッチ', 'stretch'],
+              ['筋力トレーニング', 'strength_training'],
+              ['エクササイズ', 'exercise'],
+              ['その他', 'other']
+            ]), class: 'form-control' %>
+          </div>
+        <% end %>
 
         <!-- 症状の選択 -->
         <div class="form-group">
           <label for="symptom">症状</label>
-          <select id="symptom" name="symptom" class="form-control">
-            <option value="">選択してください</option>
-            <option value="neck">首</option>
-            <option value="back">腰</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="care-type">ケアタイプ</label>
-          <select id="care-type" name="care-type" class="form-control">
-            <option value="">選択してください</option>
-            <option value="stretch">ストレッチ</option>
-            <option value="strength_training">筋力トレーニング</option>
-            <option value="exercise">エクササイズ</option>
-            <option value="other">その他</option>
-          </select>
+          <%= select_tag 'care_record[symptom]', options_for_select([
+            ['首', 'neck'],
+            ['腰', 'back']
+          ]), class: 'form-control' %>
         </div>
 
         <div class="form-group">
           <label for="description">ケア内容やメモ</label>
-          <textarea id="description" name="description" class="form-control"></textarea>
+          <%= text_area_tag 'care_record[description]', nil, class: 'form-control' %>
         </div>
 
-        <!-- Submit button -->
-        <button type="submit" class="button btn btn-primary">作成</button>
-      </form>
+        <button type="submit" class="btn btn-primary">ケア記録を作成</button>
+      <% end %>
     </div>
   </main>
-
-  <script>
-    $(document).ready(function() {
-      $("#new-care-record-form").on("submit", function(event) {
-        event.preventDefault();
-
-        var date = $("#date").val();
-        var careType = $("#care-type").val();
-        var description = $("#description").val();
-        var symptom = $("#symptom").val();  // 新しく追加した症状の選択値を取得
-
-        var payload = {
-          care_record: {
-            date: date,
-            care_type: careType,
-            description: description,
-            symptom: symptom  // payloadに症状の選択値を追加
-          }
-        };
-
-        $.ajax({
-          url: '/api/care_records',
-          type: 'POST',
-          data: JSON.stringify(payload),
-          contentType: 'application/json',
-          success: function(response) {
-            console.log(response);
-            // フラッシュメッセージを設定してからリダイレクト
-            sessionStorage.setItem("flashMessage", "ケア予定を登録しました");
-            window.location.href = '/care_records';
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
-          }
-        });
-      });
-    });
-  </script>
 </body>
