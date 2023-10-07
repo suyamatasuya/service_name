@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :user_care_histories, only: %i[index create destroy]
   resources :terms_of_service, only: [:index]
   resources :care_records
-  resources :care_settings, only: [:new, :create]
+  resources :care_settings, only: [:new, :create, :destroy]
 
   resources :weather, only: [:index] do
     collection do

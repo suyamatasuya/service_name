@@ -8,13 +8,22 @@ class LineNotifier
     end
   end
 
-  def send_message(line_uid, message)
+  def send_message(line_uid, message_content)
     message = {
       type: 'text',
-      text: message
+      text: message_content
     }
-
+  
     response = client.push_message(line_uid, message)
-    # 必要に応じてエラーハンドリングなど
-  end
+  
+    # LINE APIからのレスポンス内容をログに出力
+    Rails.logger.info("LINE API Response: #{response.body}")
+  
+    # 200の代わりに、成功のHTTPステータスコードの範囲をチェック
+    if !(200..299).include?(response.code)
+      Rails.logger.error("Failed to send LINE message to uid: #{line_uid}. Error: #{response.body}")
+    end
+  rescue => e
+    Rails.logger.error("Error sending LINE message to uid: #{line_uid}. Error: #{e.message}")
+  end  
 end

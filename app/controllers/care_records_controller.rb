@@ -13,7 +13,12 @@ class CareRecordsController < ApplicationController
 
   def new
     @care_record = current_user.care_records.build
-  end
+    # ケア方法をセッションから取得
+    @selected_care_methods = CareMethod.where(id: params[:selected_care_methods])
+    # ケア記録の症状とケアタイプをセッションから取得
+    @care_record.symptom = session.delete(:symptom)
+    @care_record.care_type = session.delete(:care_type)
+  end  
 
   def edit; end
 
@@ -47,6 +52,6 @@ class CareRecordsController < ApplicationController
   end
 
   def care_record_params
-    params.require(:care_record).permit(:date, :care_type, :duration, :notes, :symptom)
+    params.require(:care_record).permit(:date, :care_type, :description, :symptom)
   end
 end
