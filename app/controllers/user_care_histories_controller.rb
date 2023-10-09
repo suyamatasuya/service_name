@@ -10,6 +10,7 @@ class UserCareHistoriesController < ApplicationController
     @user_care_histories = current_user.user_care_histories
                                        .includes(:care_method, :symptom)
                                        .order(care_received_date: :desc)
+    @selected_care_methods = @user_care_histories.map(&:care_method).uniq
   end
 
   # Create a new user care history.
@@ -50,7 +51,7 @@ class UserCareHistoriesController < ApplicationController
     UserCareHistory.create!(
       user_id: current_user.id,
       care_method_id: id,
-      symptom:,
+      symptom: symptom,
       care_received_date: Time.now
     )
   end

@@ -183,9 +183,12 @@ Rails.application.config.sorcery.configure do |config|
   if Rails.env.development?
     config.line.callback_url = 'http://localhost:3000/oauth/callback?provider=line'
   elsif Rails.env.production?
-    config.line.callback_url = 'https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=line'
+    if ENV['HEROKU_APP_URL']
+      config.line.callback_url = 'https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=line'
+    else
+      config.line.callback_url = 'https://pain-care-navi.com/oauth/callback?provider=line'
+    end
   end
-  config.line.user_info_mapping = { line_uid: 'userId', name: 'displayName' }
 
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.

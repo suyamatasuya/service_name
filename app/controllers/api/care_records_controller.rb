@@ -15,14 +15,14 @@ module Api
 
     # Creates a new care record.
     def create
-      @care_record = current_user.care_records.new(care_record_params)
-
+      @care_record = current_user.care_records.build(care_record_params)
+    
       if @care_record.save
-        render json: @care_record, status: :created
+        redirect_to care_records_path, notice: 'Care record was successfully created.'
       else
-        render json: @care_record.errors, status: :unprocessable_entity
+        render :new
       end
-    end
+    end    
 
     # Displays a single care record.
     def show
