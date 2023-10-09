@@ -5,7 +5,7 @@
       <h1 class="h1 mt-5 mb-4"><%= t('ケア記録を作成') %></h1>
 
       <!-- Form to create a new care record -->
-      <%= form_with(url: "/api/care_records", method: "post", id: "new-care-record-form") do %>
+      <%= form_with(url: "/api/care_records", method: "post", id: "new-care-record-form", local: true) do %>
         <div class="form-group">
           <label for="date">日付</label>
           <%= date_field_tag 'care_record[date]', nil, class: 'form-control' %>

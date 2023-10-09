@@ -1,4 +1,3 @@
-
 <%= stylesheet_link_tag 'user_care_histories' %>
 <%= javascript_pack_tag 'user_care_histories' %>
 <div class="container py-5">
@@ -38,6 +37,16 @@
                       <% if sentence.present? %>
                         <p><%= sentence %></p>
                       <% end %>
+                    <% end %>
+                    
+                    <!-- 問診結果をもとにケア記録を作成のリンクボタン追加 -->
+                    <% if logged_in? %>
+                      <%= link_to '問診結果をもとにケア記録を作成', 
+                          new_care_record_path(selected_care_methods: history.care_method.id),
+                          method: :get, 
+                          class: 'btn btn-primary mt-3',
+                          data: { confirm: 'ケア記録を作成してよろしいですか？' } 
+                      %>
                     <% end %>
                   </div>
                 </div>

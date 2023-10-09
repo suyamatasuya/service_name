@@ -13,12 +13,13 @@ class CareRecordsController < ApplicationController
 
   def new
     @care_record = current_user.care_records.build
-    # ケア方法をセッションから取得
+
+    # ケア方法をパラメータから取得
     @selected_care_methods = CareMethod.where(id: params[:selected_care_methods])
     # ケア記録の症状とケアタイプをセッションから取得
     @care_record.symptom = session.delete(:symptom)
     @care_record.care_type = session.delete(:care_type)
-  end  
+  end
 
   def edit; end
 
