@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -31,13 +32,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Add jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- Add Bootstrap from a CDN -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Popper.js for Bootstrap 4 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   
+  <!-- Add Bootstrap from a CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Bootstrap Select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+
   <!-- Add Noto Serif JP font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
 
@@ -58,13 +64,14 @@
 
   <meta name="csrf-token" content="<%= form_authenticity_token %>">
 </head>
+
 <body>
   <div id="page-container">
-  <% if current_user %>
-    <%= render 'shared/logged_in_header' %>
-  <% else %>
-    <%= render 'shared/before_login_header' %>
-  <% end %>
+    <% if current_user %>
+      <%= render 'shared/logged_in_header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
 
     <!-- フラッシュメッセージを表示 -->
     <%= render 'shared/flash_messages' %>

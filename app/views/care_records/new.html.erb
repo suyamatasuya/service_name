@@ -11,28 +11,29 @@
           <%= date_field_tag 'care_record[date]', nil, class: 'form-control' %>
         </div>
 
-        <!-- 問診結果に基づいたケアタイプの選択 -->
         <% if @selected_care_methods.present? %>
           <div class="form-group">
             <label for="diagnosed-care-type">問診結果に基づいたケアタイプ</label>
-            <%= select_tag 'care_record[care_type]', options_for_select(@selected_care_methods.map do |care_method|
-              care_method.description.scan(/(?<!・|（\d）)([^:\s（）]+)(?=\s*[:])/).map(&:first).map { |title| title.gsub(/\d+\./, '').gsub('・', '') }
-            end.flatten), class: 'form-control' %>
+            <%= select_tag 'care_record[care_types][]', 
+                options_for_select(@selected_care_methods.map do |care_method|
+                    care_method.description.scan(/(?<!・|（\d）)([^:\s（）]+)(?=\s*[:])/).map(&:first).map { |title| title.gsub(/\d+\./, '').gsub('・', '') }
+                end.flatten), 
+                { multiple: true, class: 'selectpicker form-control', title: '選択してください' } %>
           </div>
         <% else %>
-          <!-- ケアタイプの選択 -->
           <div class="form-group">
-            <label for="care-type">ケアタイプ</label>
-            <%= select_tag 'care_record[care_type]', options_for_select([
-              ['ストレッチ', 'stretch'],
-              ['筋力トレーニング', 'strength_training'],
-              ['エクササイズ', 'exercise'],
-              ['その他', 'other']
-            ]), class: 'form-control' %>
+            <label for="care-types">ケアタイプ</label>
+            <%= select_tag 'care_record[care_types][]', 
+                options_for_select([
+                    ['ストレッチ', 'stretch'],
+                    ['筋力トレーニング', 'strength_training'],
+                    ['エクササイズ', 'exercise'],
+                    ['その他', 'other']
+                ]), 
+                { multiple: true, class: 'selectpicker form-control', title: '選択してください' } %>
           </div>
         <% end %>
 
-        <!-- 症状の選択 -->
         <div class="form-group">
           <label for="symptom">症状</label>
           <%= select_tag 'care_record[symptom]', options_for_select([
