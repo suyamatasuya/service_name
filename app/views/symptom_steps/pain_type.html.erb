@@ -3,7 +3,7 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title"><%= t('symptoms_steps_pain_type.title') %></h1>
   <h2 class="text-center instruction"><%= t('symptoms_steps_pain_type.instruction') %></h2>
-  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_type), method: :patch do |f| %>
+  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_type), method: :patch, id: 'symptom-pain-type-form' do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
       <label for="sharp_pain" class="btn btn-outline-primary btn-lg custom-label">
         <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.sharp_pain'), style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>

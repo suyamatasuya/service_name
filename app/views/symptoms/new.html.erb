@@ -3,7 +3,7 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title"><%= t('symptoms_new.title') %></h1>
   <h2 class="text-center instruction"><%= t('symptoms_new.instruction') %></h2>
-  <%= form_with model: @symptom, url: symptoms_path, method: :post, local: true do |f| %>
+  <%= form_with model: @symptom, url: symptoms_path, method: :post, local: true, id: 'symptom-form' do |f| %>
   <%= f.hidden_field :pain_location %>
   <div class="d-flex justify-content-around flex-wrap" style="width: 100%; max-width: 600px;">
     <label for="neck" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_location == t('symptoms_new.neck') %>">
