@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'user_care_histories' %>
 <%= javascript_pack_tag 'user_care_histories' %>
+
 <div class="container py-5">
   <h1 class="mb-5 text-center"><%= t('user_care_histories.title') %></h1>
 
@@ -38,13 +39,15 @@
                         <p><%= sentence %></p>
                       <% end %>
                     <% end %>
-                    
-                    <!-- 問診結果をもとにケア記録を作成のリンクボタン追加 -->
-                    <% if logged_in? %>
-                      <%= link_to '問診結果をもとにケア記録を作成', 
+                  </div>
+                  <div class="modal-footer justify-content-center"> <!-- justify-content-centerを追加 -->
+                    <!-- 問診結果をもとにケア記録を作成のリンクボタン -->
+                    <% if logged_in? && history.care_method.name != '医療機関へ受診することを推奨します' %>
+                      <%= link_to '問診結果をもとにケア記録を作成',
                           new_care_record_path(selected_care_methods: history.care_method.id),
                           method: :get, 
-                          class: 'btn btn-primary mt-3',
+                          class: 'btn',
+                          style: 'background-color: #755839; color: white;',
                           data: { confirm: 'ケア記録を作成してよろしいですか？' } 
                       %>
                     <% end %>
@@ -93,21 +96,22 @@
     </tbody>
   </table>
 </div>
+
 <!-- YouTube IFrame API -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var videoModals = document.querySelectorAll('.modal[data-video-modal]');
-      
+  
     videoModals.forEach(function(modal) {
       var videoFrames = modal.querySelectorAll('iframe');
-        
-      $(modal).on('shown.bs.modal', function () {
+  
+      $(modal).on('shown.bs.modal', function() {
         videoFrames.forEach(function(frame) {
           frame.src = frame.dataset.src;
         });
       });
-        
-      $(modal).on('hidden.bs.modal', function () {
+  
+      $(modal).on('hidden.bs.modal', function() {
         videoFrames.forEach(function(frame) {
           frame.dataset.src = frame.src;
           frame.src = '';
