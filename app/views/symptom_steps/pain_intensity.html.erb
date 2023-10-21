@@ -13,13 +13,8 @@
       <h2 class="text-center instruction"><%= t('symptoms_steps_pain_intensity.instruction') %></h2>
       <div id="slider"></div> <!-- スライダーのコンテナ要素 -->
       <div id="slider-value" class="text-center mt-2"></div> <!-- スライダーの値表示領域 -->
-      <div id="slider-comments" class="text-center mt-2">
-        <span class="comment"><%= t('symptoms_steps_pain_intensity.comment_no_pain') %></span>
-        <span class="comment ml-2 comment"><%= t('symptoms_steps_pain_intensity.comment_pain') %></span>
-        <span class="comment ml-2"><%= t('symptoms_steps_pain_intensity.comment_unbearable_pain') %></span>
-      </div>
 
-      <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
+      <%= form_with model: @symptom, url: wizard_path, method: :patch, html: { id: 'painForm' } do |f| %>
         <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
 
         <div class="text-center mt-5">

@@ -3,7 +3,7 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title" style="color: #709775;"><%= t('symptoms_steps_pain_start_time.title') %></h1>
   <h2 class="text-center instruction" style="color: #709775;"><%= t('symptoms_steps_pain_start_time.instruction') %></h2>
-  <%= form_with model: @symptom, url: wizard_path, method: :patch do |f| %>
+  <%= form_with model: @symptom, url: wizard_path, method: :patch, html: { id: 'painStartTimeForm' } do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
       <label for="today" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.pain_start_time == t('symptoms_steps_pain_start_time.today') %>">
         <%= f.radio_button :pain_start_time, t('symptoms_steps_pain_start_time.today'), style: 'display:none', id: 'today', class: 'form-check-input' %>
