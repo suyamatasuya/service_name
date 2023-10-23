@@ -1,96 +1,113 @@
 /* Hide the radio buttons */
 .form-check-input {
-    display: none;
-  }
-  
-  /* Style for active label */
-  .active {
-    border-color: #FF0000; /* This will make the border red */
-    background-color: #FF0000; /* This will make the background red */
-    color: white;
-    box-shadow: 0px 0px 20px 3px rgba(255, 0, 0, 0.6); /* This will add a bigger and more visible red shadow around the item */
-  }
-  
-  /* Custom button size */
-  .custom-button {
-    width: 200px;
-    height: 60px;
-  }
-  
-  /* Custom label with margin and width */
-  .custom-label {
-    margin: 10px !important;
-    min-width: 200px; /* Adjust this value to ensure the text fits */
-    text-align: center; /* Center the text within the label */
-  }
-  
-  /* Custom title */
+  display: none;
+}
+
+/* Style for active label */
+.active {
+  border-color: #FF0000;
+  background-color: #FF0000;
+  color: white;
+  box-shadow: 0px 0px 20px 3px rgba(255, 0, 0, 0.6);
+}
+
+/* Custom button size */
+.custom-button {
+  width: 200px;
+  height: 60px;
+}
+
+/* Custom label with margin and width */
+.custom-label {
+  margin: 10px !important;
+  min-width: 200px;
+  text-align: center;
+}
+
+/* Custom title */
+.title {
+  font-size: 3em;
+  font-family: 'Noto Sans JP', sans-serif;
+  margin-bottom: 0.5em;
+  color: #709775;
+}
+
+/* Custom instruction */
+.instruction {
+  font-size: 1.5em;
+  font-family: 'Noto Sans JP', sans-serif;
+  margin-bottom: 1em;
+  color: #709775;
+}
+
+/* Background color */
+body {
+  background-color: #e9e7e0;
+}
+
+/* Button color */
+.btn-primary, .btn-wafu {
+  background-color: #F3EAD7;
+  border: 1px solid #D9CAB3;
+  color: #5B4436;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover, .btn-wafu:hover {
+  background-color: #D9CAB3;
+  color: #FFF;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #F3EAD7 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-back {
+  background-color: #e9e7e0; /* 薄茶色 */
+  color: #333; /* テキストの色を濃い色に */
+  border: 1px solid #c5a35a;
+  font-size: 1.3em; /* フォントサイズを.custom-labelと同じに */
+  padding: 10px 50px; /* パディングを.custom-labelと同じに */
+  color: #709775;
+}
+
+.btn-back:hover {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+
+@media (max-width: 768px) {
   .title {
-    font-size: 3em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 0.5em;
-    color: #709775; /* A matcha color */
-  }
-  
-  /* Custom instruction */
-  .instruction {
-    font-size: 1.5em;
-    font-family: 'Yu Gothic', sans-serif;
-    margin-bottom: 1em;
-    color: #709775; /* A matcha color */
-  }
-  
-  /* Background color */
-  body {
-    background-color: #e9e7e0; /* A light brown color */
-  }
-  
-  /* Button color */
-  .btn-primary {
-    background-color: #c5a35a;
-    color: #fff;
-  }
-  
-  .btn-primary:focus,
-  .btn-primary:active {
-    background-color: #c5a35a !important;
-    box-shadow: none !important;
-    outline: none !important;
+      font-size: 2em;
   }
 
-  @media (max-width: 768px) {
-    .title {
-        font-size: 2em;
-    }
-  
-    .instruction {
-        font-size: 1.2em;
-    }
-  
-    .custom-label {
+  .instruction {
+      font-size: 1.2em;
+  }
+
+  .custom-label {
       margin: 5px 5px;  
       display: block;
-      width: auto;       /* 幅を自動に設定 */
-      min-width: 120px;  /* 最小幅を100pxに設定 */
-      height: 40px;      /* 縦幅を40pxに設定 */
+      width: auto;
+      min-width: 120px;
+      height: 40px;
       text-align: center;
       font-size: 0.8em;
       padding: 5px 10px;
-      line-height: 30px; /* ラベル内のテキストの位置を調整 */
-    }
-  
-    .custom-button {
-      width: auto;       /* 幅を自動に設定 */
-      min-width: 100px;  /* 最小幅を100pxに設定 */
-      height: 40px;      /* 縦幅を40pxに設定 */
+      line-height: 30px;
+  }
+
+  .custom-button {
+      width: auto;
+      min-width: 100px;
+      height: 40px;
       font-size: 0.8em;
       padding: 5px 10px;
-      line-height: 30px; /* ボタン内のテキストの位置を調整 */
-    }
+      line-height: 30px;
   }
-  
-  
-  
-  
-  
-  
+}

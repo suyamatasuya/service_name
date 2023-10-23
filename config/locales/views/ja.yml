@@ -1,4 +1,6 @@
 ja:
+  common:
+    back: "戻る"
   care_methods:
     edit:
       title: "ケア方法を編集"

@@ -50,6 +50,9 @@
         <div id="map"></div> <!-- 地図を表示する要素 -->
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
       <% end %>
+      <div class="text-center mt-4">
+        <%= link_to t('common.back'), previous_wizard_path, class: 'btn btn-secondary btn-lg custom-button-responsive ml-3 btn-back', data: { turbolinks: false } %>
+      </div>
     </div>
   </div>
 </div>

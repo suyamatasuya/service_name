@@ -1,33 +1,39 @@
-body {
-  background-color: #e9e7e0;
-}
-
 h1, h2, label {
   color: #709775;
 }
 
-label {
+body {
+  background-color: #e9e7e0;
+}
+
+.pain-type-page h1,
+.pain-type-page h2,
+.pain-type-page label {
+  color: #709775;
+}
+
+.pain-type-page label {
   margin: 0 20px;
 }
 
-.btn-primary {
+.pain-type-page .btn-primary {
   background-color: #c5a35a;
   color: #fff;
 }
 
-.btn-primary:focus,
-.btn-primary:active {
+.pain-type-page .btn-primary:focus,
+.pain-type-page .btn-primary:active {
   background-color: #c5a35a !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
-.btn-outline-primary {
+.pain-type-page .btn-outline-primary {
   color: #c5a35a;
   border-color: #c5a35a;
 }
 
-.btn-outline-primary:hover {
+.pain-type-page .btn-outline-primary:hover {
   background-color: #c5a35a;
   color: #fff;
 }
@@ -60,6 +66,20 @@ label {
   font-size: 1.5em;
   font-family: 'Yu Gothic', sans-serif;
   margin-bottom: 1em;
+}
+
+.btn-back {
+  background-color: #e9e7e0; /* 薄茶色 */
+  color: #333; /* テキストの色を濃い色に */
+  border: 1px solid #c5a35a;
+  font-size: 1.3em; /* フォントサイズを.custom-labelと同じに */
+  padding: 10px 50px; /* パディングを.custom-labelと同じに */
+  color: #709775;
+}
+
+.btn-back:hover {
+  background-color: #c5a35a;
+  color: #fff;
 }
 
 /* Responsive styles */

@@ -8,7 +8,7 @@
   <% end %>
 
   <div id="content-wrap">
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="container-fluid pain-intensity-container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
       <h1 class="text-center title"><%= t('symptoms_steps_pain_intensity.title') %></h1>
       <h2 class="text-center instruction"><%= t('symptoms_steps_pain_intensity.instruction') %></h2>
       <div id="slider"></div> <!-- スライダーのコンテナ要素 -->
@@ -18,7 +18,7 @@
         <%= f.hidden_field :pain_intensity, id: 'pain_intensity' %> <!-- hidden field -->
 
         <div class="text-center mt-5">
-          <%= f.submit t('symptoms_steps_pain_intensity.next'), class: 'btn btn-primary btn-lg custom-button-responsive' %>
+          <%= link_to t('common.back'), previous_wizard_path, class: 'btn btn-secondary btn-lg custom-button-responsive ml-3 btn-back', data: { turbolinks: false } %>
         </div>
       <% end %>
     </div>

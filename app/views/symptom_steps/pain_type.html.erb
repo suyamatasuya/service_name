@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'symptoms_steps_pain_type' %>
 <%= javascript_pack_tag 'symptoms_steps_pain_type' %>
+<%= stylesheet_link_tag 'symptoms_steps_pain_type' %>
+<%= javascript_pack_tag 'symptoms_steps_pain_type' %>
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
   <h1 class="text-center title"><%= t('symptoms_steps_pain_type.title') %></h1>
   <h2 class="text-center instruction"><%= t('symptoms_steps_pain_type.instruction') %></h2>
@@ -22,8 +24,35 @@
         <%= t('symptoms_steps_pain_type.electric_pain') %>
       </label>
     </div>
-    <div class="text-center">
-      <%= f.submit t('symptoms_steps_pain_type.next'), class: 'btn btn-primary btn-lg custom-button' %>
+    <div class="text-center mt-3">
+      <%= link_to t('common.back'), new_symptom_path, class: 'btn btn-back btn-lg', data: { turbolinks: false } %>
+    </div>
+  <% end %>
+</div>
+
+  <h1 class="text-center title"><%= t('symptoms_steps_pain_type.title') %></h1>
+  <h2 class="text-center instruction"><%= t('symptoms_steps_pain_type.instruction') %></h2>
+  <%= form_with model: @symptom, url: symptom_step_path(@symptom, :pain_type), method: :patch, id: 'symptom-pain-type-form' do |f| %>
+    <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
+      <label for="sharp_pain" class="btn btn-outline-primary btn-lg custom-label">
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.sharp_pain'), style: 'display:none', id: 'sharp_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.sharp_pain') %>
+      </label>
+      <label for="dull_pain" class="btn btn-outline-primary btn-lg custom-label">
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.dull_pain'), style: 'display:none', id: 'dull_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.dull_pain') %>
+      </label>
+      <label for="throbbing_pain" class="btn btn-outline-primary btn-lg custom-label">
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.throbbing_pain'), style: 'display:none', id: 'throbbing_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.throbbing_pain') %>
+      </label>
+      <label for="electric_pain" class="btn btn-outline-primary btn-lg custom-label two-lines-label">
+        <%= f.radio_button :pain_type, t('symptoms_steps_pain_type.electric_pain'), style: 'display:none', id: 'electric_pain', class: 'form-check-input' %>
+        <%= t('symptoms_steps_pain_type.electric_pain') %>
+      </label>
+    </div>
+    <div class="text-center mt-3">
+      <%= link_to t('common.back'), new_symptom_path, class: 'btn btn-secondary btn-lg custom-button-responsive ml-3 btn-back', data: { turbolinks: false } %>
     </div>
   <% end %>
 </div>
