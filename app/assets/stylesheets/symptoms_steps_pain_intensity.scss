@@ -73,6 +73,21 @@ body .btn-primary.btn-lg.custom-button-responsive {
   line-height: 30px; /* ボタン内のテキストの位置を調整 */
 }
 
+.btn-back {
+  background-color: #e9e7e0; 
+  color: #333; 
+  border: 1px solid #c5a35a;
+  font-size: 1.3em; 
+  padding: 10px 50px; 
+  color: #709775;
+}
+
+.btn-back:hover {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .title {

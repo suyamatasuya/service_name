@@ -3,6 +3,7 @@
 <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh; background-color: #e9e7e0;">
   <h1 class="text-center title" style="color: #709775;"><%= t('symptoms_steps_injury_related.title') %></h1>
   <h2 class="text-center instruction" style="color: #709775;"><%= t('symptoms_steps_injury_related.instruction') %></h2>
+  
   <%= form_with model: @symptom, url: symptom_step_path(@symptom, :generate_care_methods), method: :patch, html: { id: 'injuryRelatedForm' } do |f| %>
     <div class="d-flex justify-content-around flex-nowrap" style="width: 100%; max-width: 800px; overflow-x: auto;">
       <label for="injury_related_yes" class="btn btn-outline-primary btn-lg custom-label <%= 'active' if @symptom.injury_related == true %>">
@@ -14,8 +15,8 @@
         <%= t('symptoms_steps_injury_related.non_trauma_pain') %>
       </label>
     </div>
-    <div class="text-center">
-      <%= f.submit t('symptoms_steps_injury_related.next'), class: 'btn btn-primary btn-lg custom-button' %>
+    <div class="text-center mt-4">
+      <%= link_to t('common.back'), previous_wizard_path, class: 'btn btn-secondary btn-lg custom-button-responsive ml-3 btn-back', data: { turbolinks: false } %>
     </div>
   <% end %>
 </div>

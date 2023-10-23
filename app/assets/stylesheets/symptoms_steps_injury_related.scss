@@ -71,6 +71,20 @@ body {
   color: #fff;
 }
 
+.btn-back {
+  background-color: #e9e7e0; 
+  color: #333; 
+  border: 1px solid #c5a35a;
+  font-size: 1.3em; 
+  padding: 10px 50px; 
+  color: #709775;
+}
+
+.btn-back:hover {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .title {
       font-size: 2em;
