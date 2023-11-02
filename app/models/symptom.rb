@@ -47,7 +47,7 @@ class Symptom < ApplicationRecord
   end
 
   def generate_care_methods
-    return [] unless pain_location && pain_start_time && pain_type && pain_intensity
+    return CareMethod.none unless pain_location && pain_start_time && pain_type && pain_intensity
 
     care_methods = CareMethod.none
 
@@ -60,12 +60,18 @@ class Symptom < ApplicationRecord
     # 上記のいずれかの条件に該当する場合は、受診を推奨
     if severe_pain || pain_started_today || related_to_injury || shocking_pain
       care_methods = care_methods.or(CareMethod.where(name: '医療機関へ受診することを推奨します'))
-    elsif pain_type == '鋭い痛み' || pain_type == '脈打つ痛み'
+    end
+
+    if pain_type == '鋭い痛み' || pain_type == '脈打つ痛み'
       # それ以外の場合は、通常のケア方法を提供
       care_methods = care_methods.or(CareMethod.where(name: '強い痛みに対するケア方法'))
-    elsif pain_location == '首'
+    end
+
+    if pain_location == '首'
       care_methods = care_methods.or(CareMethod.where(name: '首の痛みに対するケア方法'))
-    elsif pain_location == '腰'
+    end
+
+    if pain_location == '腰'
       care_methods = care_methods.or(CareMethod.where(name: '腰の痛みに対するケア方法'))
     end
 
@@ -77,6 +83,6 @@ class Symptom < ApplicationRecord
   end
 
   def name_with_pain_type
-    "#{pain_location} #{pain_type.present? ? "(#{pain_type})" : ''}"
+    [pain_location, pain_type.present? ? "(#{pain_type})" : nil].compact.join(' ')
   end
 end
