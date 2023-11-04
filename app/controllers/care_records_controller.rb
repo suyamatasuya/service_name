@@ -48,6 +48,13 @@ class CareRecordsController < ApplicationController
 
   private
 
+  def require_login
+    unless logged_in?
+      flash[:alert] = 'ログインしてください'
+      redirect_to root_path
+    end
+  end
+  
   def set_care_record
     @care_record = current_user.care_records.find(params[:id])
   end

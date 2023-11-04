@@ -139,6 +139,18 @@ body .container .right-content {
   z-index: 10;
 }
 
-.alert.alert-notice {
-  margin-top: -50px; /* 30px のマージンを上部に追加 */
+.alert-notice,
+.alert-alert {
+  font-size: 16px; 
+  position: fixed; 
+  top: 90px;       
+  left: 0;
+  right: 250px;
+  width: 100%;     
+  padding: 1rem;   // パディングを追加して、メッセージの上下にスペースを作る
+  background-color: #f8f9fa; // 背景色はBootstrapのデフォルトのアラートカラーに合わせる
+  border-bottom: 1px solid #ececec; // 下に薄い境界線を追加
+  color: #333;    // テキストの色をダークグレーに
+  text-align: left; // テキストを左寄せに
+  z-index: 1050;  // モーダルウィンドウ等の上に表示されるように十分に大きな値に設定
 }
