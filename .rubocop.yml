@@ -4,24 +4,41 @@ Style/Documentation:
     - "db/migrate/*.rb"
 
 Metrics/BlockLength:
+  Max: 30
   Exclude:
     - "db/schema.rb"
     - 'config/routes.rb'
+    - 'spec/**/*'
+    - 'config/initializers/sorcery.rb'
 
 Metrics/AbcSize:
   Exclude:
     - 'app/models/symptom.rb'
+
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'app/models/symptom.rb'
+
 Metrics/MethodLength:
   Exclude:
     - 'app/models/symptom.rb'
+
 Metrics/PerceivedComplexity:
   Exclude:
     - 'app/models/symptom.rb'
 
+RSpec/MultipleDescribes:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/NestedGroups:
+  Exclude:
+    - 'spec/**/*'
+
 AllCops:
+  NewCops: enable
   Exclude:
     - 'bin/bundle'
     - 'vendor/**/*'
+    
+require: rubocop-rspec

@@ -51,7 +51,7 @@ class UserCareHistoriesController < ApplicationController
     UserCareHistory.create!(
       user_id: current_user.id,
       care_method_id: id,
-      symptom: symptom,
+      symptom:,
       care_received_date: Time.now
     )
   end

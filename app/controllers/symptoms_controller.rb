@@ -37,7 +37,7 @@ class SymptomsController < ApplicationController
     @symptom = Symptom.find(params[:id])
     @care_methods = @symptom.generate_care_methods
     @show_map = @symptom.pain_intensity.between?(8, 10)
-  
+
     # エクササイズ情報をセッションに保存
     session[:care_methods_info] = @care_methods.as_json
   end

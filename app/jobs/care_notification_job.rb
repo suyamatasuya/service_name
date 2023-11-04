@@ -1,22 +1,22 @@
+# frozen_string_literal: true
+
 class CareNotificationJob < ApplicationJob
-    queue_as :default
-  
-    def perform
-      current_time = Time.current
-  
-      User.includes(:care_setting).find_each do |user|
-        care_setting = user.care_setting
-  
-        # 朝の通知
-        if care_setting&.morning_care_time&.hour == current_time.hour
-          LineNotifier.new.send_message(user.line_uid, "朝のケア時間です！")
-        end
-  
-        # 夕方の通知
-        if care_setting&.evening_care_time&.hour == current_time.hour
-          LineNotifier.new.send_message(user.line_uid, "夕方のケア時間です！")
-        end
-      end
+  queue_as :default
+
+  def perform
+    User.includes(:care_setting).find_each do |user|
+      care_setting = user.care_setting
+      send_care_notification(user, care_setting&.morning_care_time, '朝のケア時間です！')
+      send_care_notification(user, care_setting&.evening_care_time, '夕方のケア時間です！')
     end
   end
-  
+
+  private
+
+  # 指定されたケア時間が現在の時間と一致したら、ユーザーに通知を送る
+  def send_care_notification(user, care_time, message)
+    return unless care_time&.hour == Time.current.hour
+
+    LineNotifier.new.send_message(user.line_uid, message)
+  end
+end

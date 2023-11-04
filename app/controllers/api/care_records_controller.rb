@@ -13,7 +13,8 @@ module Api
     def create
       care_types = care_record_params[:care_types]
       care_types.each do |care_type|
-        current_user.care_records.build(date: care_record_params[:date], care_type: care_type, description: care_record_params[:description])
+        current_user.care_records.build(date: care_record_params[:date], care_type:,
+                                        description: care_record_params[:description])
       end
 
       if current_user.save

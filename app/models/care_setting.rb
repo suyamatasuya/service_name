@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CareSetting < ApplicationRecord
   belongs_to :user
 
@@ -18,8 +20,8 @@ class CareSetting < ApplicationRecord
   private
 
   def either_morning_or_evening
-    if morning_care_time.blank? && evening_care_time.blank?
-      errors.add(:base, '午前か午後のケア時間のどちらかは必ず入力してください')
-    end
+    return unless morning_care_time.blank? && evening_care_time.blank?
+
+    errors.add(:base, '午前か午後のケア時間のどちらかは必ず入力してください')
   end
 end

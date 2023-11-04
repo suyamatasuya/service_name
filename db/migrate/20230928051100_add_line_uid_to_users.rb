@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddLineUidToUsers < ActiveRecord::Migration[6.1]
   def change
     add_column :users, :line_uid, :string
