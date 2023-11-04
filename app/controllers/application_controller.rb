@@ -4,26 +4,22 @@
 # It includes common functionalities and settings that are inherited by other controllers.
 class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
-
-  # Sets CORS headers for cross-origin requests.
   before_action :set_cors_headers
+
+  helper_method :current_user, :logged_in?
 
   private
 
-  # Sets the CORS headers to allow requests from any origin.
-  # Additional CORS-related headers can be added as needed.
+  # Sets CORS headers to allow requests from any origin.
   def set_cors_headers
     headers['Access-Control-Allow-Origin'] = '*'
   end
 
-  # Example of setting a cookie for cross-site contexts.
-  # This sets a secure cookie with the SameSite attribute set to 'None'.
-  def set_cookie_for_cross_site
-    cookies[:name] = {
-      value: 'a value',
-      expires: 1.year.from_now,
-      same_site: :none,
-      secure: true
-    }
+  # Ensures that a user is logged in. If not, redirects to the login page with a warning message.
+  def ensure_user_logged_in
+    unless logged_in?
+      flash[:warning] = 'ログインしてください'
+      redirect_to login_path # Use the correct path for your Sorcery login page.
+    end
   end
 end

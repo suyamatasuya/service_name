@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
-# WeatherController handles weather-related actions.
 class WeatherController < ApplicationController
   before_action :require_login, only: [:index]
 
-  # Displays the weather index page.
-  def index; end
+  def index
+  end
 
-  # Returns the Google API key as JSON.
-  def google_api_key
-    render json: { google_api_key: ENV.fetch('GOOGLE_API_KEY', nil) }
+  private
+
+  def require_login
+    unless logged_in?
+      flash[:alert] = 'ログインしてください'
+      redirect_to root_path
+    end
   end
 end
