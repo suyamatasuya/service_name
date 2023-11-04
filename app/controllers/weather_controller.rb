@@ -9,6 +9,6 @@ class WeatherController < ApplicationController
 
   # Returns the Google API key as JSON.
   def google_api_key
-    render json: { google_api_key: ENV['GOOGLE_API_KEY'] }
+    render json: { google_api_key: ENV.fetch('GOOGLE_API_KEY', nil) }
   end
 end

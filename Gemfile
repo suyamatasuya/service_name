@@ -33,10 +33,11 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'pry-rails'
-  gem 'rspec-rails', '~> 5.0'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 5.0'
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -47,11 +48,11 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rails-erd'
   gem 'rubocop', require: false
   gem 'rubocop-discourse'
   gem 'rubocop-performance', require: false, group: :development
   gem 'spring'
-  gem 'rails-erd'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -60,6 +61,8 @@ gem 'dockerfile-rails', '>= 1.4', group: :development
 gem 'dotenv-rails', groups: %i[development test]
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'line-bot-api'
+gem 'omniauth-line'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'redis', '~> 5.0'
 gem 'sidekiq'
@@ -67,5 +70,3 @@ gem 'sorcery'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier'
 gem 'wicked'
-gem 'line-bot-api'
-gem 'omniauth-line'

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :care_notification do
-    desc "Send care notification"
-    task send: :environment do
-      CareNotificationJob.perform_now
-    end
+  desc 'Send care notification'
+  task send: :environment do
+    CareNotificationJob.perform_now
   end
+end

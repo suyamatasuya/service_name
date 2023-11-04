@@ -82,7 +82,7 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  config.external_providers = [:google, :line]
+  config.external_providers = %i[google line]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -167,8 +167,8 @@ Rails.application.config.sorcery.configure do |config|
   # config.auth0.callback_url = "https://0.0.0.0:3000/oauth/callback?provider=auth0"
   # config.auth0.site = "https://example.auth0.com"
   #
-  config.google.key = ENV['GOOGLE_CLIENT_ID']
-  config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
+  config.google.key = ENV.fetch('GOOGLE_CLIENT_ID', nil)
+  config.google.secret = ENV.fetch('GOOGLE_CLIENT_SECRET', nil)
   if Rails.env.development?
     config.google.callback_url = 'http://localhost:3000/oauth/callback?provider=google'
   elsif Rails.env.production?
@@ -177,17 +177,17 @@ Rails.application.config.sorcery.configure do |config|
   end
   config.google.user_info_mapping = { email: 'email', name: 'name' }
   config.google.scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
-  
-  config.line.key = ENV['LINE_CLIENT_ID']
-  config.line.secret = ENV['LINE_CLIENT_SECRET']
+
+  config.line.key = ENV.fetch('LINE_CLIENT_ID', nil)
+  config.line.secret = ENV.fetch('LINE_CLIENT_SECRET', nil)
   if Rails.env.development?
     config.line.callback_url = 'http://localhost:3000/oauth/callback?provider=line'
   elsif Rails.env.production?
-    if ENV['HEROKU_APP_URL']
-      config.line.callback_url = 'https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=line'
-    else
-      config.line.callback_url = 'https://pain-care-navi.com/oauth/callback?provider=line'
-    end
+    config.line.callback_url = if ENV['HEROKU_APP_URL']
+                                 'https://nagomi-neckback-care-f61a27e8212b.herokuapp.com/oauth/callback?provider=line'
+                               else
+                                 'https://pain-care-navi.com/oauth/callback?provider=line'
+                               end
   end
 
   #
