@@ -5,10 +5,6 @@
         <button class="btn menu-btn mb-4" type="button" id="menuToggle" onclick="window.location.href='/care_records/new'">
             ケア記録を作成
         </button>
-
-        <button class="btn menu-btn mb-4 ml-3" type="button" id="deleteToggle">
-            ケア記録を削除
-        </button>
             
         <button class="btn menu-btn mb-4 ml-3" type="button" id="graphToggle">
             グラフ表示
@@ -17,14 +13,6 @@
         <button class="btn menu-btn mb-4 ml-3" type="button" onclick="window.location.href='/care_settings/new'">
           ケア時間設定
         </button>
-        
-        <!-- サイドバーの内容 -->
-        <div class="d-none mb-4" id="sidebarMenu">
-            <div class="card card-body">
-                <a href="#" class="btn menu-btn" id="delete-neck-records">首の記録を削除</a>
-                <a href="#" class="btn menu-btn" id="delete-back-records">腰の記録を削除</a>
-            </div>
-        </div>
 
         <div class="help-icon" onmouseover="showHelpPopup()" onmouseout="hideHelpPopup()">
             <div class="help-popup" id="help-popup">
@@ -69,7 +57,22 @@
         </div>
 
         <div id="calendar"></div>
-     </div>
+
+        <!-- ここで削除ボタンを別のセクションに移動 -->
+        <div class="delete-button-section">
+          <button class="btn menu-btn mb-4 ml-3" type="button" id="deleteToggle">
+            ケア記録を削除
+          </button>
+        </div>
+
+         <!-- サイドバーの内容 -->
+        <div class="d-none mb-4" id="sidebarMenu">
+          <div class="card card-body">
+            <a href="#" class="btn menu-btn" id="delete-neck-records">首の記録を削除</a>
+            <a href="#" class="btn menu-btn" id="delete-back-records">腰の記録を削除</a>
+          </div>
+        </div>
+    </div>
 
     <!-- Care Record Modal -->
     <div class="modal fade" id="careRecordModal" tabindex="-1" role="dialog" aria-labelledby="careRecordModalLabel" aria-hidden="true">

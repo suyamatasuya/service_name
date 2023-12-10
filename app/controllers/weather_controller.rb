@@ -6,6 +6,11 @@ class WeatherController < ApplicationController
   def index
   end
 
+  def google_api_key
+    api_key = ENV['GOOGLE_API_KEY'] || 'your-default-api-key'
+    render json: { google_api_key: api_key }
+  end
+
   private
 
   def require_login

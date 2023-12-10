@@ -1,155 +1,151 @@
-/* CSSを適用 */
 body {
-    font-family: 'Noto Serif JP', serif;
-    background-color: #f5f1e8;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* コンテンツを画面中央に配置 */
-    min-height: 100vh; /* viewportの高さを最小限に設定 */
-    margin: 0;
-    padding: 0;
-  }
-  .card {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    background-color: #fdf5e3;
-  }
-  .card h5 {
-    margin-bottom: 1em;
-  }
-  .card-text {
-    font-size: 1.1em; /* 既存の文字サイズより50%大きくなります。 */
-    margin-bottom: 1.5em;
-  }
-  .btn-primary {
-    color: #fff;
-    background-color: #755839;
-    border-color: #755839;
-    padding: 0.5em 1em;
-    font-size: 1em;
-    transition: background-color 0.3s; /* トランジション */
-  }
-  .btn-primary:hover {
-    background-color: #a39170; /* ホバーカラー */
-  }
-
-  .results-title {
-    text-align: center;
-    margin-top: 100px;
-  }
-
-  #map {
-    height: 500px;
-    width: 80%; /* マップの幅を80%に調整 */
-    margin: 20px auto; /* マップを中央寄せ */
-  }
-  #page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100vw;
-  }
-  #content-wrap {
-    width: 1000px;
-    margin: 10px; /* 必要に応じて上下のマージンを調整 */
-    box-sizing: border-box; /* Make sure padding is included in width */
-  }
-  #page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center the contents */
-    align-items: center; /* Horizontally center the contents */
-    min-height: 100vh; /* Make sure the container covers the whole viewport height */
-    width: 100%; /* Make sure the container covers the whole viewport width */
-    overflow: hidden; /* Hide any content extending beyond the container */
-  }
-  #map {
-    height: 60vh;  /* マップの高さをビューポートの高さの40%に設定 */
-    width: 70vw;  /* マップの幅をビューポートの幅の50%に設定 */
-    margin: 0 auto; /* マップを中央寄せ */
+  font-family: 'Noto Serif JP', serif;
+  background-color: #f5f1e8;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* コンテンツを画面中央に配置 */
+  min-height: 100vh; /* viewportの高さを最小限に設定 */
+  margin: 0;
+  padding: 0;
 }
-  .save-button {
-    display: block;
-    margin: 0 auto;
+
+.card {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  background-color: #fdf5e3;
+}
+
+.card h5 {
+  margin-bottom: 1em;
+}
+
+.card-text {
+  font-size: 1.1em; /* 既存の文字サイズより50%大きくなります。 */
+  margin-bottom: 1.5em;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #755839;
+  border-color: #755839;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  transition: background-color 0.3s; /* トランジション */
+}
+
+.btn-primary:hover {
+  background-color: #a39170; /* ホバーカラー */
+}
+
+.results-title {
+  text-align: center;
+  margin-top: 100px;
+}
+
+#map {
+  height: 500px;
+  width: 80%; /* マップの幅を80%に調整 */
+  margin: 20px auto; /* マップを中央寄せ */
+}
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* コンテンツを上部から始める */
+  align-items: center; /* 水平方向の中央揃えを維持 */
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 100px; /* ナビゲーションバーの高さを考慮したパディングを追加 */
+  overflow: auto; /* 必要に応じてスクロールを可能に */
+  padding-top: 20px
+}
+
+#content-wrap {
+  width: 1000px;
+  margin: 10px auto; /* 上下の余白を調整し、左右は自動調整 */
+  box-sizing: border-box; /* パディングを幅に含める */
+}
+
+.save-button {
+  display: block;
+  margin: 0 auto;
+}
+
+.alert {
+  font-size: 16px;
+  position: fixed;
+  top: 90px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ececec;
+  color: #333;
+  text-align: left;
+  z-index: 1050;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* 軽いボックスシャドウを追加 */
+}
+
+.btn-back {
+  background-color: #e9e7e0;
+  color: #333;
+  border: 1px solid #c5a35a;
+  font-size: 1.3em;
+  padding: 10px 50px;
+  color: #709775;
+}
+
+.btn-back:hover {
+  background-color: #c5a35a;
+  color: #fff;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 992px) {
+  #content-wrap {
+    width: 80vw; /* viewportの幅の80%に設定 */
   }
 
-  .alert {
-    font-size: 16px; 
-    position: fixed; 
-    top: 90px;       
-    left: 0;
-    right: 0;
-    width: 100%;     
-    padding: 1rem;   
-    background-color: #f8f9fa; 
-    border-bottom: 1px solid #ececec; 
-    color: #333;    
-    text-align: left; 
-    z-index: 1050;  
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* 軽いボックスシャドウを追加 */
+  #page-container {
+    padding-top: 50px; /* タブレットサイズのビューポートでの上部のパディングを20pxに */
   }
 
-  .btn-back {
-    background-color: #e9e7e0; 
-    color: #333; 
-    border: 1px solid #c5a35a;
-    font-size: 1.3em; 
-    padding: 10px 50px; 
-    color: #709775;
+  .card {
+    width: 100%; /* カードの幅を100%に設定 */
   }
-  
-  .btn-back:hover {
-    background-color: #c5a35a;
-    color: #fff;
-  }   
 
-  @media (max-width: 992px) {
-    #content-wrap {
-        width: 80vw; /* viewportの幅の80%に設定 */
-    }
-
-    .card {
-        width: 100%; /* カードの幅を100%に設定 */
-    }
-
-    #map {
-        width: 90vw; /* マップの幅をviewportの幅の90%に設定 */
-    }
+  #map {
+    width: 90vw; /* マップの幅をviewportの幅の90%に設定 */
+  }
 }
 
 @media (max-width: 768px) {
-    .card-text {
-        font-size: 0.9em; /* 文字サイズを1emに設定 */
-    }
+  #content-wrap {
+    width: 90vw; /* viewportの幅の90%に設定 */
+  }
 
-    .btn-primary {
-        padding: 0.4em 0.8em; /* ボタンのパディングを調整 */
-        font-size: 0.9em; /* ボタンのフォントサイズを調整 */
-    }
+  #page-container {
+    padding-top: 50px; /* タブレットサイズのビューポートでの上部のパディングを20pxに */
+  }
 
-    .results-title {
-        margin-top: 30px; /* タイトルの上のマージンを30pxに設定 */
-    }
+  .card-text {
+    font-size: 0.9em; /* 文字サイズを小さく調整 */
+  }
 
-    #map {
-      height: 40vh; /* マップの高さをビューポートの高さの80%に設定 */
-    }
+  .btn-primary {
+    padding: 0.4em 0.8em; /* ボタンのパディングを小さく調整 */
+    font-size: 0.9em; /* ボタンのフォントサイズを小さく調整 */
+  }
 
-    .card-body {
-      display: flex;
-      flex-direction: column; /* リンクを縦に並べる */
-      align-items: center; /* リンクを中央揃え */
-    }
-    .card-link {
-      width: 80%; /* リンクの幅を80%に設定 */
-      margin-bottom: 10px; /* リンク間のスペースを設定 */
-      text-align: center; /* アイコンとテキストを中央揃え */
-    }
+  .results-title {
+    font-size: 1.5em; /* タイトルのフォントサイズを小さく調整 */
+    margin-top: 20px; /* タイトルの上の余白を調整 */
+  }
 
-    .card-link i.fas {
-      margin-left: 5px; /* アイコンとテキストの間にスペースを追加 */
-    }
+  #map {
+    height: 40vh; /* マップの高さを小さく調整 */
+  }
 }

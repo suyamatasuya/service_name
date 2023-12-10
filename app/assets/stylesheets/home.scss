@@ -154,3 +154,38 @@ body .container .right-content {
   text-align: left; // テキストを左寄せに
   z-index: 1050;  // モーダルウィンドウ等の上に表示されるように十分に大きな値に設定
 }
+
+/* モバイルデバイス用のスタイル */
+@media only screen and (max-width: 768px) {
+  .main-title,
+  .right-content {
+    display: none; /* メインタイトルと背景を非表示に */
+  }
+
+  /* その他のモバイルビュー用のスタイル調整 */
+  .container {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .left-image {
+    margin-top: 100px; /* モバイルビューでのみ画像を下に移動 */
+  }
+
+  .about-container,
+  .about-content {
+    flex-direction: column;
+  }
+
+  .app-description-text,
+  .app-description-title,
+  .about-title {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .scrolling-links a {
+    flex-basis: 100%;
+    margin: 10px;
+  }
+}

@@ -23,11 +23,13 @@ body {
   align-items: center;
 }
 
-.logo-main, .logo-sub {
-  font-size: 24px; /* 両方の文字サイズを同じに設定 */
-  color: #fff; /* 伝統的な和風の色に変更 */
-  margin-right: 5px;
-}
+.logo-main,
+  .logo-sub {
+    font-size: 18px; /* タイトルのフォントサイズを小さく */
+    display: block; /* ブロック要素に変更して縦に並ぶのを防ぐ */
+    white-space: nowrap; /* 改行されるのを防ぐ */
+    color: #fff; /* テキストの色を白に設定 */
+  }
 
 .navbar-links {
   color: #fff;
