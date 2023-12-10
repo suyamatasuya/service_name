@@ -150,3 +150,17 @@ li {
 .help-icon:hover .help-popup {
     display: block;
 }
+
+.delete-button-section {
+    text-align: center;
+    padding-top: 30px; /* カレンダーとの間にスペースを追加 */
+}
+
+#deleteToggle {
+    background-color: #006400;;
+    border-color: #708090;
+}
+
+#deleteToggle:hover {
+    background-color: #708090;
+}
