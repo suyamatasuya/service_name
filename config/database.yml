@@ -81,8 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: ddb7ekk1gqdrrk
-  username: breicyqhxmioqm
-  port: 5432
-  password: <%= ENV['PASSWORD'] %>
-  url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
