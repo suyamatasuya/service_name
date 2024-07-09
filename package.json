@@ -21,12 +21,12 @@
     "nouislider": "^15.7.0",
     "prop-types": "^15.8.1",
     "sass": "^1.77.6",
-    "sass-loader": "10.1.1",
+    "sass-loader": "^10.1.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "postcss-loader": "^4.2.0",
+    "postcss-loader": "^4.3.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3"
