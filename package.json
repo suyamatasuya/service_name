@@ -13,7 +13,6 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.3.3",
-    "css-loader": "^5.1.1",
     "fullcalendar": "^6.1.8",
     "googleapis": "39",
     "highcharts": "^11.1.0",
@@ -22,7 +21,6 @@
     "postcss": "^8.0.0",
     "prop-types": "^15.8.1",
     "sass": "^1.77.6",
-    "sass-loader": "^10.1.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
