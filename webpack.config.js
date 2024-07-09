@@ -1,11 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development', // or 'production'
+  mode: 'development', // または 'production'
   entry: './app/javascript/packs/application.js', // プロジェクトのエントリーポイントに合わせて変更
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'public', 'packs')
   },
   module: {
     rules: [
@@ -22,12 +22,16 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
   node: {
+    global: true,
     __dirname: true,
-    __filename: true,
-    global: true
+    __filename: true
   }
 };
