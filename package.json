@@ -2,7 +2,7 @@
   "name": "service-name",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-private-methods": "^7.21.4",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-react": "^7.22.15",
     "@popperjs/core": "^2.11.8",
