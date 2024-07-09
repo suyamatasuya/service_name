@@ -30,8 +30,8 @@ module.exports = {
     ]
   },
   node: {
-    global: true,
     __dirname: true,
-    __filename: true
+    __filename: true,
+    global: true
   }
 };
