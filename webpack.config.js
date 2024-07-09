@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development', // または 'production'
+  mode: 'development', // or 'production'
   entry: './app/javascript/packs/application.js', // プロジェクトのエントリーポイントに合わせて変更
   output: {
     filename: 'bundle.js',
@@ -29,9 +29,13 @@ module.exports = {
       }
     ]
   },
-  node: {
-    __dirname: true,
-    __filename: true,
-    global: true
+  resolve: {
+    fallback: {
+      dgram: false,
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false
+    }
   }
 };
